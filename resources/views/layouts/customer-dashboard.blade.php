@@ -11,10 +11,10 @@
         </div>
         <ul class="sidebar-menu">
             <li><a href="{{ url('customer/dashboard') }}" class="{{ request()->is('customer/dashboard') ? 'active' : '' }}">Dashboard</a></li>
-            <li><a href="{{ url('customer/dashboard/members ') }}" class="{{ request()->is('customer/dashboard/members') ? 'active' : '' }}">Members</a></li>
-            <li><a href="{{ url('customer/dashboard/connections') }}" class="{{ request()->is('customer/dashboard/connections') ? 'active' : '' }}">Connections</a></li>
-            <li><a href="{{ url('customer/dashboard/events') }}" class="{{ request()->is('customer/dashboard/events') ? 'active' : '' }}">Events</a></li>
-            <li><a href="{{ url('customer/dashboard/profile') }}" class="{{ request()->is('customer/dashboard/profile') ? 'active' : '' }}">My Profile</a></li>
+            <li><a href="{{ url('customer/members ') }}" class="{{ request()->is('customer/members') ? 'active' : '' }}">Members</a></li>
+            <li><a href="{{ url('customer/connections') }}" class="{{ request()->is('customer/connections') ? 'active' : '' }}">Connections</a></li>
+            <li><a href="{{ url('customer/events') }}" class="{{ request()->is('customer/events') ? 'active' : '' }}">Events</a></li>
+            <li><a href="{{ url('customer/profile') }}" class="{{ request()->is('customer/profile') ? 'active' : '' }}">My Profile</a></li>
         </ul>
     </div>
     @yield('content')
