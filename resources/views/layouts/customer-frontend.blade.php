@@ -28,7 +28,7 @@
 
                     @auth
                          <li class="nav-item">
-                            <a class="btn btn-uni1" href="{{ url('/') }}">Dashboard</a>
+                            <a class="btn btn-uni1" href="{{ url('customer/dashboard') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <form method="POST" action="{{ route('logout') }}">

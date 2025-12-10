@@ -1,4 +1,4 @@
-@if(auth()->user()->role == 'admin')
+@if(auth()->check() && auth()->user()->role == 'admin')
     <meta name="robots" content="noindex, nofollow">
 @else
     <head>
