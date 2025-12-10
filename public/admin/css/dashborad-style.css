@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #1f2937;
+  background-color: #f9fafb;
+}
+
+/* ==========================
+   COLOR PALETTE (CSS VARIABLES)
+   ========================== */
+:root {
+  /* Primary */
+  --emerald: #10b981;
+  --golf-green: #22c55e;
+  --rose: #fb7185;
+  --amber: #fbbf24;
+
+  /* Background */
+  --rose-50: #fef2f2;
+  --emerald-50: #ecfdf5;
+  --amber-50: #fef3c7;
+
+  /* Neutrals */
+  --gray-800: #1f2937;
+  --gray-600: #4b5563;
+  --gray-500: #6b7280;
+  --gray-50: #f9fafb;
+  --white: #ffffff;
+
+  /* Radiuses */
+  --r-small: 8px;
+  --r-medium: 12px;
+  --r-large: 24px;
+  --r-full: 999px;
+
+  /* Shadows */
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 8px 24px rgba(16, 185, 129, 0.15);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #10b981 0%, #fb7185 100%);
+  --gradient-background: linear-gradient(135deg, #fef2f2 0%, #ecfdf5 50%, #fef3c7 100%);
+
+  :root {
+    --emerald: #10b981;
+    --rose: #fb7185;
+    --amber: #fbbf24;
+    --gray-700: #374151;
+    --gray-500: #6b7280;
+    --gray-300: #d1d5db;
+    --gray-100: #f3f4f6;
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+}
+
+
+/* ===========================
+   PREMIUM ADMIN DASHBOARD CSS
+=========================== */
+
+/* Sidebar */
+
+.sidebar-header {
+  margin-bottom: 45px;
+}
+
+.sidebar-logo {
+  height: 50px;
+}
+
+.sidebar-uni {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #fff;
+  border-right: 1px solid #e9e9e9;
+  padding: 14px 22px 30px 22px;
+  box-shadow: 3px 0 20px rgba(0, 0, 0, 0.05);
+}
+
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--emerald);
+}
+
+.sidebar-beta {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--rose);
+  margin-top: -3px;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 18px;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: #4a4a4a;
+  font-size: 15px;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.sidebar-menu a:hover {
+  background: var(--emerald);
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.sidebar-menu a.active {
+  background: linear-gradient(to right, var(--emerald), var(--rose));
+  color: #fff !important;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 260px;
+  background: #fafafa;
+  min-height: 100vh;
+}
+
+/* Top Navbar */
+.top-navbar {
+  height: 70px;
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.user-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #777;
+}
+
+.user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--emerald);
+}
+
+/* Logout */
+.logout-btn {
+  background: linear-gradient(to right, var(--rose), var(--emerald));
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.logout-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+/* Cards */
+.card-uni {
+  background: #fff;
+  border-radius: 15px;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Stats */
+.stat-number {
+  color: var(--emerald);
+  font-size: 32px;
+}
+
+.stat-label {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Gradient Button */
+.btn-gradient {
+  background: linear-gradient(to right, var(--emerald), var(--rose));
+  color: #fff;
+  border-radius: 10px;
+  transition: 0.25s ease;
+}
+
+.btn-gradient:hover {
+  opacity: .9;
+  transform: translateY(-2px);
+}
+
+/* Outline Button */
+.btn-outline-uni {
+  border: 2px solid var(--emerald);
+  color: var(--emerald);
+  border-radius: 10px;
+  transition: 0.25s ease;
+}
+
+.btn-outline-uni:hover {
+  background: var(--emerald);
+  color: #fff;
+}
+
+
+
+a.site-brand img {
+  width: 40px;
+  height: 40px;
+}
+
+a.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.site-brand div h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.site-brand div p {
+  font-size: 12px;
+  margin: 0;
+}
+
+/* SMALL EVENT IMAGE */
+.event-img-sm {
+  width: 100%;
+  height: 120px;
+  border-radius: 12px;
+  background: linear-gradient(to right, var(--emerald), var(--rose));
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* QUICK ACTION TITLES */
+.section-title-uni {
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+/* CONSISTENT TEXT COLOR */
+.text-uni {
+  color: var(--emerald);
+}
+
+/* ********************admin-application page css********************** */
+
+/* ADMIN TABS */
+.tabs-uni .nav-link {
+  font-weight: 600;
+  color: var(--gray-600);
+  border-radius: 8px 8px 0 0;
+}
+
+.tabs-uni .nav-link.active {
+  background: linear-gradient(to right, var(--emerald), var(--rose));
+  color: white !important;
+  border: none;
+}
+
+/* *****************admin-analytics page css******************** */
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--emerald);
+}
+
+.chart-placeholder {
+  height: 220px;
+  background: var(--gray-50);
+  border-radius: 12px;
+  border: 2px dashed var(--emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+  font-weight: 500;
+  font-size: 16px;
+}

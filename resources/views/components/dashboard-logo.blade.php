@@ -1,0 +1,1 @@
+<img src="{{  asset('customer/images/trasparent-logo1.png') }}" alt="" class="sidebar-logo">
