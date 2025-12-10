@@ -5,7 +5,7 @@
     <!-- SIDEBAR -->
     <div class="sidebar-uni">
         <div class="sidebar-header">
-            <a href="{{ url('customer/dashboard') }}">
+            <a href="{{ url('/') }}">
             <img src="{{  asset('customer/images/trasparent-logo1.png') }}" alt="" class="sidebar-logo">
             </a>
         </div>
