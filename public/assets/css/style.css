@@ -852,7 +852,9 @@ a.site-brand {
 
 .hero-section {
   height: 85%;
-  background: url(../images/golf-field.jpg) center / cover no-repeat;
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-section:before {

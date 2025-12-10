@@ -8,7 +8,7 @@
             <h2 class="section-label mb-3 text-black">Featured</h2>
 
             <div class="featured-card">
-                <img src="{{ asset('customer/images/photo-golf-scorecard.avif') }}" alt="Featured Blog Banner" class="featured-img">
+                <img src="{{ asset('assets/customer/images/photo-golf-scorecard.avif') }}" alt="Featured Blog Banner" class="featured-img">
 
                 <div class="featured-content">
                     <h1 class="featured-title">
@@ -23,7 +23,7 @@
                     </p>
 
                     <div class="featured-author d-flex align-items-center gap-2 mt-4">
-                        <img src="{{ asset('customer/images/author.webp') }}" alt="Author" class="author-img">
+                        <img src="{{ asset('assets/customer/images/author.webp') }}" alt="Author" class="author-img">
                         <div>
                             <p class="author-name mb-0">Chad Comstock</p>
                             <p class="author-date mb-0">11/5/2025</p>
@@ -100,7 +100,7 @@
                                 <div class="post-card card-uni h-100">
 
                                     <div class="mid-post-card">
-                                        <img src="{{ asset('customer/images/Golf Blog.jpg') }}" class="post-img">
+                                        <img src="{{ asset('assets/customer/images/Golf Blog.jpg') }}" class="post-img">
                                     </div>
                                     <div class="post-body pt-4">
 
@@ -139,7 +139,7 @@
                                 <div class="post-card card-uni h-100">
 
                                     <div class="mid-post-card">
-                                        <img src="{{ asset('customer/images/A Women Golfer.jpg') }}" class="post-img">
+                                        <img src="{{ asset('assets/customer/images/A Women Golfer.jpg') }}" class="post-img">
                                     </div>
 
                                     <div class="post-body pt-4">
@@ -179,7 +179,7 @@
                                 <div class="post-card card-uni h-100">
 
                                     <div class="mid-post-card">
-                                        <img src="{{ asset('customer/images/B Woman Golfer.jpg') }}" class="post-img">
+                                        <img src="{{ asset('assets/customer/images/B Woman Golfer.jpg') }}" class="post-img">
                                     </div>
 
                                     <div class="post-body pt-4">
@@ -201,7 +201,7 @@
                                         <hr>
 
                                         <div class="d-flex align-items-center gap-2 mt-3">
-                                            <img src="{{ asset('customer/images/03.png') }}" class="author-img">
+                                            <img src="{{ asset('assets/customer/images/03.png') }}" class="author-img">
                                             <div>
                                                 <p class="author-name mb-0">Chad Comstock</p>
                                                 <p class="author-role mb-0">Author</p>

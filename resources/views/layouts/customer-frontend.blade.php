@@ -48,7 +48,7 @@
             <div class="row align-items-start footer-top">
                 <!-- LEFT LOGO + TEXT -->
                 <div class="col-md-4 mb-4">
-                    <img src="{{  asset('customer/images/trasparent-logo1.png') }}" class="footer-logo mb-3" alt="">
+                    <img src="{{  asset('assets/customer/images/trasparent-logo1.png') }}" class="footer-logo mb-3" alt="">
                     <p class="footer-text">
                         A joyful community of women supporting one another and shaping a better world—on and off the
                         course.

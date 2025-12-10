@@ -27,7 +27,7 @@
                     <!-- TOP HEADER -->
                     <div class="row align-items-center">
                         <div class="col-md-3 text-center mb-4 mb-md-0">
-                            <div class="profile-photo-view"><img src="{{  asset('customer/images/hat woman golf (1).jpg') }}" alt="">
+                            <div class="profile-photo-view"><img src="{{  asset('assets/customer/images/hat woman golf (1).jpg') }}" alt="">
                             </div>
                         </div>
 

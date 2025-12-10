@@ -123,7 +123,7 @@
                     <!-- EVENT CARD 1 -->
                     <div class="col-md-4">
                         <div class="card card-uni-11 event-card h-100 d-flex flex-column">
-                            <div class="event-img mb-3"><img src="{{ asset('customer/images/A Women Golfer.jpg') }}" alt=""></div>
+                            <div class="event-img mb-3"><img src="{{ asset('assets/customer/images/A Women Golfer.jpg') }}" alt=""></div>
 
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="badge event-badge-green">Golf Outing</span>
@@ -146,7 +146,7 @@
                     <!-- EVENT CARD 2 -->
                     <div class="col-md-4">
                         <div class="card card-uni-11 event-card h-100 d-flex flex-column">
-                            <div class="event-img mb-3"><img src="{{ asset('customer/images/golf-1208900_1280.jpg') }}" alt=""></div>
+                            <div class="event-img mb-3"><img src="{{ asset('assets/customer/images/golf-1208900_1280.jpg') }}" alt=""></div>
 
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="badge event-badge-amber">Social Event</span>
@@ -170,7 +170,7 @@
                     <!-- EVENT CARD 3 -->
                     <div class="col-md-4">
                         <div class="card card-uni-11 event-card h-100 d-flex flex-column">
-                            <div class="event-img mb-3"><img src="{{ asset('customer/images/golf-buddies.avif') }}" alt=""></div>
+                            <div class="event-img mb-3"><img src="{{ asset('assets/customer/images/golf-buddies.avif') }}" alt=""></div>
 
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="badge event-badge-blue">Workshop</span>

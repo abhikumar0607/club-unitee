@@ -3,21 +3,10 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
 
-        <!-- TOP NAVBAR -->
-        <nav class="top-navbar d-flex justify-content-between align-items-center px-4 shadow-sm">
-            <h4 class="m-0 fw-bold text-uni">Dashboard</h4>
+        <nav class="top-navbar d-flex justify-content-end align-items-center px-4 shadow-sm">
             <x-admin-dashboard-nav-profile />
         </nav>
 
-        <!-- HEADER -->
-        <section class="page-header text-center py-5">
-            <div class="container">
-                <h1 class="page-title">Welcome back!</h1>
-                <p class="page-subtitle">Here’s your activity overview.</p>
-            </div>
-        </section>
-
-        <!-- DASHBOARD CONTENT -->
         <!-- HEADER -->
         <section class="page-header text-center py-4">
             <div class="container">

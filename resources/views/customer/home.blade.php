@@ -1,7 +1,7 @@
 @extends('layouts.customer-frontend')
 @section('content')
-  <!-- HERO SECTION -->
-  <section class="py-5 hero-section">
+  <!-- HERO SECTION --> 
+  <section class="py-5 hero-section" style="background-image:url('{{ asset('assets/customer/images/golf-field.jpg') }}');">
     <div class="container text-center py-5 play-together-rise-together">
       <h1 class="display-4 fw-bold font-with-2 text-white mb-3">Play Together. <br> Rise Together.</h1>
       <p class="lead mb-4 text-white" style="max-width:700px;margin:auto;">
@@ -62,7 +62,7 @@
         <!-- CARD 1 -->
         <div class="col-md-4">
           <div class="feature-card">
-           <div class="feature-img" style="background-image:url('{{ asset('customer/images/golf-buddies.avif') }}');"></div>
+           <div class="feature-img" style="background-image:url('{{ asset('assets/customer/images/golf-buddies.avif') }}');"></div>
             <div class="feature-body">
               <h4>Track & Share Rounds</h4>
               <p>Connect with golfers of all skill levels in your area. Never play alone again.</p>
@@ -78,7 +78,7 @@
         <!-- CARD 2 -->
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="feature-img" style="background-image:url('{{ asset('customer/images/Golf Blog.jpg') }}');"></div>
+            <div class="feature-img" style="background-image:url('{{ asset('assets/customer/images/Golf Blog.jpg') }}');"></div>
             <div class="feature-body">
               <h4>Discover Courses</h4>
               <p>Record rounds, track progress, and share achievements.</p>
@@ -94,7 +94,7 @@
         <!-- CARD 3 -->
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="feature-img" style="background-image:url('{{ asset('customer/images/A Women Golfer.jpg') }}');"></div>
+            <div class="feature-img" style="background-image:url('{{ asset('assets/customer/images/A Women Golfer.jpg') }}');"></div>
             <div class="feature-body">
               <h4>Leagues</h4>
               <p>Find courses, save favorites, view scorecards & directions.</p>
@@ -110,7 +110,7 @@
         <!-- CARD 4 -->
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="feature-img" style="background-image:url('{{ asset('customer/images/golf-1208900_1280.jpg') }}');"></div>
+            <div class="feature-img" style="background-image:url('{{ asset('assets/customer/images/golf-1208900_1280.jpg') }}');"></div>
             <div class="feature-body">
               <h4>Complete Challenges</h4>
               <p>Create & join golf events, tournaments, and gatherings.</p>
@@ -126,7 +126,7 @@
         <!-- CARD 5 -->
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="feature-img" style="background-image:url('{{ asset('customer/images/B Woman Golfer.jpg') }}');"></div>
+            <div class="feature-img" style="background-image:url('{{ asset('assets/customer/images/B Woman Golfer.jpg') }}');"></div>
             <div class="feature-body">
               <h4>Adaptive Golf</h4>
               <p>Create leagues, track standings, compete together.</p>
@@ -153,7 +153,7 @@
 
         <div class="col-md-4">
           <div class="card-uni01">
-            <img src="{{ asset('customer/images/01.png') }}" class="avatar mb-3" alt="">
+            <img src="{{ asset('assets/customer/images/01.png') }}" class="avatar mb-3" alt="">
             <h5>Priya Sharma</h5>
             <p class="text-muted">Program Manager (Beginner)</p>
             <p class="small">“New to LA and excited to connect with mission-driven women.”</p>
@@ -162,7 +162,7 @@
 
         <div class="col-md-4">
           <div class="card-uni01">
-            <img src="{{ asset('customer/images/02.png') }}" class="avatar mb-3" alt="">
+            <img src="{{ asset('assets/customer/images/02.png') }}" class="avatar mb-3" alt="">
             <h5>Maya Rodriguez</h5>
             <p class="text-muted">Director of Development (Intermediate)</p>
             <p class="small">“Love the strategy and connection golf brings.”</p>
@@ -171,7 +171,7 @@
 
         <div class="col-md-4">
           <div class="card-uni01">
-            <img src="{{ asset('customer/images/03.png') }}" class="avatar mb-3" alt="">
+            <img src="{{ asset('assets/customer/images/03.png') }}" class="avatar mb-3" alt="">
             <h5>Zara Chen</h5>
             <p class="text-muted">Tech Founder (Beginner)</p>
             <p class="small">“Trying golf for the first time; looking for community.”</p>

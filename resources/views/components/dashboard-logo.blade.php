@@ -1,1 +1,1 @@
-<img src="{{  asset('customer/images/trasparent-logo1.png') }}" alt="" class="sidebar-logo">
+<img src="{{  asset('assets/customer/images/trasparent-logo1.png') }}" alt="" class="sidebar-logo">
