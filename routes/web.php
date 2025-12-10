@@ -17,6 +17,11 @@ Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->
     Route::get('/profile', [App\Http\Controllers\customer\dashboard\DashboardController::class, 'profile'])->name('dashboard.profile');
 });
 
+//admin dashboard routes
+Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
