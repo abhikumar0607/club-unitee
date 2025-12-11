@@ -853,8 +853,8 @@ a.site-brand {
 .hero-section {
   height: 85%;
   background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .hero-section:before {
@@ -2042,9 +2042,10 @@ a.btn-gradient-1 {
 }
 
 .cookie-banner {
-    background: #fff !important;
-    box-shadow: 0px -2px 20px 4px #0000001f;
+  background: #fff !important;
+  box-shadow: 0px -2px 20px 4px #0000001f;
 }
+
 .font-black {
   color: #000;
 }
@@ -2186,6 +2187,43 @@ a.learn-btn-12:hover {
   line-height: 1.7;
   margin-bottom: 0.8rem;
 }
+
+/* minimal styling used by the step script */
+.hidden-step {
+  display: none !important;
+}
+
+.disabled-btn {
+  opacity: .6;
+  pointer-events: none;
+}
+
+/* your existing class name used earlier */
+.error-text {
+  color: #d9534f;
+  display: none;
+  margin-top: .5rem;
+  font-size: .9rem;
+}
+
+.nav-tabs .nav-link {
+  cursor: pointer;
+}
+
+/* tiny visual polish for the example */
+.card-uni {
+  border: 1px solid #e6e6e6;
+  border-radius: .5rem;
+  padding: 1rem;
+}
+
+.btn-uni {
+  background: #0f766e;
+  color: #fff;
+  border: none;
+  padding: .6rem 1rem;
+  border-radius: .375rem;
+} 
 
 /* RESPONSIVE */
 @media (max-width: 768px) {

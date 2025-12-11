@@ -2,32 +2,27 @@
 @section('title', 'Register | Club UniTee')
 
 @section('content')
-    <!-- HEADER SECTION -->
-    <section class="py-5 text-center header-gradient">
-        <div class="container">
-            <h1 class="fw-bold" style="color:var(--gray-800);">Welcome Back</h1>
-            <p class="lead" style="color:var(--gray-600);">Login to access your dashboard.</p>
-        </div>
-    </section>
-    <!-- APPLICATION FORM -->
+<!-- HEADER SECTION -->
+<section class="py-5 text-center header-gradient">
+    <div class="container">
+        <h1 class="fw-bold" style="color:var(--gray-800);">Welcome Back</h1>
+        <p class="lead" style="color:var(--gray-600);">Login to access your dashboard.</p>
+    </div>
+</section>
+<!-- APPLICATION FORM -->
 <section class="pb-5">
     <div class="container" style="max-width:650px;">
         <div class="card-uni">
 
             <!-- Alignment Box -->
-            <div class="p-4 rounded mb-4" style="background:var(--emerald-50); border-left:5px solid var(--emerald);">
+            <!-- <div class="p-4 rounded mb-4" style="background:var(--emerald-50); border-left:5px solid var(--emerald);">
                 <p class="mb-2" style="color:var(--gray-700);">
                     You foster a spirit of kindness, empathy, and sincere openness toward people of diverse
                     experiences and backgrounds.
                 </p>
 
-                <div class="form-check mt-3">
-                    <input class="form-check-input" type="checkbox" id="agreeCheck">
-                    <label class="form-check-label" for="agreeCheck" style="color:var(--gray-600);">
-                        I agree that this describes me.
-                    </label>
-                </div>
-            </div>
+
+            </div> -->
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -67,9 +62,29 @@
                     <div class="mb-3">
                         <label class="fw-medium">Tell us about yourself *</label>
                         <textarea name="bio" class="form-control" rows="5" minlength="30"
-                            placeholder="Share your background, interests, and why you're excited to join..." required>{{ old('bio') }}</textarea>
+                            placeholder="Share your background, interests, and why you're excited to join..."
+                            required>{{ old('bio') }}</textarea>
                         <small class="text-muted">Minimum 30 characters</small>
                     </div>
+
+                    <!-- Referral -->
+                    <div class="mb-3"> <label class="fw-medium">How did you hear about us?</label> <select
+                            name="referral_source" class="form-select">
+                            <option value="">Select one</option>
+                            <option {{ old('referral_source') == 'Friend / Colleague' ? 'selected' : '' }}>Friend /
+                                Colleague</option>
+                            <option {{ old('referral_source') == 'LinkedIn' ? 'selected' : '' }}>LinkedIn</option>
+                            <option {{ old('referral_source') == 'Instagram' ? 'selected' : '' }}>Instagram</option>
+                            <option {{ old('referral_source') == 'Google Search' ? 'selected' : '' }}>Google Search
+                            </option>
+                            <option {{ old('referral_source') == 'Other' ? 'selected' : '' }}>Other</option>
+                        </select> </div> <!-- LinkedIn -->
+                    <div class="mb-3"> <label class="fw-medium">LinkedIn Profile URL</label> <input type="url"
+                            name="linkedin_url" class="form-control" value="{{ old('linkedin_url') }}"
+                            placeholder="https://linkedin.com/in/yourname"> </div> <!-- Instagram -->
+                    <div class="mb-3"> <label class="fw-medium">Instagram Handle</label> <input type="text"
+                            name="instagram_handle" class="form-control" value="{{ old('instagram_handle') }}"
+                            placeholder="@yourname"> </div>
 
                     <!-- NEXT Button -->
                     <button type="button" class="btn-uni w-100" id="nextBtn">Next</button>
@@ -80,7 +95,7 @@
                 <!-- STEP 2 -->
                 <div class="step" id="step2" style="display:none;">
 
-                 <div class="main-golf-info">
+                    <div class="main-golf-info">
 
                         <h4 class="fw-bold section-title-uni mb-3">Golf Information</h4>
 
@@ -388,18 +403,24 @@
                             </div>
 
                         </div>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="agreeCheck">
+                            <label class="form-check-label" for="agreeCheck" style="color:var(--gray-600);">
+                                I agree that this describes me.
+                            </label>
+                        </div>
 
-                    <!-- BACK Button -->
-                    <button type="button" class="btn btn-light w-100 mb-2" id="backBtn">
-                        Back
-                    </button>
+                        <!-- BACK Button -->
+                        <button type="button" class="btn btn-light w-100 mb-2" id="backBtn">
+                            Back
+                        </button>
 
-                    <!-- SUBMIT Button -->
-                    <button type="submit" class="btn-uni w-100">
-                        Submit Application
-                    </button>
+                        <!-- SUBMIT Button -->
+                        <button type="submit" class="btn-uni w-100">
+                            Submit Application
+                        </button>
 
-                </div>
+                    </div>
 
             </form>
 
@@ -410,50 +431,78 @@
 
 <!-- STEP SCRIPT -->
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+
     const step1 = document.getElementById("step1");
     const step2 = document.getElementById("step2");
     const nextBtn = document.getElementById("nextBtn");
     const backBtn = document.getElementById("backBtn");
     const agree = document.getElementById("agreeCheck");
 
+    // STEP 1 -> STEP 2 (NO AGREE CHECK)
     nextBtn.addEventListener("click", function () {
 
-        // simple validation for step 1
+        // only validate required fields
         const requiredFields = step1.querySelectorAll("[required]");
         for (let field of requiredFields) {
             if (!field.value.trim()) {
+                alert("Please fill all required fields.");
                 field.focus();
                 return;
             }
         }
 
-        if (!agree.checked) {
-            alert("Please agree to continue.");
-            return;
-        }
-
+        // move to step 2 without agree validation
         step1.style.display = "none";
         step2.style.display = "block";
     });
 
+    // STEP 2 -> STEP 1
     backBtn.addEventListener("click", function () {
         step2.style.display = "none";
         step1.style.display = "block";
     });
+
+    // STEP 2 SUBMIT CHECK (AGREE ALERT HERE)
+    document.querySelector("form").addEventListener("submit", function (e) {
+
+        // ❗ Agree must be checked on step 2
+        if (!agree.checked) {
+            e.preventDefault();
+            alert("Please agree to continue.");
+            return;
+        }
+
+        // validate required fields in step 2
+        const requiredStep2 = step2.querySelectorAll("[required]");
+        for (let field of requiredStep2) {
+            if (!field.value.trim()) {
+                e.preventDefault();
+                alert("Please fill required fields in Step 2.");
+                field.focus();
+                return;
+            }
+        }
+    });
+
+});
 </script>
 
 
-    <script>
-        // Enable Submit After Agreement
-        const check = document.getElementById('agreeCheck');
-        const btn = document.getElementById('submitBtn');
 
-        check.addEventListener('change', () => {
-            if (check.checked) {
-                btn.classList.remove('disabled-btn');
-            } else {
-                btn.classList.add('disabled-btn');
-            }
-        });
-    </script>
+
+
+<script>
+// Enable Submit After Agreement
+const check = document.getElementById('agreeCheck');
+const btn = document.getElementById('submitBtn');
+
+check.addEventListener('change', () => {
+    if (check.checked) {
+        btn.classList.remove('disabled-btn');
+    } else {
+        btn.classList.add('disabled-btn');
+    }
+});
+</script>
 @endsection
