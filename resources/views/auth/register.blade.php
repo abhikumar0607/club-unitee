@@ -403,7 +403,7 @@
                             </div>
 
                         </div>
-                        <div class="form-check mt-3">
+                        <div class="form-check my-3">
                             <input class="form-check-input" type="checkbox" id="agreeCheck">
                             <label class="form-check-label" for="agreeCheck" style="color:var(--gray-600);">
                                 I agree that this describes me.

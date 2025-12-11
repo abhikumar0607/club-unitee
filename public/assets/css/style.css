@@ -2214,7 +2214,7 @@ a.learn-btn-12:hover {
 .card-uni {
   border: 1px solid #e6e6e6;
   border-radius: .5rem;
-  padding: 1rem;
+  padding: 3.5rem 2.5rem;
 }
 
 .btn-uni {
@@ -2223,7 +2223,7 @@ a.learn-btn-12:hover {
   border: none;
   padding: .6rem 1rem;
   border-radius: .375rem;
-} 
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
