@@ -11,10 +11,10 @@
         </div>
         <ul class="sidebar-menu">
             <li><a href="{{ url('admin/dashboard') }}" class="{{ request()->is('admin/dashboard') ? 'active' : '' }}">Dashboard</a></li>
-            <li><a href="{{ url('customer/members ') }}" class="{{ request()->is('customer/members') ? 'active' : '' }}">Members</a></li>
-            <li><a href="{{ url('customer/connections') }}" class="{{ request()->is('customer/connections') ? 'active' : '' }}">Connections</a></li>
-            <li><a href="{{ url('customer/events') }}" class="{{ request()->is('customer/events') ? 'active' : '' }}">Events</a></li>
-            <li><a href="{{ url('customer/profile') }}" class="{{ request()->is('customer/profile') ? 'active' : '' }}">My Profile</a></li>
+            <li><a href="{{ url('admin/applications') }}" class="{{ request()->is('admin/applications') ? 'active' : '' }}">Applications</a></li>
+            <li><a href="{{ url('admin/members ') }}" class="{{ request()->is('admin/members') ? 'active' : '' }}">Members</a></li>
+            <li><a href="{{ url('admin/events') }}" class="{{ request()->is('admin/events') ? 'active' : '' }}">Events</a></li>
+            <li><a href="{{ url('admin/analytics') }}" class="{{ request()->is('admin/analytics') ? 'active' : '' }}">Analytics</a></li>
         </ul>
     </div>
     @yield('content')

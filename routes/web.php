@@ -20,6 +20,10 @@ Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->
 //admin dashboard routes
 Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/members', [App\Http\Controllers\Admin\DashboardController::class, 'members'])->name('members');
+    Route::get('/applications', [App\Http\Controllers\Admin\DashboardController::class, 'applications'])->name('applications');
+    Route::get('/events', [App\Http\Controllers\Admin\DashboardController::class, 'events'])->name('events');
+    Route::get('/analytics', [App\Http\Controllers\Admin\DashboardController::class, 'analytics'])->name('analytics');
 });
 
 // Route::get('/dashboard', function () {
