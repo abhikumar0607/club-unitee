@@ -28,6 +28,7 @@ class User extends Authenticatable
         'linkedin_url',
         'instagram_handle',
         'role',
+        'status',
     ];
 
     /**
@@ -51,5 +52,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function golfProfile()
+    {
+        return $this->hasOne(GolfProfile::class);
+    }
+
+    public function useravailability()
+    {
+        return $this->hasOne(UserAvailability::class);
+    }
+
+    public function usermatchingPreference()
+    {
+        return $this->hasOne(UserMatchingPreference::class);
     }
 }
