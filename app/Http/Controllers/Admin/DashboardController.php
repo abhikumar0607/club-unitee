@@ -12,11 +12,6 @@ class DashboardController extends Controller
         return view('admin.index');
     }
 
-    //function to show memeber page
-    public function members(){
-        return view('admin.members');
-    }
-
     //function to show connections page
     public function applications(){
         return view('admin.applications');

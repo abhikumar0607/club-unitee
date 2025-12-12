@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\customer\dashboard;
+namespace App\Http\Controllers\Customer\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,11 +15,6 @@ class DashboardController extends Controller
     //function for member
     public function member(){
         return view('customer.dashboard.member');
-    }
-
-    //function for connection
-    public function connection(){
-        return view('customer.dashboard.connection');
     }
 
     //function for events

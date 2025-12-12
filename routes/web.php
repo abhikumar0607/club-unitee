@@ -10,17 +10,21 @@ Route::get('/blog', [App\Http\Controllers\customer\frontController::class, 'blog
 
 //customer dashboard routes
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\customer\dashboard\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/members', [App\Http\Controllers\customer\dashboard\DashboardController::class, 'member'])->name('dashboard.member');
-    Route::get('/connections', [App\Http\Controllers\customer\dashboard\DashboardController::class, 'connection'])->name('dashboard.connection');
-    Route::get('/events', [App\Http\Controllers\customer\dashboard\DashboardController::class, 'events'])->name('dashboard.events');
-    Route::get('/profile', [App\Http\Controllers\customer\dashboard\DashboardController::class, 'profile'])->name('dashboard.profile');
+    Route::get('/dashboard', [App\Http\Controllers\customer\Dashboard\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/members', [App\Http\Controllers\customer\Dashboard\DashboardController::class, 'member'])->name('dashboard.member');
+    Route::get('/connections', [App\Http\Controllers\customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
+    Route::get('/events', [App\Http\Controllers\customer\Dashboard\DashboardController::class, 'events'])->name('dashboard.events');
+    Route::get('/profile', [App\Http\Controllers\customer\Dashboard\DashboardController::class, 'profile'])->name('dashboard.profile');
+
+
+    //route for connection request
+    Route::get('/send-connection-request/{id}', [App\Http\Controllers\customer\Connection\ConnectionController::class, 'sendConnectionRequest'])->name('send.connection.request');
 });
 
 //admin dashboard routes
 Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/members', [App\Http\Controllers\Admin\DashboardController::class, 'members'])->name('members');
+    Route::get('/members', [App\Http\Controllers\Admin\MemberController::class, 'index'])->name('members');
     Route::get('/applications', [App\Http\Controllers\Admin\DashboardController::class, 'applications'])->name('applications');
     Route::get('/events', [App\Http\Controllers\Admin\DashboardController::class, 'events'])->name('events');
     Route::get('/analytics', [App\Http\Controllers\Admin\DashboardController::class, 'analytics'])->name('analytics');
