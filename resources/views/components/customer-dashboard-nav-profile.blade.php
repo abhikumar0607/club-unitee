@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center gap-3">
     <div class="text-end">
-        <p class="m-0 user-name">Priya Sharma</p>
+        <p class="m-0 user-name">{{ Auth::user()->name }}</p>
         <p class="m-0 user-role">Member</p>
     </div>
     <img src="{{  asset('assets/customer/images/01.png') }}" class="user-avatar" alt="User">

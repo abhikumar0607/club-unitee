@@ -20,13 +20,28 @@ class ConnectionController extends Controller
         $connections = $this->connService->getAllConnections();
         $sentRequests = $this->connService->getSentConnectionRequests();
         $receivedRequests = $this->connService->getReceivedConnectionRequests();
-        return view('customer.connection.index', compact('connections','sentRequests','receivedRequests'));
+        $isrequestsent = $this->connService->isRequestSent();
+        $isRequestReceived = $this->connService->isRequestReceived();
+        $isRequestAccepted = $this->connService->isRequestAccepted();
+        return view('customer.connection.index', compact('connections','sentRequests','receivedRequests','isrequestsent','isRequestReceived','isRequestAccepted'));
     }
 
     //function for connection request
     public function sendConnectionRequest(Request $request, $receiver_id){
         $this->connService->sendConnectionRequest($receiver_id);
         return redirect()->back()->with('success', 'Connection request sent successfully');
+    }
+
+    //function for cancel connection request
+    public function cancelConnectionRequest(Request $request, $request_id){
+        $this->connService->cancelConnectionRequest($request_id);
+        return redirect()->back()->with('success', 'Connection request cancelled successfully');
+    }
+
+    //function for accept connection request
+    public function acceptConnectionRequest(Request $request, $request_id){
+        $this->connService->acceptConnectionRequest($request_id);
+        return redirect()->back()->with('success', 'Connection request accepted successfully');
     }
 
 }

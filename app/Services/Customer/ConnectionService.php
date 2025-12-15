@@ -28,9 +28,7 @@ class ConnectionService
 
         // Fetch all other users
         $users = $this->repo->getOtherActiveUsers($currentUser->id);
-
         $matched = collect();
-
         foreach ($users as $user) {
 
             if (!$user->usermatchingPreference) {
@@ -61,9 +59,21 @@ class ConnectionService
         return $matched;
     }
 
+    public function isRequestSent(){
+       return $this->repo->isRequestSent();
+    }
+
+    public function isRequestReceived(){
+        return $this->repo->isRequestReceived();
+    }
+
+    public function isRequestAccepted(){
+        return $this->repo->isRequestAccepted();
+    }
+
     //function for connection request
     public function sendConnectionRequest($receiverId){
-        $this->repo->sendConnectionRequest($receiverId);
+       return $this->repo->sendConnectionRequest($receiverId);
     }
 
     //function for get sent connection requests
@@ -73,7 +83,17 @@ class ConnectionService
 
     //funtion for remove connection request
     public function getReceivedConnectionRequests(){
-        $this->repo->getReceivedConnectionRequests();
+        return $this->repo->getReceivedConnectionRequests();
+    }
+
+    //funtion for remove connection request
+    public function cancelConnectionRequest($requestId){
+        return $this->repo->cancelConnectionRequest($requestId);
+    }
+
+    //funtion for accept connection request
+    public function acceptConnectionRequest($requestId){
+       return $this->repo->acceptConnectionRequest($requestId);
     }
 
 }

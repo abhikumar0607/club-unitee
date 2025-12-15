@@ -19,6 +19,8 @@ Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->
 
     //route for connection request
     Route::get('/send-connection-request/{id}', [App\Http\Controllers\customer\Connection\ConnectionController::class, 'sendConnectionRequest'])->name('send.connection.request');
+    Route::get('/cancel-connection-request/{id}', [App\Http\Controllers\customer\Connection\ConnectionController::class, 'cancelConnectionRequest'])->name('cancel.connection.request');
+    Route::get('/accept-connection-request/{id}', [App\Http\Controllers\customer\Connection\ConnectionController::class, 'acceptConnectionRequest'])->name('accept.connection.request');
 });
 
 //admin dashboard routes

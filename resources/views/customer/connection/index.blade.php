@@ -71,14 +71,29 @@
                                             <!-- OPTIONAL CONNECTION INFO -->
                                            <p class="text-muted small">Connected {{ $user->created_at->diffForHumans() }}</p>
                                             <div class="d-flex gap-2 mt-3">
+                                                @if($isrequestsent && $isrequestsent->receiver_id == $user->id)
+                                                    <a href="#"
+                                                        class="btn btn-outline-uni w-50">
+                                                        View
+                                                    </a>
+                                                    <button class="btn btn-gradient w-50" disabled>Request Sent</button>
+                                                @elseif($isRequestReceived && $isRequestReceived->sender_id == $user->id)
+                                                    <a href="#"
+                                                        class="btn btn-outline-uni w-50">
+                                                        View
+                                                    </a>
+                                                    <a href="{{ route('customer.accept.connection.request', $whosentrequesttome->id) }}" class="btn btn-gradient w-50">Accept Request</a>
+                                                @elseif($isRequestAccepted)
+                                                <a href="#"
+                                                    class="btn btn-outline-uni w-50">
+                                                    View
+                                                </a>  
+                                                <button class="btn btn-outline-uni w-50" disabled>Connected</button>
+                                                @else
                                                 <a href="#"
                                                     class="btn btn-outline-uni w-50">
                                                     View
                                                 </a>
-
-                                                @if(!$sentRequests->isEmpty() && $sentRequests->contains('receiver_id', $user->id))
-                                                    <button class="btn btn-gradient w-50" disabled>Request Sent</button>
-                                                @else    
                                                 <a class="btn btn-gradient w-50" href="{{ route('customer.send.connection.request', $user->id) }}">
                                                   Request Contact
                                                 </a>
@@ -115,7 +130,7 @@
                                             </div>
                                             <h5 class="fw-bold">{{ $request->receiver->name }}</h5>
                                             <p class="text-muted small mb-3">Request sent on {{ $request->receiver->created_at->diffForHumans() }}</p>
-                                            <button class="btn btn-outline-uni w-100">Cancel Request</button>
+                                            <a href="{{ route('customer.cancel.connection.request', $request->id) }}" class="btn btn-outline-uni w-100">Cancel Request</a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -145,8 +160,8 @@
                                         <p class="text-muted small mb-3">"Would love to connect!"</p>
 
                                         <div class="d-flex gap-2">
-                                            <button class="btn btn-gradient w-50">Accept</button>
-                                            <button class="btn btn-outline-uni w-50">Decline</button>
+                                            <a href="{{ route('customer.accept.connection.request', $re->id) }}" class="btn btn-gradient w-50">Accept</a>
+                                            <a href="{{ route('customer.cancel.connection.request', $re->id) }}" class="btn btn-outline-uni w-50">Decline</a>
                                         </div>
                                     </div>
                                 </div>
