@@ -10,15 +10,20 @@ Route::get('/blog', [App\Http\Controllers\customer\frontController::class, 'blog
 
 //customer dashboard routes
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\customer\Dashboard\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/members', [App\Http\Controllers\customer\Dashboard\DashboardController::class, 'member'])->name('dashboard.member');
-    Route::get('/connections', [App\Http\Controllers\customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
-    Route::get('/events', [App\Http\Controllers\customer\Dashboard\DashboardController::class, 'events'])->name('dashboard.events');
-    Route::get('/profile', [App\Http\Controllers\customer\Dashboard\DashboardController::class, 'profile'])->name('dashboard.profile');
+    Route::get('/dashboard', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/members', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'member'])->name('dashboard.member');
+    Route::get('/connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
+    Route::get('/events', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'events'])->name('dashboard.events');
+    //profile
+    Route::get('/profile', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'index'])->name('dashboard.profile');
+    Route::get('/profile/edit', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'edit'])->name('dashboard.profile.edit');
+    Route::post('/profile/update', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'update'])->name('dashboard.profile.update');
+    Route::post('/profile/delete-account', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'deleteAccount'])->name('dashboard.profile.delete.account');
 
+    Route::get('/send-connection-request/{id}', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'sendConnectionRequest'])->name('send.connection.request');
+    Route::get('/cancel-connection-request/{id}', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'cancelConnectionRequest'])->name('cancel.connection.request');
+    Route::get('/accept-connection-request/{id}', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'acceptConnectionRequest'])->name('accept.connection.request');
 
-    //route for connection request
-    Route::get('/send-connection-request/{id}', [App\Http\Controllers\customer\Connection\ConnectionController::class, 'sendConnectionRequest'])->name('send.connection.request');
 });
 
 //admin dashboard routes

@@ -12,6 +12,11 @@ class ConnectionService
         $this->repo = $repo;
     }
 
+    //function for test
+    public function test(){
+       
+    }
+    
     public function getAllConnections()
     {
         $currentUser = auth()->user();
@@ -23,7 +28,6 @@ class ConnectionService
             return collect();
         }
 
-        // Convert my preference fields into variables
         $myPref = $my->usermatchingPreference;
 
         // Fetch all other users
@@ -31,15 +35,15 @@ class ConnectionService
 
         $matched = collect();
 
-        foreach ($users as $user) {
+        // Keep track of already added user IDs to avoid duplicates
+        $addedUserIds = collect();
 
+        foreach ($users as $user) {
             if (!$user->usermatchingPreference) {
                 continue;
             }
 
             $pref = $user->usermatchingPreference;
-
-            // simple match counter
             $matchCount = 0;
 
             if ($myPref->play_style == $pref->play_style) $matchCount++;
@@ -52,18 +56,32 @@ class ConnectionService
             if ($myPref->course_play_prefernce == $pref->course_play_prefernce) $matchCount++;
             if ($myPref->intrest_prefrence == $pref->intrest_prefrence) $matchCount++;
 
-            // Minimum 3 matched
-            if ($matchCount >= 3) {
+            // Include either matched users or friends
+            if ($matchCount >= 3 || $user->friendships->isNotEmpty()) {
                 $matched->push($user);
+                $addedUserIds->push($user->id);
             }
         }
 
         return $matched;
     }
 
+
+    public function isRequestSent(){
+       return $this->repo->isRequestSent();
+    }
+
+    public function isRequestReceived(){
+        return $this->repo->isRequestReceived();
+    }
+
+    public function isRequestAccepted(){
+        return $this->repo->isRequestAccepted();
+    }
+
     //function for connection request
     public function sendConnectionRequest($receiverId){
-        $this->repo->sendConnectionRequest($receiverId);
+       return $this->repo->sendConnectionRequest($receiverId);
     }
 
     //function for get sent connection requests
@@ -73,7 +91,17 @@ class ConnectionService
 
     //funtion for remove connection request
     public function getReceivedConnectionRequests(){
-        $this->repo->getReceivedConnectionRequests();
+        return $this->repo->getReceivedConnectionRequests();
+    }
+
+    //funtion for remove connection request
+    public function cancelConnectionRequest($requestId){
+        return $this->repo->cancelConnectionRequest($requestId);
+    }
+
+    //funtion for accept connection request
+    public function acceptConnectionRequest($requestId){
+       return $this->repo->acceptConnectionRequest($requestId);
     }
 
 }
