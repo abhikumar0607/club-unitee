@@ -62,7 +62,11 @@
 
                                             <!-- PROFILE PHOTO -->
                                             <div class="member-photo mb-3">
-                                               <img src="{{ asset('assets/customer/images/01.png') }}" >
+                                               @if($user->profile_image)
+                                                    <img src="{{ asset('assets/customer/uploads/profile/' . $user->profile_image) }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                                @else
+                                                    <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                                @endif
                                             </div>
                                             <!-- NAME -->
                                             <h5 class="fw-bold">{{ $user->name }}</h5>
@@ -126,7 +130,11 @@
                                     <div class="col-md-4">
                                         <div class="card card-uni p-3 text-center">
                                             <div class="member-photo mb-3">
-                                                  <img src="{{ asset('assets/customer/images/01.png') }}" >
+                                               @if($request->receiver->profile_image)
+                                                    <img src="{{ asset('assets/customer/uploads/profile/' . $request->receiver->profile_image) }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                                @else
+                                                    <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                                @endif
                                             </div>
                                             <h5 class="fw-bold">{{ $request->receiver->name }}</h5>
                                             <p class="text-muted small mb-3">Request sent on {{ $request->receiver->created_at->diffForHumans() }}</p>
@@ -154,7 +162,11 @@
                                 <div class="col-md-4">
                                     <div class="card card-uni p-3 text-center">
                                         <div class="member-photo mb-3">
-                                            <img src="{{ asset('assets/customer/images/01.png') }}" >
+                                            @if($re->sender->profile_image)
+                                                <img src="{{ asset('assets/customer/uploads/profile/' . $re->sender->profile_image) }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                            @else
+                                                <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                            @endif
                                         </div>
                                         <h5 class="fw-bold">{{ $re->sender->name }}</h5>
                                         <p class="text-muted small mb-3">"Would love to connect!"</p>
