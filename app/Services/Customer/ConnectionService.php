@@ -12,6 +12,11 @@ class ConnectionService
         $this->repo = $repo;
     }
 
+    //function for test
+    public function test(){
+       
+    }
+    
     public function getAllConnections()
     {
         $currentUser = auth()->user();
@@ -23,21 +28,22 @@ class ConnectionService
             return collect();
         }
 
-        // Convert my preference fields into variables
         $myPref = $my->usermatchingPreference;
 
         // Fetch all other users
         $users = $this->repo->getOtherActiveUsers($currentUser->id);
-        $matched = collect();
-        foreach ($users as $user) {
 
+        $matched = collect();
+
+        // Keep track of already added user IDs to avoid duplicates
+        $addedUserIds = collect();
+
+        foreach ($users as $user) {
             if (!$user->usermatchingPreference) {
                 continue;
             }
 
             $pref = $user->usermatchingPreference;
-
-            // simple match counter
             $matchCount = 0;
 
             if ($myPref->play_style == $pref->play_style) $matchCount++;
@@ -50,14 +56,16 @@ class ConnectionService
             if ($myPref->course_play_prefernce == $pref->course_play_prefernce) $matchCount++;
             if ($myPref->intrest_prefrence == $pref->intrest_prefrence) $matchCount++;
 
-            // Minimum 3 matched
-            if ($matchCount >= 3) {
+            // Include either matched users or friends
+            if ($matchCount >= 3 || $user->friendships->isNotEmpty()) {
                 $matched->push($user);
+                $addedUserIds->push($user->id);
             }
         }
 
         return $matched;
     }
+
 
     public function isRequestSent(){
        return $this->repo->isRequestSent();

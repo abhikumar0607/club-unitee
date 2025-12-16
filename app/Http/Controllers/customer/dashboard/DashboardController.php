@@ -21,9 +21,4 @@ class DashboardController extends Controller
     public function events(){
         return view('customer.dashboard.events');
     }
-
-    //function for profile
-    public function profile(){
-        return view('customer.dashboard.profile');
-    }
 }

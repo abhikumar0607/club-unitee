@@ -3,7 +3,10 @@
               <p class="m-0 user-name">{{ Auth::user()->name }}</p>
               <p class="m-0 user-role">Administrator</p>
           </div>
-          <img src="{{ asset('assets/customer/images/01.png') }}" class="user-avatar" alt="User">
+          <img src="{{ auth()->user()->profile_image
+              ? asset('assets/customer/uploads/profile/' . auth()->user()->profile_image)
+              : asset('assets/customer/images/person-dummy.jpg') }}"
+              class="user-avatar rounded-circle" alt="Profile Image">
           <form method="POST" action="{{ route('logout') }}">
               @csrf
               <button type="submit" class="btn logout-btn">Logout</button>

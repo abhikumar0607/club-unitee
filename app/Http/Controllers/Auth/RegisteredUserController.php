@@ -43,7 +43,6 @@ class RegisteredUserController extends Controller
             'referral_source' => ['nullable', 'string', 'max:255'],
             'linkedin_url' => ['nullable', 'url', 'max:255'],
             'instagram_handle' => ['nullable', 'string', 'max:255'],
-            //'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'skill_level'           => 'required',
             'fitness_level'         => 'required',
             'course_play_preference'=> 'required',
