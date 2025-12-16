@@ -8,7 +8,7 @@
         Join a joyful community of women supporting one another and shaping a better world—on and off the
         course. Find your next golf buddies here.
       </p>
-      <a href="apply.html" class="btn btn-lg px-5 join-apply">Apply to Join</a>
+      <a href="{{ url('register') }}" class="btn btn-lg px-5 join-apply">Apply to Join</a>
     </div>
   </section>
 
