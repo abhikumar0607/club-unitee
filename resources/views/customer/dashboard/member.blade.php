@@ -4,12 +4,12 @@
      <div class="main-content">
          <!-- TOP NAVBAR -->
          <nav class="top-navbar d-flex justify-content-between align-items-center px-4 shadow-sm">
-             <h4 class="m-0 fw-bold text-uni">Browse Members</h4>
+             <h4 class="m-0 fw-bold text-uni">Members</h4>
              <x-customer-dashboard-nav-profile /> 
          </nav>
 
          <!-- HEADER -->
-         <section class="page-header text-center py-5">
+         <section class="page-header text-center py-3">
              <div class="container">
                  <h1 class="page-title">Find Members</h1>
                  <p class="page-subtitle">Explore profiles and connect with inspiring women.</p>
@@ -17,7 +17,7 @@
          </section>
 
          <!-- FILTERS SECTION -->
-         <section class="py-4">
+         <section class="pb-4">
              <div class="container">
 
                  <div class="card card-uni p-4 mb-4">
@@ -100,6 +100,48 @@
                              <a href="view-member.html" class="btn btn-gradient w-100 mt-2">View Profile</a>
                          </div>
                      </div>
+
+                     <!-- MEMBER CARD -->
+                     <div class="col-md-4">
+                         <div class="card card-uni p-4 text-center">
+                             <div class="member-photo mb-3"></div>
+                             <h5 class="fw-bold">Zara Chen</h5>
+                             <p class="text-muted mb-1">Founder, Climate Tech</p>
+                             <span class="badge bg-warning-subtle text-warning fw-semibold mb-2">Beginner</span>
+                             <p class="text-muted small">"Trying something new outside tech."</p>
+
+                             <a href="view-member.html" class="btn btn-gradient w-100 mt-2">View Profile</a>
+                         </div>
+                     </div>
+
+
+                     <!-- MEMBER CARD -->
+                     <div class="col-md-4">
+                         <div class="card card-uni p-4 text-center">
+                             <div class="member-photo mb-3"></div>
+                             <h5 class="fw-bold">Maya Rodriguez</h5>
+                             <p class="text-muted mb-1">Director of Development</p>
+                             <span class="badge bg-primary-subtle text-primary fw-semibold mb-2">Intermediate</span>
+                             <p class="text-muted small">"Love the outdoors and strategy."</p>
+
+                             <a href="view-member.html" class="btn btn-gradient w-100 mt-2">View Profile</a>
+                         </div>
+                     </div>
+
+
+                     <!-- MEMBER CARD -->
+                     <div class="col-md-4">
+                         <div class="card card-uni p-4 text-center">
+                             <div class="member-photo mb-3"></div>
+                             <h5 class="fw-bold">Priya Sharma</h5>
+                             <p class="text-muted mb-1">Program Manager</p>
+                             <span class="badge bg-success-subtle text-success fw-semibold mb-2">Beginner</span>
+                             <p class="text-muted small">"Excited to meet women in social good!"</p>
+
+                             <a href="view-member.html" class="btn btn-gradient w-100 mt-2">View Profile</a>
+                         </div>
+                     </div>
+
 
                  </div>
 

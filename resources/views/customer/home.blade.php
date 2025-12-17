@@ -1,7 +1,7 @@
 @extends('layouts.customer-frontend')
 @section('content')
   <!-- HERO SECTION --> 
-  <section class="py-5 hero-section" style="background-image:url('{{ asset('assets/customer/images/golf-field.jpg') }}');">
+  <section class="py-5 hero-section" style="background-image:url('{{ asset('assets/customer/images/Golfers enjoying a sunny moment.png') }}');">
     <div class="container text-center py-5 play-together-rise-together">
       <h1 class="display-4 fw-bold font-with-2 text-white mb-3">Play Together. <br> Rise Together.</h1>
       <p class="lead mb-4 text-white" style="max-width:700px;margin:auto;">
@@ -42,7 +42,7 @@
     </div>
   </section>
 
-  <section class="features-section py-5">
+  <section class="features-section py-5" style="display: none;">
     <div class="container text-center">
 
       <!-- Small Tag -->
@@ -186,7 +186,7 @@
 
 
   <!-- upper footer section -->
-  <section class="hero-section1 d-flex justify-content-center align-items-center">
+  <section class="hero-section1 d-flex justify-content-center align-items-center" style="background-image:url('{{ asset('assets/customer/images/Golf lesson in the golden hour.png') }}');">
     <div class="hero-box text-center">
 
       <!-- Top Tag -->
