@@ -19,7 +19,7 @@ Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->
     Route::get('/profile', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'index'])->name('dashboard.profile');
     Route::get('/profile/edit', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'edit'])->name('dashboard.profile.edit');
     Route::post('/profile/update', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'update'])->name('dashboard.profile.update');
-    Route::post('/profile/delete-account', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'deleteAccount'])->name('dashboard.profile.delete.account');
+    Route::get('/profile/delete-account', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'deleteAccount'])->name('dashboard.profile.delete.account');
 
     Route::get('/send-connection-request/{id}', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'sendConnectionRequest'])->name('send.connection.request');
     Route::get('/cancel-connection-request/{id}', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'cancelConnectionRequest'])->name('cancel.connection.request');
