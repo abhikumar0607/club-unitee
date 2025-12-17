@@ -23,4 +23,9 @@ class frontController extends Controller
     public function blog(){
         return view('customer.blog');
     }
+
+    //function for thank you page 
+    public function thankyou(){
+        return view('customer.thankyou');
+    }
 }
