@@ -2276,13 +2276,15 @@ a.learn-btn-12:hover {
     box-shadow: 0 25px 60px rgba(0,0,0,0.2);
 }
 
-.thankyou-box h3{
-    font-weight: 700;
-    margin-bottom: 10px;
-}
 
-.thankyou-box p{
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 22px;
+
+.btn-outline-uni-1 {
+    border-radius: 999px;
+    border: 1px solid var(--emerald);
+    color: var(--emerald);
+    font-weight: 500;
+    font-size: 14px;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
 }
