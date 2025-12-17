@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 
 class frontController extends Controller
 {
@@ -20,5 +22,10 @@ class frontController extends Controller
     //function for blog page
     public function blog(){
         return view('customer.blog');
+    }
+
+    //function for thank you page 
+    public function thankyou(){
+        return view('customer.thankyou');
     }
 }

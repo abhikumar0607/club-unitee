@@ -104,8 +104,8 @@ class RegisteredUserController extends Controller
 
             DB::commit();
             event(new Registered($user));
-            Auth::login($user);
-            return redirect()->route('customer.dashboard.profile');
+            // Auth::login($user);
+            return redirect()->route('customer.thank');
         } catch (\Exception $e) {
             DB::rollBack(); 
             return back()->with('error', 'Something went wrong! Please try again.');

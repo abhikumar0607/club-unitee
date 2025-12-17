@@ -473,18 +473,16 @@
 
             </form>
             <!-- THANK YOU POPUP -->
-            @if(session('showThankYou'))
-            <div id="thankYouPopup" class="thankyou-overlay">
+            <div id="thankYouModal" class="thankyou-overlay" style="display:none;">
                 <div class="thankyou-box">
                     <h3>Application Submitted</h3>
                     <p>
                         Thank you for your interest in <strong>Club Unitee</strong>.<br>
-                        Our team will review your application shortly.
+                        Our team has received your application and will review it shortly.
                     </p>
-                    <button id="closePopup" class="btn-uni">Continue</button>
+                    <button id="closeThankYou" class="btn-uni">Continue</button>
                 </div>
             </div>
-            @endif
 
         </div>
     </div>
@@ -556,16 +554,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const closeBtn = document.getElementById('closePopup');
-        if(closeBtn){
-            closeBtn.addEventListener('click', function(){
-                document.getElementById('thankYouPopup').style.display = 'none';
-            });
-        }
-    });
-</script>
 
 
 @endsection

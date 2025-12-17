@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <x-meta-tags />
+
 <body style="background: var(--gradient-background);">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 nacbarr12">
@@ -11,9 +12,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto gap-3">
-                    <li class="nav-item"><a href="{{ url('/') }}" class="nav-link nav-item-uni {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
-                    <li class="nav-item"><a href="{{ url('events') }}" class="nav-link nav-item-uni {{ request()->is('events') ? 'active' : '' }}">Events</a></li>
-                    <li class="nav-item"><a href="{{ url('blog') }}" class="nav-link nav-item-uni {{ request()->is('blog') ? 'active' : '' }}">Blog</a></li>
+                    <li class="nav-item"><a href="{{ url('/') }}"
+                            class="nav-link nav-item-uni {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
+                    <li class="nav-item"><a href="{{ url('events') }}"
+                            class="nav-link nav-item-uni {{ request()->is('events') ? 'active' : '' }}">Events</a></li>
+                    <li class="nav-item"><a href="{{ url('blog') }}"
+                            class="nav-link nav-item-uni {{ request()->is('blog') ? 'active' : '' }}">Blog</a></li>
                     <!-- <li class="nav-item"><a href="adaptive-golf.html" class="nav-link nav-item-uni">Adaptive Golf</a></li> -->
                 </ul>
             </div>
@@ -27,9 +31,15 @@
                     @endguest
 
                     @auth
-                         <li class="nav-item">
-                            <a class="btn btn-uni1" href="{{ url('customer/dashboard') }}">Dashboard</a>
-                        </li>
+                        @can('is-customer')
+                            <li class="nav-item">
+                                <a class="btn btn-uni1" href="{{ url('customer/dashboard') }}">Dashboard</a>
+                            </li>
+                        @endcan
+                        @can('is-admin')
+                            <li class="nav-item">
+                                <a class="btn btn-uni1" href="{{ url('admin/dashboard') }}">Dashboard</a>
+                            @endcan
                         <li class="nav-item">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -48,7 +58,8 @@
             <div class="row align-items-start footer-top">
                 <!-- LEFT LOGO + TEXT -->
                 <div class="col-md-4 mb-4">
-                    <img src="{{  asset('assets/customer/images/trasparent-logo1.png') }}" class="footer-logo mb-3" alt="">
+                    <img src="{{ asset('assets/customer/images/trasparent-logo1.png') }}" class="footer-logo mb-3"
+                        alt="">
                     <p class="footer-text">
                         A joyful community of women supporting one another and shaping a better world—on and off the
                         course.
@@ -83,5 +94,6 @@
             </div>
         </div>
     </footer>
-    </body>
+</body>
+
 </html>
