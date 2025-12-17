@@ -10,7 +10,7 @@
         </nav>
 
         <!-- HEADER -->
-        <section class="page-header text-center py-5">
+        <section class="page-header text-center py-3">
             <div class="container">
                 @if(session('success'))
                     <div class="alert alert-success">
@@ -31,7 +31,7 @@
         <!-- TABS -->
         <section class="pb-3">
             <div class="container text-center main-color-11">
-                <ul class="nav nav-pills justify-content-center connections-tabs">
+                <ul class="nav nav-pills justify-content-left connections-tabs">
                     <li class="nav-item">
                         <a class="nav-link1 active" data-bs-toggle="pill" href="#all">All Connections</a>
                     </li>

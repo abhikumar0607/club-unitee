@@ -11,7 +11,7 @@
         </nav>
 
         <!-- PAGE HEADER -->
-        <section class="page-header text-center py-5">
+        <section class="page-header text-center py-3    ">
             <div class="container">
                 <h1 class="page-title">Edit Your Profile</h1>
                 <p class="page-subtitle">Update your details so the community knows you better.</p>

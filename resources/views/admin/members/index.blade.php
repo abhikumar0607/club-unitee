@@ -8,7 +8,7 @@
         </nav>
 
         <!-- HEADER -->
-        <section class="page-header text-center py-5">
+        <section class="page-header text-center py-3">
             <div class="container">
                 <h1 class="page-title">All Members</h1>
                 <p class="page-subtitle">Manage, edit, deactivate or view complete member information.</p>
@@ -16,7 +16,7 @@
         </section>
 
         <!-- ================== CONTENT ================== -->
-        <section class="py-5">
+        <section class="pb-5">
             <div class="container">
 
                 <!-- SEARCH & FILTER CARD -->
