@@ -35,7 +35,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
 
-                            <form method="POST" action="#">
+                            <form method="POST" action="{{ url('/admin/events') }}" >
                                 @csrf
 
                                 <div class="modal-body">
