@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\customer\frontController::class, 'index'])->name('customer.home');
 Route::get('/events', [App\Http\Controllers\customer\frontController::class, 'events']);
 Route::get('/blog', [App\Http\Controllers\customer\frontController::class, 'blog']);
+Route::get('/about', [App\Http\Controllers\customer\frontController::class, 'about']);
 Route::get('/thankyou', [App\Http\Controllers\customer\frontController::class, 'thankyou'])->name('customer.thank');
 
 //customer dashboard routes

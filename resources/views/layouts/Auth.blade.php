@@ -7,7 +7,7 @@
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
-  <div class="container">
+  <div class="container justify-content-center">
     <a class="navbar-brand site-brand" href="/">
          <x-application-logo />
     </a>
