@@ -17,7 +17,7 @@
 @yield('content')
 <!-- FOOTER -->
 <footer class="py-3 text-center">
-  <small>© 2025 Club UniTee. All rights reserved.</small>
+  <small>© 2025 Club Unitee. All rights reserved.</small>
 </footer>
 
 </body>

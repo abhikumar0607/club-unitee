@@ -2287,12 +2287,3 @@ a.learn-btn-12:hover {
     display: inline-flex;
     align-items: center;
 }
-
-
-
-@media (min-width: 1400px) and (max-width: 1820px) {
-    .container {
-        max-width: 1300px;
-        margin: 0 auto;
-    }
-}

@@ -187,7 +187,7 @@
                     <!-- AVAILABILITY -->
                     <h4 class="fw-bold section-title-uni mb-3">Availability</h4>
                     <div class="row mb-4">
-                        @foreach (['Weekday Mornings', 'Weekday Evenings', 'Weekends'] as $opt)
+                        @foreach (['Weekday Mornings', 'Weekday Afternoons', 'Weekends', 'No Preference'] as $opt)
                             <div class="col-md-4 form-check">
                                 <input type="radio" class="form-check-input" name="availability"
                                     value="{{ $opt }}"
@@ -290,7 +290,7 @@
                         <!-- Availability Preference -->
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Availability Preference</label>
-                            @foreach (['Weekday Mornings', 'Weekday Evenings', 'Weekends'] as $opt)
+                            @foreach (['Weekday Mornings', 'Weekday Afternoons', 'Weekends', 'No Preference'] as $opt)
                                 <div class="form-check">
                                     <input type="radio" name="availability_prefernce" class="form-check-input"
                                         value="{{ $opt }}"
@@ -303,7 +303,7 @@
                         <!-- Looking For Preference -->
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Looking For Preference</label>
-                            @foreach (['Golf Buddies', 'Networking', 'Friendship'] as $opt)
+                            @foreach (['Golf Buddies', 'Networking', 'No Preference'] as $opt)
                                 <div class="form-check">
                                     <input type="radio" name="looking_for_prefernce" class="form-check-input"
                                         value="{{ $opt }}"
@@ -342,7 +342,7 @@
                         <!-- Interest Preference -->
                         <div class="col-md-12">
                             <label class="form-label fw-semibold">Interest Preference</label>
-                            @foreach (['Casual Rounds', 'Lessons', 'Social Play', 'Competitive'] as $opt)
+                            @foreach (['Casual Rounds', 'Lessons', 'Social Play', 'Competitive', 'Range Practice', 'No Preference'] as $opt)
                                 <div class="form-check">
                                     <input type="radio" name="intrest_prefrence" class="form-check-input"
                                         value="{{ $opt }}"
