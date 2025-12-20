@@ -166,9 +166,9 @@
                                 <select class="form-select input-uni @error('fitness_level') is-invalid @enderror"
                                     name="fitness_level" required>
                                     <option value="">Select</option>
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
+                                    <option value="Low" {{ old('fitness_level') == 'Low' ? 'selected' : '' }}>Low</option>
+                                    <option value="Medium" {{ old('fitness_level') == 'Medium' ? 'selected' : '' }}>Medium</option>
+                                    <option value="High" {{ old('fitness_level') == 'High' ? 'selected' : '' }}>High</option>
                                 </select>
 
                                 @error('fitness_level')
@@ -194,9 +194,9 @@
                                     class="form-select input-uni @error('course_play_preference') is-invalid @enderror"
                                     name="course_play_preference" required>
                                     <option value="">Select</option>
-                                    <option value="Walk">Walk</option>
-                                    <option value="Cart">Cart</option>
-                                    <option value="No Preference">No Preference</option>
+                                    <option value="Walk" {{ old('course_play_preference') == 'Walk' ? 'selected' : '' }}>Walk</option>
+                                    <option value="Cart" {{ old('course_play_preference') == 'Cart' ? 'selected' : '' }}>Cart</option>
+                                    <option value="No Preference" {{ old('course_play_preference') == 'No Preference' ? 'selected' : '' }}>No Preference</option>
                                 </select>
 
                                 @error('course_play_preference')
