@@ -11,9 +11,4 @@ class DashboardController extends Controller
     public function index(){
         return view('customer.dashboard.index');
     }
-
-    //function for events
-    public function events(){
-        return view('customer.dashboard.events');
-    }
 }

@@ -16,7 +16,9 @@ Route::get('/thankyou', [App\Http\Controllers\Customer\frontController::class, '
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
-    Route::get('/events', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'events'])->name('dashboard.events');
+
+    //events
+    Route::get('/events', [App\Http\Controllers\Customer\Event\EventController::class, 'index'])->name('dashboard.events');
     //profile
     Route::get('/profile', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'index'])->name('dashboard.profile');
     Route::get('/profile/edit', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'edit'])->name('dashboard.profile.edit');
@@ -36,7 +38,6 @@ Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->
 Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/members', [App\Http\Controllers\Admin\MemberController::class, 'index'])->name('members');
-    Route::get('/events', [App\Http\Controllers\Admin\DashboardController::class, 'events'])->name('events');
     Route::get('/analytics', [App\Http\Controllers\Admin\DashboardController::class, 'analytics'])->name('analytics');
 
     //appicatioans
@@ -44,6 +45,13 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     // Route::get('/application/{id}', [App\Http\Controllers\Admin\ApplicationController::class, 'show'])->name('application.show');
     Route::get('/application/approve/{id}', [App\Http\Controllers\Admin\ApplicationController::class, 'approveApplication'])->name('application.approve');
     Route::get('/application/reject/{id}', [App\Http\Controllers\Admin\ApplicationController::class, 'rejectApplication'])->name('application.reject');
+
+    //events
+    Route::get('/events', [App\Http\Controllers\Admin\EventController::class, 'index'])->name('events');
+    Route::post('/events/store', [App\Http\Controllers\Admin\EventController::class, 'store'])->name('events.store');
+    Route::get('/events/edit/{id}', [App\Http\Controllers\Admin\EventController::class, 'edit'])->name('events.edit');
+    Route::post('/events/update/{id}', [App\Http\Controllers\Admin\EventController::class, 'update'])->name('events.update');
+    Route::get('/events/destroy/{id}', [App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('events.destroy');
 });
 
 // Route::get('/dashboard', function () {
