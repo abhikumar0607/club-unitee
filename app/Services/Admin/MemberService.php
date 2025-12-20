@@ -27,7 +27,7 @@ class MemberService
 
         // STATUS
         if ($request->filled('status')) {
-            $query->where('status', $request->status);
+            $query->where('is_approved', $request->status);
         }
 
         // SORTING

@@ -72,11 +72,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserMatchingPreference::class);
     }
-
-    public function friendships()
-    {
-        return $this->hasMany(ConnectionRequest::class, 'sender_id')
-                    ->orWhere('receiver_id', $this->id)->where('status', 'accepted');
-    }
-
 }

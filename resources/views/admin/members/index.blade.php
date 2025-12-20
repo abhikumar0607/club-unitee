@@ -36,9 +36,9 @@
                             <label class="form-label fw-bold">Status</label>
                             <select name="status" class="form-select input-uni">
                                 <option value="">All</option>
-                                <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
-                                <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Inactive
-                                </option>
+                                <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Active</option>
+                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Inactive</option>
+                                <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
                             </select>
                         </div>
 
@@ -94,10 +94,12 @@
                                         <td>{{ $member->profession ?? 'N/A' }}</td>
                                         <td>{{ $member->created_at->format('M d, Y') }}</td>
                                         <td>
-                                            @if ($member->status == 'active')
+                                            @if ($member->is_approved == 'approved')
                                                 <span class="badge bg-success">Active</span>
-                                            @else
+                                            @elseif($member->is_approved == 'pending')
                                                 <span class="badge bg-danger">Inactive</span>
+                                            @elseif($member->is_approved == 'rejected')
+                                                <span class="badge bg-danger">Rejected</span>    
                                             @endif
                                         </td>
                                         <td>

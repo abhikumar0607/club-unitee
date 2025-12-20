@@ -19,54 +19,53 @@ class ConnectionService
     
     public function getAllConnections()
     {
-        $currentUser = auth()->user();
+        $me = auth()->user();
 
-        // Get logged-in user preferences
-        $my = $this->repo->getCurrnetUserWithPreference($currentUser->id);
-
+        $my = $this->repo->getCurrnetUserWithPreference($me->id);
         if (!$my || !$my->usermatchingPreference) {
             return collect();
         }
 
         $myPref = $my->usermatchingPreference;
 
-        // Fetch all other users
-        $users = $this->repo->getOtherActiveUsers($currentUser->id);
+        // exclude already connected users
+        $excludedIds = $this->repo->getExcludedUserIds($me->id);
+
+        $users = $this->repo
+            ->getOtherActiveUsers($me->id)
+            ->whereNotIn('id', $excludedIds);
 
         $matched = collect();
 
-        // Keep track of already added user IDs to avoid duplicates
-        $addedUserIds = collect();
-
         foreach ($users as $user) {
-            if (!$user->usermatchingPreference) {
-                continue;
-            }
+
+            if (!$user->usermatchingPreference) continue;
 
             $pref = $user->usermatchingPreference;
-            $matchCount = 0;
+            $count = 0;
 
-            if ($myPref->play_style == $pref->play_style) $matchCount++;
-            if ($myPref->travel_radius == $pref->travel_radius) $matchCount++;
-            if ($myPref->handicafe_prefernce == $pref->handicafe_prefernce) $matchCount++;
-            if ($myPref->fitness_level_prefernce == $pref->fitness_level_prefernce) $matchCount++;
-            if ($myPref->availability_prefernce == $pref->availability_prefernce) $matchCount++;
-            if ($myPref->looking_for_prefernce == $pref->looking_for_prefernce) $matchCount++;
-            if ($myPref->skill_level_prefernce == $pref->skill_level_prefernce) $matchCount++;
-            if ($myPref->course_play_prefernce == $pref->course_play_prefernce) $matchCount++;
-            if ($myPref->intrest_prefrence == $pref->intrest_prefrence) $matchCount++;
+            if ($myPref->play_style == $pref->play_style) $count++;
+            if ($myPref->travel_radius == $pref->travel_radius) $count++;
+            if ($myPref->handicafe_prefernce == $pref->handicafe_prefernce) $count++;
+            if ($myPref->fitness_level_prefernce == $pref->fitness_level_prefernce) $count++;
+            if ($myPref->availability_prefernce == $pref->availability_prefernce) $count++;
+            if ($myPref->looking_for_prefernce == $pref->looking_for_prefernce) $count++;
+            if ($myPref->skill_level_prefernce == $pref->skill_level_prefernce) $count++;
+            if ($myPref->course_play_prefernce == $pref->course_play_prefernce) $count++;
+            if ($myPref->intrest_prefrence == $pref->intrest_prefrence) $count++;
 
-            // Include either matched users or friends
-            if ($matchCount >= 3 || $user->friendships->isNotEmpty()) {
+            // minimum 3 match
+            if ($count >= 3) {
                 $matched->push($user);
-                $addedUserIds->push($user->id);
             }
         }
 
         return $matched;
     }
 
-
+    public function getMyConnections(){
+        return $this->repo->getMyConnections(auth()->user()->id);
+    }
     public function isRequestSent(){
        return $this->repo->isRequestSent();
     }

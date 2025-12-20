@@ -36,6 +36,9 @@
                         <a class="nav-link1 active" data-bs-toggle="pill" href="#all">All Connections</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link1" data-bs-toggle="pill" href="#connections">My Connections</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link1" data-bs-toggle="pill" href="#sent">Sent Requests</a>
                     </li>
                     <li class="nav-item">
@@ -75,33 +78,14 @@
                                             <!-- OPTIONAL CONNECTION INFO -->
                                            <p class="text-muted small">Connected {{ $user->created_at->diffForHumans() }}</p>
                                             <div class="d-flex gap-2 mt-3">
-                                                @if($isrequestsent && $isrequestsent->receiver_id == $user->id)
                                                     <a href="#"
                                                         class="btn btn-outline-uni w-50">
                                                         View
                                                     </a>
-                                                    <button class="btn btn-gradient w-50" disabled>Request Sent</button>
-                                                @elseif($isRequestReceived && $isRequestReceived->sender_id == $user->id)
-                                                    <a href="#"
-                                                        class="btn btn-outline-uni w-50">
-                                                        View
-                                                    </a>
-                                                    <a href="{{ route('customer.accept.connection.request', $isRequestReceived->id) }}" class="btn btn-gradient w-50">Accept Request</a>
-                                                @elseif($isRequestAccepted)
-                                                <a href="#"
-                                                    class="btn btn-outline-uni w-50">
-                                                    View
-                                                </a>  
-                                                <button class="btn btn-outline-uni w-50" disabled>Connected</button>
-                                                @else
-                                                <a href="#"
-                                                    class="btn btn-outline-uni w-50">
-                                                    View
-                                                </a>
+                                               
                                                 <a class="btn btn-gradient w-50" href="{{ route('customer.send.connection.request', $user->id) }}">
                                                   Request Contact
                                                 </a>
-                                                @endif
                                             </div>
 
                                         </div>
@@ -121,6 +105,57 @@
 
                     </div>
 
+                    <!-- MY CONNECTIONS -->
+                    <div class="tab-pane fade" id="connections">
+
+                       @if($myConnections && !$myConnections->isEmpty())
+                            <div class="row g-4 mt-3">
+
+                                @foreach ($myConnections as $user)
+                                    <div class="col-md-4">
+                                        <div class="card card-uni p-3 text-center">
+
+                                            <!-- PROFILE PHOTO -->
+                                            <div class="member-photo mb-3">
+                                               @if($user->profile_image)
+                                                    <img src="{{ asset('assets/customer/uploads/profile/' . $user->profile_image) }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                                @else
+                                                    <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                                @endif
+                                            </div>
+                                            <!-- NAME -->
+                                            <h5 class="fw-bold">{{ $user->name }}</h5>
+                                            <!-- PROFESSION -->
+                                            <p class="text-muted mb-1">{{ $user->profession ?? 'Not Available' }}</p>
+                                            <!-- OPTIONAL CONNECTION INFO -->
+                                           <p class="text-muted small">Connected {{ $user->created_at->diffForHumans() }}</p>
+                                            {{-- <div class="d-flex gap-2 mt-3">
+                                                    <a href="#"
+                                                        class="btn btn-outline-uni w-50">
+                                                        View
+                                                    </a>
+                                               
+                                                <a class="btn btn-gradient w-50" href="{{ route('customer.send.connection.request', $user->id) }}">
+                                                  Request Contact
+                                                </a>
+                                            </div> --}}
+
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            </div>
+                        @else
+                            <!-- NO MATCHED USERS -->
+                            <div class="text-center py-5">
+                                <img src="https://cdn-icons-png.flaticon.com/512/7486/7486740.png" width="120"
+                                    class="mb-3">
+                                <h4 class="fw-bold">No Matching Connections Found</h4>
+                                <p class="text-muted">Try updating your preferences to find better matches.</p>
+                            </div>
+                        @endif
+
+                    </div>
 
                     <!-- SENT REQUESTS -->
                     <div class="tab-pane fade" id="sent">

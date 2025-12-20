@@ -4,18 +4,17 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 //front routes
-Route::get('/', [App\Http\Controllers\customer\frontController::class, 'index'])->name('customer.home');
-Route::get('/events', [App\Http\Controllers\customer\frontController::class, 'events']);
-Route::get('/blog', [App\Http\Controllers\customer\frontController::class, 'blog']);
-Route::get('/about', [App\Http\Controllers\customer\frontController::class, 'about']);
-Route::get('/privacy', [App\Http\Controllers\customer\frontController::class, 'privacy']);
-Route::get('/term', [App\Http\Controllers\customer\frontController::class, 'term']);
-Route::get('/thankyou', [App\Http\Controllers\customer\frontController::class, 'thankyou'])->name('customer.thank');
+Route::get('/', [App\Http\Controllers\Customer\frontController::class, 'index'])->name('customer.home');
+Route::get('/events', [App\Http\Controllers\Customer\frontController::class, 'events']);
+Route::get('/blog', [App\Http\Controllers\Customer\frontController::class, 'blog']);
+Route::get('/about', [App\Http\Controllers\Customer\frontController::class, 'about']);
+Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'privacy']);
+Route::get('/term', [App\Http\Controllers\Customer\frontController::class, 'term']);
+Route::get('/thankyou', [App\Http\Controllers\Customer\frontController::class, 'thankyou'])->name('customer.thank');
 
 //customer dashboard routes
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/members', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'member'])->name('dashboard.member');
     Route::get('/connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
     Route::get('/events', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'events'])->name('dashboard.events');
     //profile
@@ -23,6 +22,9 @@ Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->
     Route::get('/profile/edit', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'edit'])->name('dashboard.profile.edit');
     Route::post('/profile/update', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'update'])->name('dashboard.profile.update');
     Route::get('/profile/delete-account', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'deleteAccount'])->name('dashboard.profile.delete.account');
+
+    //members
+    Route::get('/members', [App\Http\Controllers\Customer\Member\MemberController::class, 'index'])->name('members');
 
     Route::get('/send-connection-request/{id}', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'sendConnectionRequest'])->name('send.connection.request');
     Route::get('/cancel-connection-request/{id}', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'cancelConnectionRequest'])->name('cancel.connection.request');
