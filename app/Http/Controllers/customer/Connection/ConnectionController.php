@@ -23,7 +23,8 @@ class ConnectionController extends Controller
         $isrequestsent = $this->connService->isRequestSent();
         $isRequestReceived = $this->connService->isRequestReceived();
         $isRequestAccepted = $this->connService->isRequestAccepted();
-        return view('customer.connection.index', compact('connections','sentRequests','receivedRequests','isrequestsent','isRequestReceived','isRequestAccepted'));
+        $myConnections = $this->connService->getMyConnections();
+        return view('customer.connection.index', compact('connections','sentRequests','receivedRequests','isrequestsent','isRequestReceived','isRequestAccepted','myConnections'));
     }
 
     //function for connection request
