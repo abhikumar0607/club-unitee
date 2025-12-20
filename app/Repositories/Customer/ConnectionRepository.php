@@ -17,8 +17,41 @@ class ConnectionRepository
         return User::with('usermatchingPreference')
             ->where('id', '!=', $currentUserId)
             ->where('role', 'customer')
-            ->where('status', 'active')
+            ->where('is_approved', 'approved')
             ->get();
+    }
+
+    //public function for exclude sender and receiver
+    public function getExcludedUserIds($currentUserId)
+    {
+        return ConnectionRequest::where('sender_id', $currentUserId)
+            ->orWhere('receiver_id', $currentUserId)
+            ->get()
+            ->map(function ($req) use ($currentUserId) {
+                return $req->sender_id == $currentUserId
+                    ? $req->receiver_id
+                    : $req->sender_id;
+            })
+            ->unique()
+            ->values();
+    }
+
+    //public function for my coonections
+    public function getMyConnections($currentUserId)
+    {
+        $friendIds = ConnectionRequest::where('status', 'accepted')
+            ->where(function ($q) use ($currentUserId) {
+                $q->where('sender_id', $currentUserId)
+                ->orWhere('receiver_id', $currentUserId);
+            })
+            ->get()
+            ->map(function ($c) use ($currentUserId) {
+                return $c->sender_id == $currentUserId
+                    ? $c->receiver_id
+                    : $c->sender_id;
+            });
+
+        return User::whereIn('id', $friendIds)->get();
     }
 
     //function for is this user sent request

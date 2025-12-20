@@ -62,10 +62,6 @@ body {
   }
 }
 
-.container {
-  max-width: 1560px;
-  margin: 0 auto;
-}
 
 a.nav-link.nav-item-uni.active {
   color: #23b381;
@@ -861,7 +857,6 @@ a.site-brand {
 .play-together-rise-together {
   position: relative;
   z-index: 99;
-  top: 240px;
 }
 
 .hero-section {
@@ -869,7 +864,9 @@ a.site-brand {
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
-    margin-top: -82px;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .hero-section:before {
@@ -1000,12 +997,14 @@ a.site-brand {
 
 /* Primary Button */
 .hero-btn-primary {
-  padding: 14px 35px;
-  font-size: 18px;
-  border-radius: 99px;
-  border: 0;
-  background: linear-gradient(135deg, #10b981 0%, #fb7185 100%);
-  color: #fff;
+    padding: 14px 35px;
+    font-size: 18px;
+    border-radius: 99px;
+    border: 0;
+    background: linear-gradient(135deg, #10b981 0%, #fb7185 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
 }
 
 .hero-btn-primary:hover {

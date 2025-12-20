@@ -70,9 +70,9 @@
                 <div class="col-md-4 mb-4">
                     <h6 class="footer-heading">COMPANY</h6>
                     <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="term-service.html">Terms & Waiver</a></li>
+                        <li><a href="{{ url('about') }}">About Us</a></li>
+                        <li><a href="{{ url('privacy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ url('term') }}">Terms & Waiver</a></li>
                         <!-- <li><a href="#">Support</a></li> -->
                     </ul>
                 </div>
@@ -90,7 +90,7 @@
 
             <hr class="footer-line">
             <div class="container text-center">
-                <p class="small mb-1">© 2025 Club UniTee. All rights reserved.</p>
+                <p class="small mb-1">© 2025 Club Unitee. All rights reserved.</p>
             </div>
         </div>
     </footer>

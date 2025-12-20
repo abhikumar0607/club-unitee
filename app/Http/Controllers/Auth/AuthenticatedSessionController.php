@@ -26,13 +26,34 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        $user = Auth::user();
+
+        // CUSTOMER BUT NOT APPROVED
+        if ($user->role === 'customer' && $user->is_approved !== 'approved') {
+
+            Auth::logout(); // logout immediately
+
+            return redirect()
+                ->route('login')
+                ->withErrors([
+                    'email' => 'Your profile is under review. Please wait for admin approval.',
+                ]);
+        }
+
+        // regenerate session only if allowed
         $request->session()->regenerate();
 
-        if (Auth::user()->role === 'admin') {
+        // ADMIN
+        if ($user->role === 'admin') {
             return redirect()->route('admin.dashboard');
         }
 
-        return redirect()->intended(route('customer.dashboard.profile', absolute: false));
+        // CUSTOMER + APPROVED
+        if ($user->role === 'customer') {
+            return redirect()->route('customer.dashboard');
+        }
+
+        return redirect()->route('/');
     }
 
     /**

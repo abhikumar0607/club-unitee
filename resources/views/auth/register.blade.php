@@ -6,7 +6,7 @@
 <section class="py-4 text-center header-gradient">
     <div class="container">
         <h1 class="fw-bold" style="color:var(--gray-800);">Welcome Back</h1>
-        <p class="lead" style="color:var(--gray-600);">Login to access your dashboard.</p>
+        <p class="lead" style="color:var(--gray-600);">Please enter your detail to register</p>
     </div>
 </section>
 <!-- APPLICATION FORM -->
@@ -236,7 +236,7 @@
                                 <label class="form-label fw-semibold">Availability*</label>
 
                                 @php
-                                $availabilityOptions = ['Weekday Mornings', 'Weekday Evenings', 'Weekends'];
+                                $availabilityOptions = ['Weekday Mornings', 'Weekday Afternoons', 'Weekends', 'No Preference'];
                                 @endphp
 
                                 @foreach ($availabilityOptions as $opt)
@@ -374,7 +374,7 @@
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Availability Preference</label>
 
-                                @foreach (['Weekday Mornings', 'Weekday Evenings', 'Weekends'] as $opt)
+                                @foreach (['Weekday Mornings', 'Weekday Afternoons', 'Weekends', 'No Preference'] as $opt)
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="availability_prefernce"
                                         value="{{ $opt }}" {{ old('availability_prefernce') == $opt ? 'checked' : '' }}>

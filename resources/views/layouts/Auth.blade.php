@@ -7,7 +7,7 @@
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
-  <div class="container">
+  <div class="container justify-content-center">
     <a class="navbar-brand site-brand" href="/">
          <x-application-logo />
     </a>
@@ -17,7 +17,7 @@
 @yield('content')
 <!-- FOOTER -->
 <footer class="py-3 text-center">
-  <small>© 2025 Club UniTee. All rights reserved.</small>
+  <small>© 2025 Club Unitee. All rights reserved.</small>
 </footer>
 
 </body>

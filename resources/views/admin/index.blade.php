@@ -147,21 +147,33 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    // Total Members (BAR chart – same as pehle)
+    // Total Members (BAR chart – GREEN, Jan to Dec)
     new Chart(document.getElementById('totalMembersChart'), {
         type: 'bar',
         data: {
-            labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+            labels: [
+                'Jan','Feb','Mar','Apr','May','Jun',
+                'Jul','Aug','Sep','Oct','Nov','Dec'
+            ],
             datasets: [{
-                data: [180, 200, 215, 230, 240, 246]
+                data: [120, 140, 165, 180, 200, 215, 225, 235, 240, 242, 244, 246],
+                backgroundColor: '#1f7a5c',
+                borderRadius: 6
             }]
         },
         options: {
-            plugins: { legend: { display: false } }
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     });
 
-    // Total Events (MONTH WISE)
+    // Total Events (LINE chart – GREEN)
     new Chart(document.getElementById('totalEventsChart'), {
         type: 'line',
         data: {
@@ -171,12 +183,19 @@
             ],
             datasets: [{
                 data: [2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 28, 36],
+                borderColor: '#1f7a5c',        // green line
+                backgroundColor: 'rgba(31, 122, 92, 0.15)', // light green fill
                 borderWidth: 2,
-                fill: false
+                tension: 0.4,                 // smooth curve
+                fill: true,
+                pointBackgroundColor: '#1f7a5c',
+                pointRadius: 4
             }]
         },
         options: {
-            plugins: { legend: { display: false } },
+            plugins: {
+                legend: { display: false }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
