@@ -12,11 +12,6 @@ class DashboardController extends Controller
         return view('customer.dashboard.index');
     }
 
-    //function for member
-    public function member(){
-        return view('customer.dashboard.member');
-    }
-
     //function for events
     public function events(){
         return view('customer.dashboard.events');
