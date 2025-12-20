@@ -108,7 +108,7 @@
                     <!-- MY CONNECTIONS -->
                     <div class="tab-pane fade" id="connections">
 
-                       @if($myConnections && !$myConnections->isEmpty())
+                       @if($myConnections->count() > 0)
                             <div class="row g-4 mt-3">
 
                                 @foreach ($myConnections as $user)
