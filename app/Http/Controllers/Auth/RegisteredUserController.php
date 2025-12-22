@@ -15,6 +15,8 @@ use App\Models\GolfProfile;
 use App\Models\UserMatchingPreference;
 use App\Models\UserAvailability;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewCustomerRegisteredMail;
 
 class RegisteredUserController extends Controller
 {
@@ -65,8 +67,9 @@ class RegisteredUserController extends Controller
                 'referral_source'   => $request->referral_source,
                 'linkedin_url'      => $request->linkedin_url,
                 'instagram_handle'  => $request->instagram_handle,
-                'password'          => Hash::make(12345678),
+                'password'          => Hash::make(12345678),         
                 'role'              => 'customer',
+                'is_approved' => 'pending',
             ]);
 
             // Golf Profile
@@ -103,6 +106,8 @@ class RegisteredUserController extends Controller
             ]);
 
             DB::commit();
+            //Send Email
+            $user = Mail::to('kapoorthakur906@gmail.com')->send(new NewCustomerRegisteredMail($user));
             event(new Registered($user));
             // Auth::login($user);
             return redirect()->route('customer.thank');

@@ -3,6 +3,11 @@
 namespace App\Repositories\Admin;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CustomerApprovedMail; 
+use App\Mail\CustomerRejectedMail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class ApplicationRepository
 {
@@ -26,9 +31,16 @@ class ApplicationRepository
     // Approve customer
      public function approveApplication($id){
         $user = User::find($id);
+        //Generate random password 
+        $plainPassword = Str::random(15);
+
         $user->is_approved = 'approved';
+        $user->password = Hash::make($plainPassword);
         $user->approved_at = now();
         $user->save();
+        //Send approval mail with credentials
+        Mail::to($user->email)
+            ->send(new CustomerApprovedMail($user, $plainPassword));
         return $user;
     }
 
@@ -38,6 +50,9 @@ class ApplicationRepository
         $user->is_approved = 'rejected';
         $user->declined_at = now();
         $user->save();
+        //Send rejection mail
+        Mail::to($user->email)
+            ->send(new CustomerRejectedMail($user));
         return $user;
     }
 }
