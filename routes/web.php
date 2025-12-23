@@ -51,17 +51,18 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/events/store', [App\Http\Controllers\Admin\EventController::class, 'store'])->name('events.store');
     Route::get('/events/edit/{id}', [App\Http\Controllers\Admin\EventController::class, 'edit'])->name('events.edit');
     Route::post('/events/update/{id}', [App\Http\Controllers\Admin\EventController::class, 'update'])->name('events.update');
-    Route::get('/events/destroy/{id}', [App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('events.destroy');
+    Route::get('/events/destroy', [App\Http\Controllers\Admin\EventController::class, 'destroy']);
 });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+Route::middleware('auth')->group(function () {
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/{id?}', [ProfileController::class, 'index'])->name('profile.index');
+});
 
 require __DIR__.'/auth.php';

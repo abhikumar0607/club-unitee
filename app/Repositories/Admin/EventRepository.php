@@ -63,9 +63,9 @@ class EventRepository
             'image' => $filename,
         ]);
     }
-
+    
     //Function for delete event
-    public function destroy($id){
-        return Event::findOrFail($id)->delete();
+    public function destroy($event_id) {
+        return Event::findOrFail($event_id)->delete();
     }
 }

@@ -36,6 +36,7 @@ class ApplicationRepository
 
         $user->is_approved = 'approved';
         $user->password = Hash::make($plainPassword);
+        $user->status = 'active';
         $user->approved_at = now();
         $user->save();
         //Send approval mail with credentials
@@ -49,6 +50,7 @@ class ApplicationRepository
         $user = User::find($id);
         $user->is_approved = 'rejected';
         $user->declined_at = now();
+        $user->status = 'inactive';
         $user->save();
         //Send rejection mail
         Mail::to($user->email)

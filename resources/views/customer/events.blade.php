@@ -67,7 +67,7 @@
                             </div>
 
                             <!-- Skill Level -->
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <label class="form-label filter-label">Skill Level</label>
                                 <select class="form-select input-uni">
                                     <option value="">Any level</option>
@@ -75,7 +75,7 @@
                                     <option>Intermediate</option>
                                     <option>Advanced</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <!-- Location -->
                             <div class="col-md-4">
@@ -84,7 +84,7 @@
                             </div>
 
                             <!-- Capacity -->
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <label class="form-label filter-label">Availability</label>
                                 <select class="form-select input-uni">
                                     <option value="">All</option>
@@ -92,12 +92,12 @@
                                     <option>Almost full</option>
                                     <option>Waitlist only</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                         </div>
 
                         <!-- Checkbox row (separate, not inside last field) -->
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="showMyEvents">
@@ -106,7 +106,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Buttons -->
                         <div class="d-flex flex-wrap gap-2 justify-content-end">
@@ -120,76 +120,42 @@
                 <!-- EVENTS GRID -->
                 <div class="row g-4">
 
+                    @foreach($all_events as $event)
                     <!-- EVENT CARD 1 -->
                     <div class="col-md-4">
                         <div class="card card-uni-11 event-card h-100 d-flex flex-column">
-                            <div class="event-img mb-3"><img src="{{ asset('assets/customer/images/A Women Golfer.jpg') }}" alt=""></div>
-
+                        @if($event->image)
+                            <img src="{{ asset('assets/admin/uploads/events/' . $event->image) }}" class="event-img-sm mb-3" alt="{{ $event->title }}">
+                        @else
+                            <div class="event-img-sm mb-3 d-flex align-items-center justify-content-center no-image">
+                                No Image Found
+                            </div>
+                        @endif
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge event-badge-green">Golf Outing</span>
-                                <span class="event-date small text-muted">Sat • Feb 10 • 9:00 AM</span>
+                                <span class="badge event-badge-green">{{ $event->type }}</span>
+                                <span class="event-date small text-muted"> 
+                                    {{ \Carbon\Carbon::parse($event->date)->format('D • M d') }}
+                                   • {{ \Carbon\Carbon::parse($event->event_time)->format('h:i A') }}
+                                </span>
                             </div>
 
-                            <h5 class="fw-bold mb-1">Beginner-Friendly Social Round</h5>
-                            <p class="text-muted small mb-2">Torrey Pines Golf Course</p>
+                            <h5 class="fw-bold mb-1">{{ $event->title }}</h5>
+                            <!-- <p class="text-muted small mb-2">{{ $event->location }}</p> -->
                             <p class="text-muted small flex-grow-1">
-                                A relaxed, beginner-welcoming round focused on fun, friendship, and fresh air.
+                                {{ $event->description }}
                             </p>
 
                             <div class="d-flex justify-content-between align-items-center mt-2">
-                                <p class="small text-muted mb-0">12 of 20 spots filled</p>
+                                <p class="small text-muted mb-0"></p>
                                 <a href="event-details.html" class="btn btn-outline-uni btn-sm px-3">View details</a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- EVENT CARD 2 -->
-                    <div class="col-md-4">
-                        <div class="card card-uni-11 event-card h-100 d-flex flex-column">
-                            <div class="event-img mb-3"><img src="{{ asset('assets/customer/images/golf-1208900_1280.jpg') }}" alt=""></div>
-
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge event-badge-amber">Social Event</span>
-                                <span class="event-date small text-muted">Wed • Feb 7 • 10:00 AM</span>
-                            </div>
-
-                            <h5 class="fw-bold mb-1">Coffee & Connection</h5>
-                            <p class="text-muted small mb-2">Bluebird Café, Los Angeles</p>
-                            <p class="text-muted small flex-grow-1">
-                                A cozy coffee meetup to swap stories, share ideas, and meet new golf buddies.
-                            </p>
-
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <p class="small text-muted mb-0">22 registered</p>
-                                <a href="event-details.html" class="btn btn-outline-uni btn-sm px-3">View
-                                    details</a>
-                            </div>
-                        </div>
+                    @endforeach
+                    {{--Pagination --}}
+                    <div class="mt-3">
+                        {{ $all_events->links('pagination::bootstrap-5') }}
                     </div>
-
-                    <!-- EVENT CARD 3 -->
-                    <div class="col-md-4">
-                        <div class="card card-uni-11 event-card h-100 d-flex flex-column">
-                            <div class="event-img mb-3"><img src="{{ asset('assets/customer/images/golf-buddies.avif') }}" alt=""></div>
-
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge event-badge-blue">Workshop</span>
-                                <span class="event-date small text-muted">Thu • Feb 22 • 5:00 PM</span>
-                            </div>
-
-                            <h5 class="fw-bold mb-1">Putting Basics Workshop</h5>
-                            <p class="text-muted small mb-2">Westside Driving Range</p>
-                            <p class="text-muted small flex-grow-1">
-                                Build confidence on the greens with simple, beginner-friendly putting drills.
-                            </p>
-
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <p class="small text-muted mb-0">14 registered</p>
-                                <a href="event-details.html" class="btn btn-outline-uni btn-sm px-3">View details</a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>

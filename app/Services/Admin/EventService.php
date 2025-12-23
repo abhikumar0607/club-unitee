@@ -33,7 +33,7 @@ class Eventservice
     }
 
     //function for delete event
-    public function destroy($id){
-        return $this->eventRepository->destroy($id);
+    public function destroy($event_id){
+        return $this->eventRepository->destroy($event_id);
     }
 }

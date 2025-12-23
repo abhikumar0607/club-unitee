@@ -1,5 +1,6 @@
 @extends('layouts.admin-dashboard')
 @section('content')
+
 <!-- MAIN CONTENT -->
 <div class="main-content">
 
@@ -112,9 +113,16 @@
             @forelse($upcomingEvents as $event)
             <div class="col-md-4">
                 <div class="card card-uni p-3">
-                    <div class="event-img-sm mb-3"></div>
+                    @if($event->image)
+                        <img src="{{ asset('assets/admin/uploads/events/' . $event->image) }}"
+                            class="event-img-sm mb-3"
+                            alt="{{ $event->title }}">
+                    @else
+                        <div class="event-img-sm mb-3 d-flex align-items-center justify-content-center no-image">
+                            No Image Found
+                        </div>
+                    @endif
                     <h5 class="fw-bold">{{ $event->title }}</h5>
-                    <p class="text-muted small mb-1">
                     @php
                         $eventDate = \Carbon\Carbon::parse($event->date);
                         $daysDiff = now()->diffInDays($eventDate);
@@ -141,10 +149,9 @@
             @endforelse
             </div>
             {{--Pagination --}}
-
-                <div class="mt-3">
-                        {{ $upcomingEvents->links('pagination::bootstrap-5') }}
-                    </div>
+            <div class="mt-3">
+                {{ $upcomingEvents->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </section>
 
