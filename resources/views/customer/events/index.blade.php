@@ -1,6 +1,5 @@
 @extends('layouts.customer-dashboard')
 @section('content')
-    e
     <!-- MAIN CONTENT -->
     <div class="main-content">
 
