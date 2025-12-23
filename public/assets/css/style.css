@@ -2376,3 +2376,10 @@ img.event-images {
   color: #06a906;
   font-size: 16px;
 }
+.no-image {
+  color: #dc3545;     
+  font-weight: 600;
+  font-size: 12px;
+  /* background: #f8f9fa;
+  border: 1px dashed #dc3545; */
+}

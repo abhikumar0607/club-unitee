@@ -167,8 +167,7 @@
                                                 {{-- <a href="#" class="btn btn-outline-uni btn-sm">View</a> --}}
                                                 <a href="javascript:void(0);" class="editEventBtn btn btn-gradient btn-sm"
                                                     data-id="{{ $event->id }}">Edit</a>
-                                                <a href="{{ route('admin.events.destroy', $event->id) }}"
-                                                    class="btn btn-outline-uni btn-sm">Delete</a>
+                                                <a class="btn btn-outline-uni btn-sm delete_event_record" data-event_id="{{ $event->id }}">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

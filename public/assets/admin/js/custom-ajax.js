@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
     $('body').on('click', '.delete_event_record', function(event) {
         event.preventDefault();
         //Get data attribute
-        var inqury_id = $(this).data('inqury_id');    
+        var event_id = $(this).data('event_id');    
         //Delete through sweet alert
         Swal.fire({
             title: "Are you sure?",
-            text: "Once deleted, this Inquiry record cannot be recovered!",
+            text: "Once deleted, this event record cannot be recovered!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -21,15 +21,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: base_url+'/admin/delete-inquiry',  
+                    url: base_url+'/admin/events/destroy',  
                     data: { 
-                        inqury_id: inqury_id 
+                        event_id: event_id 
                     },
                     //Show success message
                     success: function(response) {
                         Swal.fire({
                             title: "Deleted!",
-                            text: "Inquiry deleted successfully.",
+                            text: "Event deleted successfully.",
                             icon: "success"
                         }).then(() => {
                             location.reload();

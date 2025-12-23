@@ -45,8 +45,8 @@ class EventController extends Controller
     }
 
     //function for delete event
-    public function destroy($id){
-        $this->eventService->destroy($id);
+    public function destroy(Request $request){
+        $this->eventService->destroy($request->event_id);
         return redirect()->route('admin.events')->with('success', 'Event deleted successfully');
     }
 }

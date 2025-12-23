@@ -51,7 +51,7 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/events/store', [App\Http\Controllers\Admin\EventController::class, 'store'])->name('events.store');
     Route::get('/events/edit/{id}', [App\Http\Controllers\Admin\EventController::class, 'edit'])->name('events.edit');
     Route::post('/events/update/{id}', [App\Http\Controllers\Admin\EventController::class, 'update'])->name('events.update');
-    Route::get('/events/destroy/{id}', [App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('events.destroy');
+    Route::get('/events/destroy', [App\Http\Controllers\Admin\EventController::class, 'destroy']);
 });
 
 // Route::get('/dashboard', function () {
