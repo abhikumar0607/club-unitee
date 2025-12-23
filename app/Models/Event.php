@@ -15,6 +15,7 @@ class Event extends Model
         'event_time',
         'location',
         'description',
+        'image',
         'status',
     ];
 }

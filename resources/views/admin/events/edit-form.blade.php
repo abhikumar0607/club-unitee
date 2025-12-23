@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('admin.events.update', $event->id) }}') }}">
+<form method="POST" action="{{ route('admin.events.update', $event->id) }}') }}" enctype="multipart/form-data">
     @csrf
 
     <!-- Event Title -->
@@ -73,6 +73,17 @@
             class="form-control"
             rows="4"
         >{{ $event->description }}</textarea>
+    </div>
+
+    <!-- Image -->
+    <div class="mb-3">
+        <label class="fw-semibold">Image *</label>
+        <input type="file" name="image" class="form-control"><br>
+        @if($event->image)
+            <img src="{{ asset('assets/admin/uploads/events/' .$event->image) }}" class="event-images">
+        @else
+            
+        @endif 
     </div>
 
     <!-- Status -->

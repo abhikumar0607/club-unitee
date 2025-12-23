@@ -2287,3 +2287,16 @@ a.learn-btn-12:hover {
     display: inline-flex;
     align-items: center;
 }
+
+img.event-images {
+  width: 50px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+}
+.alert.alert-success {
+  background: #90e7abbf;
+  color: #06a906;
+  font-size: 16px;
+}

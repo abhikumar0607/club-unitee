@@ -45,7 +45,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="{{ route('admin.events.store') }}">
+                                    <form method="POST" action="{{ route('admin.events.store') }}" enctype="multipart/form-data">
                                         @csrf
                                         <!-- Event Title -->
                                         <div class="mb-3">
@@ -57,7 +57,7 @@
                                         <div class="mb-3">
                                             <label class="fw-semibold">Event Type *</label>
                                             <select name="type" class="form-select" required>
-                                                <option value="">Select Type</option>
+                                                <option value="" Disabled selected>Select Type</option>
                                                 <option>Golf Outing</option>
                                                 <option>Social Event</option>
                                                 <option>Workshop</option>
@@ -85,11 +85,16 @@
                                             <label class="fw-semibold">Event Description</label>
                                             <textarea name="description" class="form-control" rows="4"></textarea>
                                         </div>
-
+                                        <!-- Image -->
+                                        <div class="mb-3">
+                                            <label class="fw-semibold">Image *</label>
+                                            <input type="file" name="image" class="form-control" required>
+                                        </div>
                                         <!-- Status -->
                                         <div class="mb-3">
                                             <label class="fw-semibold">Status *</label>
                                             <select name="status" class="form-select" required>
+                                                <option value="" disabled selected>Select Status</option>
                                                 <option value="Published">Published</option>
                                                 <option value="Completed">Completed</option>
                                                 <option value="Draft">Draft</option>
@@ -126,6 +131,7 @@
                                     <th>Date</th>
                                     <th>Location</th>
                                     <th>RSVPs</th>
+                                    <th>Image</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -138,9 +144,16 @@
                                         <tr>
                                             <td>{{ $event->title }}</td>
                                             <td><span class="badge bg-success">{{ $event->type }}</span></td>
-                                            <td>{{ \Carbon\Carbon::parse($event->date)->format('M d, Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($event->date)->format('d M, Y') }}</td>
                                             <td>{{ $event->location }}</td>
                                             <td>--</td>
+                                            <td>
+                                                @if($event->image)
+                                                    <img src="{{ asset('assets/admin/uploads/events/' .$event->image) }}" class="event-images">
+                                                @else
+                                                    --
+                                                @endif 
+                                            </td>
                                             <td>
                                                 @if ($event->status == 'Published')
                                                     <span class="badge bg-primary">Published</span>
