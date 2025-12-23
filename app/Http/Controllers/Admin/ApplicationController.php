@@ -27,11 +27,11 @@ class ApplicationController extends Controller
     //approve application
     public function approveApplication($id){
         $this->app_service->approveApplication($id);
-        return redirect()->route('admin.applications')->with('success', 'Application approved successfully.');
+        return redirect()->back()->with('success', 'Application approved successfully.');
     }
     //reject application
     public function rejectApplication($id){
         $this->app_service->rejectApplication($id);
-        return redirect()->route('admin.applications')->with('success', 'Application rejected successfully.');
+        return redirect()->back()->with('success', 'Application rejected successfully.');
     }
 }

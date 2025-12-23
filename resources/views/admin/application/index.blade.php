@@ -73,7 +73,7 @@
                                                     <td>{{ $pendingApplication->profession }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($pendingApplication->created_at)->format('d M, Y') }}</td>
                                                     <td>
-                                                        {{-- <a href="#" class="btn btn-outline-uni btn-sm">View</a> --}}
+                                                        <a href="{{ route('profile.index', $pendingApplication->id) }}" class="btn btn-outline-uni btn-sm">View</a>
                                                         <a href="{{ route('admin.application.approve', $pendingApplication->id) }}" class="btn btn-gradient btn-sm">Accept</a>
                                                         <a href="{{ route('admin.application.reject', $pendingApplication->id) }}" class="btn btn-outline-uni btn-sm">Decline</a>
                                                     </td>
@@ -115,6 +115,7 @@
                                             <th>Email</th>
                                             <th>Profession</th>
                                             <th>Approved On</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
 
@@ -128,6 +129,10 @@
                                                     <td>{{ $approvedApplication->email }}</td>
                                                     <td>{{ $approvedApplication->profession }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($approvedApplication->approved_at)->format('d M, Y') }}</td>
+                                                    <td>
+                                                        <a href="{{ route('profile.index', $approvedApplication->id) }}" class="btn btn-outline-uni btn-sm">View</a>
+                                                        <a href="{{ route('admin.application.reject', $approvedApplication->id) }}" class="btn btn-outline-uni btn-sm">Decline</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         @else
@@ -167,6 +172,7 @@
                                             <th>Email</th>
                                             <th>Profession</th>
                                             <th>Declined On</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
 
@@ -179,6 +185,10 @@
                                                     <td>{{ $declinedApplication->email }}</td>
                                                     <td>{{ $declinedApplication->profession }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($declinedApplication->declined_at)->format('d M, Y') }}</td>
+                                                    <td>
+                                                        <a href="{{ route('profile.index', $declinedApplication->id) }}" class="btn btn-outline-uni btn-sm">View</a>
+                                                        <a href="{{ route('admin.application.approve', $declinedApplication->id) }}" class="btn btn-gradient btn-sm">Accept</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         @else
