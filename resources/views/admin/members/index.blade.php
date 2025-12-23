@@ -64,7 +64,7 @@
                             <th>Profession</th>
                             <th>Join Date</th>
                             <th>Status</th>
-                            {{--<th>Actions</th>--}}
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     @if ($members->count() > 0)
@@ -91,9 +91,9 @@
                             @endif
                         </td>
                         <td>
-                            {{-- <a href="#" class="btn btn-outline-uni btn-sm">View</a>
-                            <a href="#" class="btn btn-gradient btn-sm">Edit</a>
-                                @if ($member->status == 'active')
+                            <a href="{{ route('profile.index', $member->id) }}" class="btn btn-outline-uni btn-sm">View</a>
+                            {{-- <a href="#" class="btn btn-gradient btn-sm">Edit</a> --}}
+                            {{-- @if ($member->status == 'active')
                             <a href="#" class="btn btn-outline-uni btn-sm">Deactivate</a>
                             @else
                                 <a href="#" class="btn btn-outline-uni btn-sm">Activate</a>

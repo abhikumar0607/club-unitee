@@ -78,7 +78,7 @@
                                             <!-- OPTIONAL CONNECTION INFO -->
                                            <p class="text-muted small">Connected {{ $user->created_at->diffForHumans() }}</p>
                                             <div class="d-flex gap-2 mt-3">
-                                                    <a href="#"
+                                                    <a href="{{ route('profile.index', $user->id) }}"
                                                         class="btn btn-outline-uni w-50">
                                                         View
                                                     </a>

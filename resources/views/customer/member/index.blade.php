@@ -105,7 +105,7 @@
                                          class="badge bg-success-subtle text-success fw-semibold mb-2">{{ $member->golfProfile ? $member->golfProfile->skill_level : 'N/A' }}</span>
                                      <p class="text-muted small">"{{ $member->bio }}"</p>
 
-                                     <a href="view-member.html" class="btn btn-gradient w-100 mt-2">View Profile</a>
+                                     <a href="{{ route('profile.index', $member->id) }}" class="btn btn-gradient w-100 mt-2">View Profile</a>
                                  </div>
                              </div>
                          @endforeach
