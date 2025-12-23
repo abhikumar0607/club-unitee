@@ -69,8 +69,8 @@ a.nav-link.nav-item-uni.active {
 }
 
 h4.text-uni {
-    font-size: 20px;
-    text-transform: uppercase;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 
 /* Section Titles */
@@ -100,7 +100,6 @@ h4.text-uni {
   border: 2px solid #d1fae5;
   border-radius: 99px;
   padding: 9px 32px;
-  margin-left: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -860,23 +859,23 @@ a.site-brand {
 }
 
 .hero-section {
-    height: 100vh;
-    background-size: cover;
-    background-position: top;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    position: relative;
+  height: 100vh;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .hero-section:before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    bottom: 0;
-    background: #0000004a;
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  background: #0000004a;
 }
 
 .hero-title {
@@ -997,14 +996,14 @@ a.site-brand {
 
 /* Primary Button */
 .hero-btn-primary {
-    padding: 14px 35px;
-    font-size: 18px;
-    border-radius: 99px;
-    border: 0;
-    background: linear-gradient(135deg, #10b981 0%, #fb7185 100%);
-    color: #fff;
-    display: flex;
-    align-items: center;
+  padding: 14px 35px;
+  font-size: 18px;
+  border-radius: 99px;
+  border: 0;
+  background: linear-gradient(135deg, #10b981 0%, #fb7185 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .hero-btn-primary:hover {
@@ -2239,7 +2238,18 @@ a.learn-btn-12:hover {
   padding: .6rem 1rem;
   border-radius: .375rem;
 }
-
+img.event-images {
+  width: 50px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+}
+.alert.alert-success {
+  background: #90e7abbf;
+  color: #06a906;
+  font-size: 16px;
+}
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .terms-hero {
@@ -2255,39 +2265,105 @@ a.learn-btn-12:hover {
     padding: 24px 20px;
   }
 }
-.thankyou-overlay{
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
+
+.thankyou-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
-.thankyou-box{
-    background: #fff;
-    padding: 32px;
-    border-radius: 14px;
-    max-width: 420px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+.thankyou-box {
+  background: #fff;
+  padding: 32px;
+  border-radius: 14px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
 }
 
 
 
 .btn-outline-uni-1 {
-    border-radius: 999px;
-    border: 1px solid var(--emerald);
-    color: var(--emerald);
-    font-weight: 500;
-    font-size: 14px;
-    background: #fff;
-    display: inline-flex;
-    align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--emerald);
+  color: var(--emerald);
+  font-weight: 500;
+  font-size: 14px;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
 }
 
+.navbar-expand-lg .navbar-nav:nth-child(1) {
+  flex-direction: row;
+  margin: auto;
+  margin-bottom: 0;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .btn-uni1 {
+    margin-left: 0;
+  }
+
+  li.nav-item {
+    width: 50%;
+  }
+
+  ul.auth-right {
+    flex-direction: row;
+  }
+
+  .hero-box {
+    padding: 30px 20px;
+  }
+
+  .hero-section1 {
+    padding: 20px;
+  }
+
+  .featured-content {
+    position: relative;
+    bottom: 633px;
+    left: 0;
+    right: 0;
+    padding: 33px 8px;
+  }
+
+  .hero-wrapper {
+    height: 730px;
+    padding: 18px 9px !important;
+  }
+
+  .featured-img {
+    height: 630px;
+  }
+
+  .featured-card {
+    height: 660px;
+  }
+
+  .card-uni {
+    padding: 1rem 1rem;
+  }
+
+  .navbar-expand-lg .navbar-nav {
+    margin-left: 330px !important;
+  }
+  .navbar-expand-lg .navbar-nav:nth-child(1) {
+    flex-direction: column;
+    margin: 0;
+}
+.navbar-expand-lg .navbar-nav {
+    margin-left: 0 !important;
+}
+}
 img.event-images {
   width: 50px;
   height: 40px;

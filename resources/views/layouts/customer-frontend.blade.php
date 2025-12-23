@@ -4,53 +4,96 @@
 
 <body style="background: var(--gradient-background);">
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 nacbarr12">
-        <div class="container">
-            <a class="navbar-brand site-brand" href="index.html"> <x-application-logo /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-auto gap-3">
-                    <li class="nav-item"><a href="{{ url('/') }}"
-                            class="nav-link nav-item-uni {{ request()->is('/') ? 'active' : '' }}">Home</a></li>
-                    <li class="nav-item"><a href="{{ url('events') }}"
-                            class="nav-link nav-item-uni {{ request()->is('events') ? 'active' : '' }}">Events</a></li>
-                    <li class="nav-item"><a href="{{ url('blog') }}"
-                            class="nav-link nav-item-uni {{ request()->is('blog') ? 'active' : '' }}">Blog</a></li>
-                    <!-- <li class="nav-item"><a href="adaptive-golf.html" class="nav-link nav-item-uni">Adaptive Golf</a></li> -->
-                </ul>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    @guest
-                        <li class="nav-item"><a class="nav-link-1" href="{{ url('register') }}">Apply</a></li>
-                        <li class="nav-item">
-                            <a class="btn btn-uni1" href="{{ route('login') }}">Login</a>
-                        </li>
-                    @endguest
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 nacbarr12">
+    <div class="container">
 
-                    @auth
-                        @can('is-customer')
-                            <li class="nav-item">
-                                <a class="btn btn-uni1" href="{{ url('customer/dashboard') }}">Dashboard</a>
-                            </li>
-                        @endcan
-                        @can('is-admin')
-                            <li class="nav-item">
-                                <a class="btn btn-uni1" href="{{ url('admin/dashboard') }}">Dashboard</a>
-                            @endcan
+        <!-- LOGO -->
+        <a class="navbar-brand site-brand" href="{{ url('/') }}">
+            <x-application-logo />
+        </a>
+
+        <!-- TOGGLER -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- COLLAPSE -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <!-- LEFT / MAIN LINKS -->
+            <ul class="navbar-nav gap-lg-3 mt-3 mt-lg-0">
+                <li class="nav-item">
+                    <a href="{{ url('/') }}"
+                       class="nav-link nav-item-uni {{ request()->is('/') ? 'active' : '' }}">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('events') }}"
+                       class="nav-link nav-item-uni {{ request()->is('events') ? 'active' : '' }}">
+                        Events
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('blog') }}"
+                       class="nav-link nav-item-uni {{ request()->is('blog') ? 'active' : '' }}">
+                        Blog
+                    </a>
+                </li>
+            </ul>
+
+            <!-- RIGHT / AUTH ACTIONS -->
+            <ul class="navbar-nav ms-lg-4 align-items-lg-center mt-3 mt-lg-0 gap-2 auth-right">
+
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link-1 d-block text-center" href="{{ url('register') }}">
+                            Apply
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="btn btn-uni1 w-100" href="{{ route('login') }}">
+                            Login
+                        </a>
+                    </li>
+                @endguest
+
+                @auth
+                    @can('is-customer')
                         <li class="nav-item">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="btn btn-uni1">Logout</button>
-                            </form>
+                            <a class="btn btn-uni1 w-100" href="{{ url('customer/dashboard') }}">
+                                Dashboard
+                            </a>
                         </li>
-                    @endauth
-                </ul>
-            </div>
+                    @endcan
+
+                    @can('is-admin')
+                        <li class="nav-item">
+                            <a class="btn btn-uni1 w-100" href="{{ url('admin/dashboard') }}">
+                                Dashboard
+                            </a>
+                        </li>
+                    @endcan
+
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-uni1 w-100">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                @endauth
+
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
     @yield('content')
     <!-- FOOTER -->
     <footer class="pb-5 shadow-sm back-color-footer">
