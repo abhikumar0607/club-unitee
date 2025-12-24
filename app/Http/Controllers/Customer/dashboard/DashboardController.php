@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers\Customer\Dashboard;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class DashboardController extends Controller
+{
+    //function for dashboard index
+    public function index(){
+        return view('customer.dashboard.index');
+    }
+}
