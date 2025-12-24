@@ -139,7 +139,7 @@
                             @endif
                         @endif
                     </p>
-                    <a href="event-details.html" class="btn btn-outline-uni w-100 mt-2">View Details</a>
+                    <a href="{{ url('event-detail', $event->slug) }}" class="btn btn-outline-uni w-100 mt-2">View Details</a>
                 </div>
             </div>
                 @empty

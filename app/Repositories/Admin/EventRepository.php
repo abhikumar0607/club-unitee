@@ -3,6 +3,7 @@
 namespace App\Repositories\Admin;
 use App\Models\Event;
 use App\Traits\HandlesFileUpload;
+use Illuminate\Support\Str;
 
 class EventRepository
 {
@@ -12,10 +13,17 @@ class EventRepository
         //Check if image is exit or not
         $filename = $this->uploadImage($request->file('image'),
             'assets/admin/uploads/events');
+        //Generate slug 
+        $slug = Str::slug($request->input('title'), "-");
+        //Check if slug already exists or not
+        if (Event::where('slug', $slug)->exists()) {
+            return false;
+        }    
         //Create event
-        return Event::create([
+        Event::create([
             'user_id' => auth()->id(),
             'title' => $request->title,
+            'slug' => $slug,
             'type' => $request->type,
             'date' => $request->date,
             'event_time' => $request->event_time,
@@ -24,6 +32,8 @@ class EventRepository
             'status' => $request->status,
             'image' => $filename,
         ]);
+
+        return true;
     }
 
     //Function for get all events
@@ -51,9 +61,16 @@ class EventRepository
                 'assets/admin/uploads/events'
             );
         }
+        //Update slug
+        $slug = Str::slug($request->input('title'), "-");
+        //Check if slug exists or not
+        if (Event::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+            return false;
+        }
         //Update event
         $event->update([
             'title' => $request->title,
+            'slug' => $slug,
             'type' => $request->type,
             'date' => $request->date,
             'event_time' => $request->event_time,
@@ -62,6 +79,8 @@ class EventRepository
             'status' => $request->status,
             'image' => $filename,
         ]);
+
+        return true;
     }
     
     //Function for delete event

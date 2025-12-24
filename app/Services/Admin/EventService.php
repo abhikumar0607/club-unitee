@@ -14,7 +14,7 @@ class Eventservice
 
     //function for store event
     public function store($request){
-        $this->eventRepository->store($request);
+        return $this->eventRepository->store($request);
     }
 
     //function for get all events
