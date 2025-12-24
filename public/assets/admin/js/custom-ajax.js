@@ -39,4 +39,45 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    //Delete Category
+    $('body').on('click', '.delete_category_record', function(event) {
+        event.preventDefault();
+        //Get data attribute
+        var category_id = $(this).data('category_id');    
+        //Delete through sweet alert
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Once deleted, this category record cannot be recovered!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //Call ajax
+                $.ajax({
+                    type: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: base_url+'/admin/categories/destroy',  
+                    data: { 
+                        category_id: category_id 
+                    },
+                    //Show success message
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Category deleted successfully.",
+                            icon: "success"
+                        }).then(() => {
+                            location.reload();
+                        });
+                    },
+                });
+            }
+        });
+    });
 });
