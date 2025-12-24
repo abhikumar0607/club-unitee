@@ -24,8 +24,11 @@ class EventController extends Controller
 
     //function for store event
     public function store(Request $request){
-        $this->eventService->store($request);
-        return redirect()->route('admin.events')->with('success', 'Event created successfully');
+        $created = $this->eventService->store($request);
+        if ($created === true) {
+            return redirect()->route('admin.events')->with('success', 'Event created successfully');
+        }
+        return redirect()->back()->withInput()->with('error', 'Event title already exists. Please use a different title.');
     }
 
     //function for edit event
@@ -40,8 +43,11 @@ class EventController extends Controller
 
     // //function for update event
     public function update(Request $request, $id){
-        $this->eventService->update($request, $id);
-        return redirect()->route('admin.events')->with('success', 'Event updated successfully');
+        $created = $this->eventService->update($request, $id);
+        if ($created === true) {
+            return redirect()->route('admin.events')->with('success', 'Event updated successfully');
+        }
+        return redirect()->back()->withInput()->with('error', 'Event title already exists. Please use a different title.');
     }
 
     //function for delete event

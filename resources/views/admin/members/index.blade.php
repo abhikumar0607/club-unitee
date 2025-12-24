@@ -51,7 +51,7 @@
                             <button class="btn btn-gradient w-100">Apply</button>
                         </div>
                         <div class="col-md-2">
-                            <a href="{{ route('admin.members') }}" class="btn btn-gradient w-100">
+                            <a href="{{ route('admin.members') }}" id="clearBtn" class="btn btn-gradient w-100">
                                 Clear
                             </a>
                         </div>

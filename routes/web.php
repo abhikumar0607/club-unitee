@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 //front routes
 Route::get('/', [App\Http\Controllers\Customer\frontController::class, 'index'])->name('customer.home');
 Route::get('/events', [App\Http\Controllers\Customer\frontController::class, 'events']);
+Route::get('/event-detail/{slug}', [App\Http\Controllers\Customer\frontController::class, 'event_detail']);
 Route::get('/blog', [App\Http\Controllers\Customer\frontController::class, 'blog']);
 Route::get('/about', [App\Http\Controllers\Customer\frontController::class, 'about']);
 Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'privacy']);

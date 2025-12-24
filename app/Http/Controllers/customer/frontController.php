@@ -22,6 +22,13 @@ class frontController extends Controller
         return view('customer.events', compact('all_events'));
     }
 
+    //Function for event detail
+    public function event_detail($slug){
+        //Get events
+        $all_events = Event::where('slug', $slug)->firstOrFail();
+        return view('customer.event-detail', compact('all_events'));
+    }
+
     //function for blog page
     public function blog(){
         return view('customer.blog');

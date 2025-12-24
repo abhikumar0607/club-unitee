@@ -134,8 +134,21 @@
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="badge event-badge-green">{{ $event->type }}</span>
                                 <span class="event-date small text-muted"> 
-                                    {{ \Carbon\Carbon::parse($event->date)->format('D • M d') }}
-                                   • {{ \Carbon\Carbon::parse($event->event_time)->format('h:i A') }}
+                                @php
+                                    $eventDate = \Carbon\Carbon::parse($event->date);
+                                    $daysDiff = now()->diffInDays($eventDate);
+                                @endphp
+        
+                                @if($daysDiff <= 7)
+                                    {{ $eventDate->format('l') }} •
+                                    {{ \Carbon\Carbon::parse($event->event_time)->format('h:i A') }}
+                                @else
+                                    @if($daysDiff < 28)
+                                        {{ ceil($daysDiff / 7) }} week{{ ceil($daysDiff / 7) > 1 ? 's' : '' }} later
+                                    @else
+                                        {{ ceil($daysDiff / 30) }} month{{ ceil($daysDiff / 30) > 1 ? 's' : '' }} later
+                                    @endif
+                                @endif
                                 </span>
                             </div>
 
@@ -147,7 +160,7 @@
 
                             <div class="d-flex justify-content-between align-items-center mt-2">
                                 <p class="small text-muted mb-0"></p>
-                                <a href="event-details.html" class="btn btn-outline-uni btn-sm px-3">View details</a>
+                                <a href="{{ url('event-detail', $event->slug) }}" class="btn btn-outline-uni btn-sm px-3">View details</a>
                             </div>
                         </div>
                     </div>
