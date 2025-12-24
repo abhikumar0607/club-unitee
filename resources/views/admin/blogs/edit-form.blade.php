@@ -1,32 +1,28 @@
-<form method="POST" action="{{ route('admin.events.update', $event->id) }}') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.blogs.update', $blogs->id) }}') }}" enctype="multipart/form-data">
     @csrf
 
     <!-- Event Title -->
     <div class="mb-3">
-        <label class="fw-semibold">Event Title *</label>
+        <label class="fw-semibold">Blog Title *</label>
         <input
             type="text"
             name="title"
             class="form-control"
-            value="{{ $event->title }}"
+            value="{{ $blogs->title }}"
             required
         >
     </div>
 
     <!-- Event Type -->
     <div class="mb-3">
-        <label class="fw-semibold">Event Type *</label>
-        <select name="type" class="form-select" required>
-            <option value="">Select Type</option>
-            <option value="Golf Outing" {{ $event->type == 'Golf Outing' ? 'selected' : '' }}>
-                Golf Outing
+        <label class="fw-semibold">Categories *</label>
+            <select name="category_name[]" class="form-select" required>
+            <option value="" Disabled selected>Select Category</option>
+            @foreach($categories as $category)
+            <option value="{{ $category->id }}">
+                {{ $category->name }}
             </option>
-            <option value="Social Event" {{ $event->type == 'Social Event' ? 'selected' : '' }}>
-                Social Event
-            </option>
-            <option value="Workshop" {{ $event->type == 'Workshop' ? 'selected' : '' }}>
-                Workshop
-            </option>
+            @endforeach
         </select>
     </div>
 
@@ -37,7 +33,7 @@
             type="date"
             name="date"
             class="form-control"
-            value="{{ $event->date }}"
+            value="{{ $blogs->date }}"
             required
         >
     </div>
@@ -48,7 +44,7 @@
             type="time"
             name="event_time"
             class="form-control"
-            value="{{ $event->event_time }}"
+            value="{{ $blogs->event_time }}"
             required
         >
     </div>
@@ -60,7 +56,7 @@
             type="text"
             name="location"
             class="form-control"
-            value="{{ $event->location }}"
+            value="{{ $blogs->location }}"
             required
         >
     </div>
@@ -72,15 +68,15 @@
             name="description"
             class="form-control"
             rows="4"
-        >{{ $event->description }}</textarea>
+        >{{ $blogs->description }}</textarea>
     </div>
 
     <!-- Image -->
     <div class="mb-3">
         <label class="fw-semibold">Image *</label>
         <input type="file" name="image" class="form-control"><br>
-        @if($event->image)
-            <img src="{{ asset('assets/admin/uploads/events/' .$event->image) }}" class="event-images">
+        @if($blogs->image)
+            <img src="{{ asset('assets/admin/uploads/events/' .$blogs->image) }}" class="blogs-images">
         @else
             
         @endif 
@@ -90,13 +86,13 @@
     <div class="mb-3">
         <label class="fw-semibold">Status *</label>
         <select name="status" class="form-select" required>
-            <option value="Published" {{ $event->status == 'Published' ? 'selected' : '' }}>
+            <option value="Published" {{ $blogs->status == 'Published' ? 'selected' : '' }}>
                 Published
             </option>
-            <option value="Completed" {{ $event->status == 'Completed' ? 'selected' : '' }}>
+            <option value="Completed" {{ $blogs->status == 'Completed' ? 'selected' : '' }}>
                 Completed
             </option>
-            <option value="Draft" {{ $event->status == 'Draft' ? 'selected' : '' }}>
+            <option value="Draft" {{ $blogs->status == 'Draft' ? 'selected' : '' }}>
                 Draft
             </option>
         </select>
