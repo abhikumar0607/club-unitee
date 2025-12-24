@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 //front routes
 Route::get('/', [App\Http\Controllers\Customer\frontController::class, 'index'])->name('customer.home');
 Route::get('/events', [App\Http\Controllers\Customer\frontController::class, 'events']);
+Route::get('/event-detail/{slug}', [App\Http\Controllers\Customer\frontController::class, 'event_detail']);
 Route::get('/blog', [App\Http\Controllers\Customer\frontController::class, 'blog']);
 Route::get('/about', [App\Http\Controllers\Customer\frontController::class, 'about']);
 Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'privacy']);
@@ -51,7 +52,21 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/events/store', [App\Http\Controllers\Admin\EventController::class, 'store'])->name('events.store');
     Route::get('/events/edit/{id}', [App\Http\Controllers\Admin\EventController::class, 'edit'])->name('events.edit');
     Route::post('/events/update/{id}', [App\Http\Controllers\Admin\EventController::class, 'update'])->name('events.update');
-    Route::get('/events/destroy/{id}', [App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('events.destroy');
+    Route::get('/events/destroy', [App\Http\Controllers\Admin\EventController::class, 'destroy']);
+
+    //Categories
+    Route::get('/categories', [App\Http\Controllers\Admin\BlogCategoryController::class, 'index'])->name('categories');
+    Route::post('/categories/store', [App\Http\Controllers\Admin\BlogCategoryController::class, 'store'])->name('categories.store');
+    Route::get('/categories/edit/{id}', [App\Http\Controllers\Admin\BlogCategoryController::class, 'edit'])->name('categories.edit');
+    Route::post('/categories/update/{id}', [App\Http\Controllers\Admin\BlogCategoryController::class, 'update'])->name('categories.update');
+    Route::get('/categories/destroy', [App\Http\Controllers\Admin\BlogCategoryController::class, 'destroy']);
+
+    //Blogs
+    Route::get('/blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blogs');
+    Route::post('/blogs/store', [App\Http\Controllers\Admin\BlogController::class, 'store'])->name('blogs.store');
+    Route::get('/blogs/edit/{id}', [App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('blogs.edit');
+    Route::post('/blogs/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('blogs.update');
+    Route::get('/blogs/destroy', [App\Http\Controllers\Admin\BlogController::class, 'destroy']);
 });
 
 // Route::get('/dashboard', function () {

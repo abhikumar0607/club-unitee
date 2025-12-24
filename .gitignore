@@ -22,3 +22,11 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Ignore uploaded event images
+
+/public/assets/admin/uploads/
+/public/assets/customer/uploads/
+
+# Ignore all uploads
+/public/assets/**/uploads/

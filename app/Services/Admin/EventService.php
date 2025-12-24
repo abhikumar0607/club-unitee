@@ -14,7 +14,7 @@ class Eventservice
 
     //function for store event
     public function store($request){
-        $this->eventRepository->store($request);
+        return $this->eventRepository->store($request);
     }
 
     //function for get all events
@@ -33,7 +33,7 @@ class Eventservice
     }
 
     //function for delete event
-    public function destroy($id){
-        return $this->eventRepository->destroy($id);
+    public function destroy($event_id){
+        return $this->eventRepository->destroy($event_id);
     }
 }

@@ -20,15 +20,16 @@
                 <form method="GET" action="{{ route('admin.members') }}">
                     <div class="row g-3 align-items-end">
                         <!--SEARCH-->
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label class="form-label fw-bold">Search Members</label>
                             <input type="text" name="search" class="form-control input-uni"
                             placeholder="Name, email or profession" value="{{ request('search') }}">
                         </div>
                         <!--STATUS-->
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="form-label fw-bold">Status</label>
                             <select name="status" class="form-select input-uni">
+                                <option value="" disabled selected>Select</option>
                                 <option value="">All</option>
                                 <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Active</option>
                                 <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Inactive</option>
@@ -36,9 +37,10 @@
                             </select>
                         </div>
                         <!--SORT-->
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="form-label fw-bold">Sort By</label>
                             <select name="sort" class="form-select input-uni">
+                            <option value="" disabled selected>Select</option>
                             <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
                             <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Oldest</option>
                             <option value="az" {{ request('sort') == 'az' ? 'selected' : '' }}>Name A-Z</option>
@@ -47,6 +49,11 @@
                         </div>
                         <div class="col-md-2">
                             <button class="btn btn-gradient w-100">Apply</button>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{ route('admin.members') }}" id="clearBtn" class="btn btn-gradient w-100">
+                                Clear
+                            </a>
                         </div>
                     </div>
                 </form>

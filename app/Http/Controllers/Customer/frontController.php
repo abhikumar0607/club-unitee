@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Event;
 
 
 class frontController extends Controller
@@ -16,7 +17,16 @@ class frontController extends Controller
 
     //function for events page
     public function events(){
-        return view('customer.events');
+        //Get events
+        $all_events = Event::OrderBy('ID', 'ASC')->paginate(6);
+        return view('customer.events', compact('all_events'));
+    }
+
+    //Function for event detail
+    public function event_detail($slug){
+        //Get events
+        $all_events = Event::where('slug', $slug)->firstOrFail();
+        return view('customer.event-detail', compact('all_events'));
     }
 
     //function for blog page

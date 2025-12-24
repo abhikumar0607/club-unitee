@@ -20,12 +20,12 @@
                         {{ session('error') }}
                     </div>
                 @endif
-                <h1 class="page-title">Events Management</h1>
-                <p class="page-subtitle">Create, edit, manage and track club events.</p>
+                <h1 class="page-title">Blog Category Management</h1>
+                <p class="page-subtitle">Create, edit, manage and track club blog category.</p>
             </div>
         </section>
 
-        <!-- ================== EVENTS SECTION ================== -->
+        <!-- ================== Categories SECTION ================== -->
         <section class="pb-5">
             <div class="container">
 
@@ -33,62 +33,24 @@
                 <div class="d-flex justify-content-end mb-3">
                     <a href="#" class="btn btn-gradient px-4" data-bs-toggle="modal"
                         data-bs-target="#createEventModal">
-                        Create New Event
+                        Create New Category
                     </a>
-                    <!-- CREATE EVENT MODAL -->
+                    <!-- CREATE Categories MODAL -->
                     <div class="modal fade" id="createEventModal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <h5 class="modal-title fw-bold">Create New Event</h5>
+                                    <h5 class="modal-title fw-bold">Create New Category</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="{{ route('admin.events.store') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('admin.categories.store') }}" enctype="multipart/form-data">
                                         @csrf
-                                        <!-- Event Title -->
+                                        <!-- Category Title -->
                                         <div class="mb-3">
-                                            <label class="fw-semibold">Event Title *</label>
-                                            <input type="text" name="title" class="form-control" required>
-                                        </div>
-
-                                        <!-- Event Type -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Event Type *</label>
-                                            <select name="type" class="form-select" required>
-                                                <option value="" Disabled selected>Select Type</option>
-                                                <option>Golf Outing</option>
-                                                <option>Social Event</option>
-                                                <option>Workshop</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- Event Date -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Event Date *</label>
-                                            <input type="date" name="date" class="form-control" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Event Time *</label>
-                                            <input type="time" name="event_time" class="form-control" required>
-                                        </div>
-                                        <!-- Location -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Location *</label>
-                                            <input type="text" name="location" class="form-control" required>
-                                        </div>
-
-                                        <!-- Description -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Event Description</label>
-                                            <textarea name="description" class="form-control" rows="4"></textarea>
-                                        </div>
-                                        <!-- Image -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Image *</label>
-                                            <input type="file" name="image" class="form-control" required>
+                                            <label class="fw-semibold">Category Name *</label>
+                                            <input type="text" name="name" class="form-control" placeholder="Enter category name" required>
                                         </div>
                                         <!-- Status -->
                                         <div class="mb-3">
@@ -105,7 +67,7 @@
                                                 Cancel
                                             </button>
                                             <button type="submit" class="btn btn-gradient">
-                                                Create Event
+                                                Create Category
                                             </button>
                                         </div>
 
@@ -117,51 +79,30 @@
                     </div>
                 </div>
 
-                <!-- EVENTS TABLE CARD -->
+                <!-- Categories TABLE CARD -->
                 <div class="card card-uni p-4">
-                    <h4 class="fw-bold text-uni mb-4">Upcoming & Past Events</h4>
+                    <h4 class="fw-bold text-uni mb-4">Blog Categories</h4>
 
                     <div class="table-responsive">
                         <table class="table table-hover align-middle">
 
                             <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>Date</th>
-                                    <th>Location</th>
-                                    <th>RSVPs</th>
-                                    <th>Image</th>
+                                    <th>Category Name</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-
                             <tbody>
 
-                                @if ($events->count() > 0)
-                                    @foreach ($events as $event)
+                                @if ($categories->count() > 0)
+                                    @foreach ($categories as $category)
                                         <tr>
-                                            <td>    
-                                                <a href="{{ url('event-detail', $event->slug) }}" class="text-decoration-none fw-semibold">
-                                                    {{ $event->title }}
-                                                </a>
-                                            </td>
-                                            <td><span class="badge bg-success">{{ $event->type }}</span></td>
-                                            <td>{{ \Carbon\Carbon::parse($event->date)->format('d M, Y') }}</td>
-                                            <td>{{ $event->location }}</td>
-                                            <td>--</td>
+                                            <td>{{ $category->name }}</td>
                                             <td>
-                                                @if($event->image)
-                                                    <img src="{{ asset('assets/admin/uploads/events/' .$event->image) }}" class="event-images">
-                                                @else
-                                                    --
-                                                @endif 
-                                            </td>
-                                            <td>
-                                                @if ($event->status == 'Published')
+                                                @if ($category->status == 'Published')
                                                     <span class="badge bg-primary">Published</span>
-                                                @elseif($event->status == 'Completed')
+                                                @elseif($category->status == 'Completed')
                                                     <span class="badge bg-secondary">Completed</span>
                                                 @else
                                                     <span class="badge bg-warning text-dark">Draft</span>
@@ -169,15 +110,15 @@
                                             </td>
                                             <td>
                                                 {{-- <a href="#" class="btn btn-outline-uni btn-sm">View</a> --}}
-                                                <a href="javascript:void(0);" class="editEventBtn btn btn-gradient btn-sm"
-                                                    data-id="{{ $event->id }}">Edit</a>
-                                                <a class="btn btn-outline-uni btn-sm delete_event_record" data-event_id="{{ $event->id }}">Delete</a>
+                                                <a href="javascript:void(0);" class="editCategoryBtn btn btn-gradient btn-sm"
+                                                    data-id="{{ $category->id }}">Edit</a>
+                                                <a class="btn btn-outline-uni btn-sm delete_category_record" data-category_id="{{ $category->id }}">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="7" class="text-center">No events found.</td>
+                                        <td colspan="7" class="text-center">No blog category found.</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -186,7 +127,7 @@
                     </div>
                     <!-- PAGINATION -->
                     <div class="mt-3">
-                        {{ $events->links('pagination::bootstrap-5') }}
+                        {{ $categories->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
 
@@ -199,7 +140,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title fw-bold">Edit Event</h5>
+                        <h5 class="modal-title fw-bold">Edit Category</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
@@ -210,10 +151,10 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
-            $('body').on('click', '.editEventBtn', function() {
+            $('body').on('click', '.editCategoryBtn', function() {
                 let eventId = $(this).data('id');
                 $.ajax({
-                    url: "{{ route('admin.events.edit', ':id') }}".replace(':id', eventId),
+                    url: "{{ route('admin.categories.edit', ':id') }}".replace(':id', eventId),
                     type: 'GET',
                     success: function(res) {
                         if (!res.status) return;
