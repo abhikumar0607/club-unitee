@@ -1,5 +1,6 @@
 @extends('layouts.admin-dashboard')
 @section('content')
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
     <!-- MAIN CONTENT -->
     <div class="main-content">
 
@@ -81,15 +82,24 @@
 
                                         <!-- Description -->
                                         <div class="mb-3">
-                                            <label class="fw-semibold">Short Description</label>
-                                            <textarea name="short_description" class="form-control" rows="4"></textarea>
+                                            <label class="fw-semibold mb-1">Short Description</label>
+
+                                            <!-- Editor Box -->
+                                            <div id="shortDescEditor" class="border rounded bg-white" style="min-height:150px;"></div>
+
+                                            <input type="hidden" name="short_description" id="short_description">
                                         </div>
 
                                         <!-- Description -->
                                         <div class="mb-3">
-                                            <label class="fw-semibold">Description</label>
-                                            <textarea name="description	" class="form-control" rows="4"></textarea>
+                                            <label class="fw-semibold mb-1">Description</label>
+
+                                            <!-- Editor -->
+                                            <div id="descEditor" class="border rounded bg-white" style="min-height:220px;"></div>
+
+                                            <input type="hidden" name="description" id="description">
                                         </div>
+
 
                                         <!-- Image -->
                                         <div class="mb-3">
@@ -97,7 +107,7 @@
                                             <input type="file" name="image" class="form-control" required>
                                         </div>
 
-                                                <!--Author Name -->
+                                            <!--Author Name -->
                                         <div class="mb-3">
                                             <label class="fw-semibold">Author Name *</label>
                                             <input type="text" name="author_name" class="form-control" required>
@@ -155,8 +165,8 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Category</th>
-                                    <th>Publish Date</th>
-                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Author</th>
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -173,9 +183,17 @@
                                                     {{ $blog->title }}
                                                 </a>
                                             </td>
-                                            <td><span class="badge bg-success">{{ $blog->type }}</span></td>
+                                            <td><span class="badge bg-success">
+                                            <!--Check if categories exists or not-->
+                                            @if (isset($blog['category_details']))
+                                            <!--Get categories--> 
+                                                @foreach ($blog['category_details'] as $category)   
+                                                {{ $category->name }} @if (!$loop->last), @endif
+                                                @endforeach
+                                            @endif
+                                            </span></td>
                                             <td>{{ \Carbon\Carbon::parse($blog->date)->format('d M, Y') }}</td>
-                                            <td>{{ $blog->short_description }}</td>
+                                            <td>{{ $blog->author_name }}</td>
                                             <td>
                                                 @if($blog->image)
                                                     <img src="{{ asset('assets/admin/uploads/blogs/' .$blog->image) }}" class="event-images">
@@ -234,6 +252,7 @@
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
         <script>
             $('body').on('click', '.editBlogBtn', function() {
                 let eventId = $(this).data('id');
@@ -251,5 +270,48 @@
                 });
             });
         </script>
+
+        <script>
+    var shortDescEditor = new Quill('#shortDescEditor', {
+        theme: 'snow',
+        placeholder: 'Write short description here...',
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['link'],
+                ['clean']
+            ]
+        }
+    });
+
+    document.querySelector('form').addEventListener('submit', function () {
+        document.querySelector('#short_description').value =
+            shortDescEditor.root.innerHTML;
+    });
+</script>
+
+<script>
+    var descEditor = new Quill('#descEditor', {
+        theme: 'snow',
+        placeholder: 'Write full description here...',
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                [{ 'header': [1, 2, 3, false] }],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['link', 'blockquote'],
+                ['clean']
+            ]
+        }
+    });
+
+    document.querySelector('form').addEventListener('submit', function () {
+        document.querySelector('#description').value =
+            descEditor.root.innerHTML;
+    });
+</script>
+
+
 
     @endsection

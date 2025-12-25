@@ -32,14 +32,14 @@
 
                 <li class="nav-item">
                     <a href="{{ url('events') }}"
-                       class="nav-link nav-item-uni {{ request()->is('events') ? 'active' : '' }}">
+                        class="nav-link nav-item-uni {{ request()->is('events*') || request()->is('event-detail*') ? 'active' : '' }}">
                         Events
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ url('blog') }}"
-                       class="nav-link nav-item-uni {{ request()->is('blog') ? 'active' : '' }}">
+                       class="nav-link nav-item-uni {{ request()->is('blog') || request()->is('blog-detail*') ? 'active' : '' }}">
                         Blog
                     </a>
                 </li>

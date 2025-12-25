@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Event;
-
+use App\Models\Blog;
+use App\Models\BlogCategory;
+use App\Models\BlogCategoryRelation;
 
 class frontController extends Controller
 {
@@ -29,12 +31,24 @@ class frontController extends Controller
         return view('customer.event-detail', compact('all_events'));
     }
 
-    //function for blog page
+    //Function for blog page
     public function blog(){
-        return view('customer.blog');
+        //All features
+        $featuredBlog = Blog::with('category_details')->where('status', 'Published')->latest()->first();
+        //Blogs
+        $blogs = Blog::with('category_details')->where('status', 'Published')->get();
+        //Categories
+        $categories = BlogCategory::where('status','Published')->get();
+        return view('customer.blog', compact('featuredBlog','categories','blogs'));
     }
 
-    //function for about page
+    //Function for blog detail
+    public function blog_detail($slug){
+        $blog_detail = Blog::with('category_details')->where('slug', $slug)->firstOrFail();
+        return view('customer.blog-detail', compact('blog_detail'));
+    }
+
+    //Function for about page
     public function about(){
         return view('customer.about');
     }
