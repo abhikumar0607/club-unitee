@@ -67,7 +67,7 @@
                                         <!-- Event Date -->
                                         <div class="mb-3">
                                             <label class="fw-semibold">Event Date *</label>
-                                            <input type="date" name="date" class="form-control" required>
+                                            <input type="date" name="date" id="event_date" class="form-control" required>
                                         </div>
 
                                         <div class="mb-3">
@@ -225,6 +225,11 @@
                     }
                 });
             });
+        </script>
+        <script>
+        document.getElementById('event_date').addEventListener('click', function () {
+            this.showPicker();
+        });
         </script>
 
     @endsection

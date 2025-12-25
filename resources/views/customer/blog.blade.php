@@ -13,6 +13,8 @@
             @if($featuredBlog->image)
                 <img src="{{ asset('assets/admin/uploads/blogs/'.$featuredBlog->image) }}"
                      class="featured-img" alt="Featured">
+            @else
+              No image found
             @endif
 
             <div class="featured-content">
