@@ -16,14 +16,15 @@ class BlogController extends Controller
     {
         $this->blogService = $blogService;
     }
-    //function for blog page
+
+    //Function for blog page
     public function index(){
         $categories = $this->blogService->getAllCategories();
         $blogs = $this->blogService->getAllBlogs();
         return view('admin.blogs.index', compact('blogs','categories'));
     }
 
-    //function for store blog
+    //Function for store blog
     public function store(Request $request){
         $created = $this->blogService->store($request);
         if ($created === true) {
@@ -32,7 +33,7 @@ class BlogController extends Controller
         return redirect()->back()->withInput()->with('error', 'Blog title already exists. Please use a different title.');
     }
 
-    //function for edit event
+    //Function for edit blog
     public function edit($id){
         $categories = $this->blogService->getAllCategories();
         $blogs = $this->blogService->edit($id);
@@ -43,7 +44,7 @@ class BlogController extends Controller
         ]);
     }
 
-    // //function for update event
+    //Function for update blog
     public function update(Request $request, $id){
         $created = $this->blogService->update($request, $id);
         if ($created === true) {
@@ -52,9 +53,9 @@ class BlogController extends Controller
         return redirect()->back()->withInput()->with('error', 'Blog title already exists. Please use a different title.');
     }
 
-    //function for delete event
+    //Function for delete blog
     public function destroy(Request $request){
-        $this->blogService->destroy($request->event_id);
+        $this->blogService->destroy($request->blog_id);
         return redirect()->route('admin.blogs')->with('success', 'Blog deleted successfully');
     }
 }

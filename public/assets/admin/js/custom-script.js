@@ -20,3 +20,4 @@ function toggleClear(){
 
 fields.forEach(f => f.addEventListener('input', toggleClear));
 toggleClear();
+

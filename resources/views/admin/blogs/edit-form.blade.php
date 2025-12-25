@@ -1,6 +1,5 @@
 <form method="POST" action="{{ route('admin.blogs.update', $blogs->id) }}') }}" enctype="multipart/form-data">
-    @csrf
-
+   @csrf
     <!-- Event Title -->
     <div class="mb-3">
         <label class="fw-semibold">Blog Title *</label>
@@ -10,101 +9,101 @@
             class="form-control"
             value="{{ $blogs->title }}"
             required
-        >
+            >
     </div>
-
     <!-- Event Type -->
     <div class="mb-3">
         <label class="fw-semibold">Categories *</label>
-            <select name="category_name[]" class="form-select" required>
-            <option value="" Disabled selected>Select Category</option>
-            @foreach($categories as $category)
-            <option value="{{ $category->id }}">
-                {{ $category->name }}
-            </option>
-            @endforeach
+        <select name="category_name[]" class="form-select" required>
+        @foreach($categories as $category)
+        <option value="{{ $category->id }}"
+        {{ $blogs->category_details->contains($category->id) ? 'selected' : '' }}>
+        {{ $category->name }}
+        </option>
+        @endforeach
         </select>
     </div>
-
-    <!-- Event Date -->
+    <!-- Publish Date -->
     <div class="mb-3">
-        <label class="fw-semibold">Event Date *</label>
+        <label class="fw-semibold">Publish Date *</label>
         <input
             type="date"
-            name="date"
+            name="publish_date"
             class="form-control"
-            value="{{ $blogs->date }}"
+            value="{{ $blogs->publish_date }}"
             required
-        >
+            >
     </div>
-    <!-- Event time -->
+    <!-- Blog Type -->
     <div class="mb-3">
-        <label class="fw-semibold">Event Time *</label>
-        <input
-            type="time"
-            name="event_time"
-            class="form-control"
-            value="{{ $blogs->event_time }}"
-            required
-        >
-    </div>
-
-    <!-- Location -->
-    <div class="mb-3">
-        <label class="fw-semibold">Location *</label>
+        <label class="fw-semibold">Type *</label>
         <input
             type="text"
-            name="location"
+            name="type"
             class="form-control"
-            value="{{ $blogs->location }}"
+            value="{{ $blogs->type }}"
             required
-        >
+            >
     </div>
-
     <!-- Description -->
     <div class="mb-3">
-        <label class="fw-semibold">Event Description</label>
-        <textarea
-            name="description"
-            class="form-control"
-            rows="4"
-        >{{ $blogs->description }}</textarea>
+        <label class="fw-semibold">Short Description</label>
+        <textarea name="short_description" class="form-control" rows="4">{!! $blogs->short_description !!}</textarea>
     </div>
-
+    <!-- Description -->
+    <div class="mb-3">
+        <label class="fw-semibold">Description</label>
+        <textarea name="description" class="form-control" rows="4">{!! $blogs->description !!}</textarea>
+    </div>
     <!-- Image -->
     <div class="mb-3">
         <label class="fw-semibold">Image *</label>
         <input type="file" name="image" class="form-control"><br>
         @if($blogs->image)
-            <img src="{{ asset('assets/admin/uploads/events/' .$blogs->image) }}" class="blogs-images">
+        <img src="{{ asset('assets/admin/uploads/blogs/' .$blogs->image) }}" class="event-images">
         @else
-            
         @endif 
     </div>
-
+    <!--Author Name -->
+    <div class="mb-3">
+        <label class="fw-semibold">Author Name *</label>
+        <input type="text" name="author_name" class="form-control"  value="{{ $blogs->author_name }}" required>
+    </div>
+    <!--Author Type -->
+    <div class="mb-3">
+        <label class="fw-semibold">Author Type *</label>
+        <input type="text" name="author_type" class="form-control"  value="{{ $blogs->author_type }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="fw-semibold">Author Image *</label>
+        <input type="file" name="author_image" class="form-control"><br>
+        @if($blogs->author_image)
+        <img src="{{ asset('assets/admin/uploads/blogs/' .$blogs->author_image) }}" class="event-images">
+        @else
+        @endif 
+    </div>
     <!-- Status -->
     <div class="mb-3">
         <label class="fw-semibold">Status *</label>
         <select name="status" class="form-select" required>
-            <option value="Published" {{ $blogs->status == 'Published' ? 'selected' : '' }}>
-                Published
-            </option>
-            <option value="Completed" {{ $blogs->status == 'Completed' ? 'selected' : '' }}>
-                Completed
-            </option>
-            <option value="Draft" {{ $blogs->status == 'Draft' ? 'selected' : '' }}>
-                Draft
-            </option>
+        <option value="Published" {{ $blogs->status == 'Published' ? 'selected' : '' }}>
+            Published
+        </option>
+        <option value="Completed" {{ $blogs->status == 'Completed' ? 'selected' : '' }}>
+            Completed
+        </option>
+        <option value="Draft" {{ $blogs->status == 'Draft' ? 'selected' : '' }}>
+            Draft
+        </option>
         </select>
     </div>
-
     <!-- Footer -->
     <div class="modal-footer">
         <button type="button" class="btn btn-light" data-bs-dismiss="modal">
             Cancel
         </button>
         <button type="submit" class="btn btn-gradient">
-            Update Event
+            Update Blog
         </button>
     </div>
 </form>
