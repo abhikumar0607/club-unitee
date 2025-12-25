@@ -34,11 +34,11 @@ class frontController extends Controller
     //Function for blog page
     public function blog(){
         //All features
-        $featuredBlog = Blog::with('category_details')->where('status', 'Published')->latest()->first();
+        $featuredBlog = Blog::with('category_details')->latest()->first();
         //Blogs
-        $blogs = Blog::with('category_details')->where('status', 'Published')->take(6)->get();
+        $blogs = Blog::with('category_details')->take(6)->get();
         //Categories
-        $categories = BlogCategory::where('status','Published')->take(4)->get();
+        $categories = BlogCategory::take(4)->get();
         return view('customer.blog', compact('featuredBlog','categories','blogs'));
     }
 
