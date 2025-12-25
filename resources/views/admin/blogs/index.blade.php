@@ -70,7 +70,7 @@
                                         <!-- Blog Date -->
                                         <div class="mb-3">
                                             <label class="fw-semibold">Publish Date *</label>
-                                            <input type="date" name="publish_date" class="form-control" required>
+                                            <input type="date" name="publish_date" id="publish_date" class="form-control" required>
                                         </div>
 
                                         <!-- Blog type -->
@@ -334,6 +334,11 @@ $(document).on('submit', '#editBlogForm', function () {
     $('#edit_description').val(
         editDescEditor.root.innerHTML.trim()
     );
+});
+</script>
+<script>
+document.getElementById('publish_date').addEventListener('click', function () {
+    this.showPicker();
 });
 </script>
 
