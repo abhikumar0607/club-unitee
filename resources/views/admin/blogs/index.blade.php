@@ -46,7 +46,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="{{ route('admin.blogs.store') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('admin.blogs.store') }}" enctype="multipart/form-data" id="createBlogForm">
                                         @csrf
                                         <!-- Event Title -->
                                         <div class="mb-3">
@@ -78,27 +78,30 @@
                                             <label class="fw-semibold">Type *</label>
                                             <input type="text" name="type" class="form-control" required>
                                         </div>
+                                     <!-- Short Description -->
+                                    <div class="mb-3">
+                                        <label class="fw-semibold mb-1">Short Description</label>
 
-
-                                        <!-- Description -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold mb-1">Short Description</label>
-
-                                            <!-- Editor Box -->
-                                            <div id="shortDescEditor" class="border rounded bg-white" style="min-height:150px;"></div>
-
-                                            <input type="hidden" name="short_description" id="short_description">
+                                        <div id="shortDescEditor"
+                                            class="border rounded bg-white"
+                                            style="min-height:150px;">
                                         </div>
 
-                                        <!-- Description -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold mb-1">Description</label>
+                                        <input type="hidden" name="short_description" id="short_description">
+                                    </div>
 
-                                            <!-- Editor -->
-                                            <div id="descEditor" class="border rounded bg-white" style="min-height:220px;"></div>
+                                    <!-- Description -->
+                                    <div class="mb-3">
+                                        <label class="fw-semibold mb-1">Description</label>
 
-                                            <input type="hidden" name="description" id="description">
+                                        <div id="descEditor"
+                                            class="border rounded bg-white"
+                                            style="min-height:220px;">
                                         </div>
+
+                                        <input type="hidden" name="description" id="description">
+                                    </div>
+
 
 
                                         <!-- Image -->
@@ -270,48 +273,68 @@
                 });
             });
         </script>
+       <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
+            let shortDescEditor, descEditor;
+
+
+            $('#createEventModal').on('shown.bs.modal', function () {
+
+                if (!shortDescEditor) {
+                    shortDescEditor = new Quill('#shortDescEditor', {
+                        theme: 'snow'
+                    });
+                }
+
+                if (!descEditor) {
+                    descEditor = new Quill('#descEditor', {
+                        theme: 'snow'
+                    });
+                }
+            });
+            document.getElementById('createBlogForm').addEventListener('submit', function () {
+
+                document.getElementById('short_description').value =
+                    shortDescEditor.root.innerHTML.trim();
+
+                document.getElementById('description').value =
+                    descEditor.root.innerHTML.trim();
+            });
+
+        });
+        </script>
         <script>
-    var shortDescEditor = new Quill('#shortDescEditor', {
-        theme: 'snow',
-        placeholder: 'Write short description here...',
-        modules: {
-            toolbar: [
-                ['bold', 'italic', 'underline'],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                ['link'],
-                ['clean']
-            ]
-        }
-    });
+let editShortDescEditor = null;
+let editDescEditor = null;
 
-    document.querySelector('form').addEventListener('submit', function () {
-        document.querySelector('#short_description').value =
-            shortDescEditor.root.innerHTML;
-    });
+// EDIT MODAL OPEN
+$('#editEventModal').on('shown.bs.modal', function () {
+
+    if (!editShortDescEditor) {
+        editShortDescEditor = new Quill('#editShortDescEditor', {
+            theme: 'snow'
+        });
+    }
+
+    if (!editDescEditor) {
+        editDescEditor = new Quill('#editDescEditor', {
+            theme: 'snow'
+        });
+    }
+});
+
+// EDIT FORM SUBMIT
+$(document).on('submit', '#editBlogForm', function () {
+
+    $('#edit_short_description').val(
+        editShortDescEditor.root.innerHTML.trim()
+    );
+
+    $('#edit_description').val(
+        editDescEditor.root.innerHTML.trim()
+    );
+});
 </script>
-
-<script>
-    var descEditor = new Quill('#descEditor', {
-        theme: 'snow',
-        placeholder: 'Write full description here...',
-        modules: {
-            toolbar: [
-                ['bold', 'italic', 'underline'],
-                [{ 'header': [1, 2, 3, false] }],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                ['link', 'blockquote'],
-                ['clean']
-            ]
-        }
-    });
-
-    document.querySelector('form').addEventListener('submit', function () {
-        document.querySelector('#description').value =
-            descEditor.root.innerHTML;
-    });
-</script>
-
-
 
     @endsection
