@@ -72,12 +72,6 @@
                                             <label class="fw-semibold">Publish Date *</label>
                                             <input type="date" name="publish_date" id="publish_date" class="form-control" required>
                                         </div>
-
-                                        <!-- Blog type -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Type *</label>
-                                            <input type="text" name="type" class="form-control" required>
-                                        </div>
                                      <!-- Short Description -->
                                     <div class="mb-3">
                                         <label class="fw-semibold mb-1">Short Description</label>
@@ -182,7 +176,7 @@
                                     @foreach ($blogs as $blog)
                                         <tr>
                                             <td>    
-                                                <a href="{{ url('blog-detail', $blog->slug) }}" class="text-decoration-none fw-semibold">
+                                                <a href="{{ url('blog-detail', $blog->slug) }}" class="text-decoration-none text-reset">
                                                     {{ $blog->title }}
                                                 </a>
                                             </td>
@@ -199,10 +193,12 @@
                                             <td>{{ $blog->author_name }}</td>
                                             <td>
                                                 @if($blog->image)
-                                                    <img src="{{ asset('assets/admin/uploads/blogs/' .$blog->image) }}" class="event-images">
+                                                    <a href="{{ url('blog-detail/'.$blog->slug) }}" class="d-inline-block">
+                                                        <img src="{{ asset('assets/admin/uploads/blogs/'.$blog->image) }}" class="event-images">
+                                                    </a>
                                                 @else
                                                     --
-                                                @endif 
+                                                @endif
                                             </td>
                                             <td>
                                                 @if ($blog->status == 'Published')
@@ -337,9 +333,14 @@ $(document).on('submit', '#editBlogForm', function () {
 });
 </script>
 <script>
-document.getElementById('publish_date').addEventListener('click', function () {
-    this.showPicker();
+document.addEventListener('click', function (e) {
+
+    if (e.target && e.target.id === 'publish_date') {
+        if (e.target.showPicker) {
+            e.target.showPicker();
+        }
+    }
+
 });
 </script>
-
-    @endsection
+@endsection

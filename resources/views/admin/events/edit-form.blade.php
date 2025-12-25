@@ -36,6 +36,7 @@
         <input
             type="date"
             name="date"
+            id="event_date"
             class="form-control"
             value="{{ $event->date }}"
             required

@@ -143,7 +143,7 @@
                                     @foreach ($events as $event)
                                         <tr>
                                             <td>    
-                                                <a href="{{ url('event-detail', $event->slug) }}" class="text-decoration-none fw-semibold">
+                                                <a href="{{ url('event-detail', $event->slug) }}" class="text-decoration-none text-reset">
                                                     {{ $event->title }}
                                                 </a>
                                             </td>
@@ -153,7 +153,9 @@
                                             <td>--</td>
                                             <td>
                                                 @if($event->image)
+                                                <a href="{{ url('event-detail/'.$event->slug) }}" class="d-inline-block">
                                                     <img src="{{ asset('assets/admin/uploads/events/' .$event->image) }}" class="event-images">
+                                                </a>
                                                 @else
                                                     --
                                                 @endif 
@@ -227,9 +229,12 @@
             });
         </script>
         <script>
-        document.getElementById('event_date').addEventListener('click', function () {
-            this.showPicker();
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.id === 'event_date') {
+                if (e.target.showPicker) {
+                    e.target.showPicker();
+                }
+            }
         });
         </script>
-
     @endsection
