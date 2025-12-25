@@ -36,9 +36,9 @@ class frontController extends Controller
         //All features
         $featuredBlog = Blog::with('category_details')->where('status', 'Published')->latest()->first();
         //Blogs
-        $blogs = Blog::with('category_details')->where('status', 'Published')->get();
+        $blogs = Blog::with('category_details')->where('status', 'Published')->take(6)->get();
         //Categories
-        $categories = BlogCategory::where('status','Published')->get();
+        $categories = BlogCategory::where('status','Published')->take(4)->get();
         return view('customer.blog', compact('featuredBlog','categories','blogs'));
     }
 

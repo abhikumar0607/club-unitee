@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('admin.blogs.update', $blogs->id) }}') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.blogs.update', $blogs->id) }}" enctype="multipart/form-data" id="editBlogForm">
    @csrf
     <!-- Event Title -->
     <div class="mb-3">
@@ -45,16 +45,28 @@
             required
             >
     </div>
+     <!-- Short Description -->
+    <div class="mb-3">
+        <label class="fw-semibold mb-1">Short Description</label>
+        <div id="editShortDescEditor"
+             class="border rounded bg-white"
+             style="min-height:150px;">
+            {!! $blogs->short_description !!}
+        </div>
+        <input type="hidden" name="short_description" id="edit_short_description">
+    </div>
+
     <!-- Description -->
     <div class="mb-3">
-        <label class="fw-semibold">Short Description</label>
-        <textarea name="short_description" class="form-control" rows="4">{!! $blogs->short_description !!}</textarea>
+        <label class="fw-semibold mb-1">Description</label>
+        <div id="editDescEditor"
+             class="border rounded bg-white"
+             style="min-height:220px;">
+            {!! $blogs->description !!}
+        </div>
+        <input type="hidden" name="description" id="edit_description">
     </div>
-    <!-- Description -->
-    <div class="mb-3">
-        <label class="fw-semibold">Description</label>
-        <textarea name="description" class="form-control" rows="4">{!! $blogs->description !!}</textarea>
-    </div>
+
     <!-- Image -->
     <div class="mb-3">
         <label class="fw-semibold">Image *</label>
