@@ -20,7 +20,7 @@ class frontController extends Controller
     //function for events page
     public function events(){
         //Get events
-        $all_events = Event::OrderBy('ID', 'ASC')->paginate(6);
+        $all_events = Event::whereDate('date', '>=', now())->orderBy('date', 'asc')->paginate(6);
         return view('customer.events', compact('all_events'));
     }
 

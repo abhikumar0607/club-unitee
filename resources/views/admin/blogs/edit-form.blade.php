@@ -30,18 +30,8 @@
             type="date"
             name="publish_date"
             class="form-control"
+            id="publish_date"
             value="{{ $blogs->publish_date }}"
-            required
-            >
-    </div>
-    <!-- Blog Type -->
-    <div class="mb-3">
-        <label class="fw-semibold">Type *</label>
-        <input
-            type="text"
-            name="type"
-            class="form-control"
-            value="{{ $blogs->type }}"
             required
             >
     </div>
