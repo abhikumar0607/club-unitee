@@ -22,6 +22,53 @@
                 @endif
                 <h1 class="page-title">Events Management</h1>
                 <p class="page-subtitle">Create, edit, manage and track club events.</p>
+
+                   <a href="#" class="btn btn-gradient px-4 create-btn" data-bs-toggle="modal"
+                        data-bs-target="#createEventModal">
+                        Create New Event
+                    </a>
+            </div>
+        </section>
+
+
+        <!-- FILTER SECTION -->
+        <section class="pb-4">
+            <div class="container">
+
+                <div class="card card-uni p-4 mb-4">
+                    <h5 class="fw-bold mb-3">Filter Events</h5>
+
+                    <form action="{{ route('admin.events') }}" method="GET">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control input-uni" placeholder="Search by event name" name="search" value="{{ request('search') }}">
+                        </div>
+
+                        <div class="col-md-3">
+                            <select class="form-select input-uni" name="type">
+                                <option value="" disabled selected>Select Type</option>
+                                <option value="Golf Outing" {{ request('type') == 'Golf Outing' ? 'selected' : '' }}>Golf Outing</option>
+                                <option value="Social Event" {{ request('type') == 'Social Event' ? 'selected' : '' }}>Social Event</option>
+                                <option value="Workshop" {{ request('type') == 'Workshop' ? 'selected' : '' }}>Workshop</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-gradient w-100 fw-semibold">Apply Filters</button>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a href="{{ route('admin.events') }}" id="clearBtn" class="btn btn-gradient w-100">
+                                Clear
+                            </a>
+                        </div>
+
+                        
+
+                    </div>
+                    </form>
+
+                </div>
+
             </div>
         </section>
 
@@ -31,10 +78,7 @@
 
                 <!-- CREATE BUTTON -->
                 <div class="d-flex justify-content-end mb-3">
-                    <a href="#" class="btn btn-gradient px-4" data-bs-toggle="modal"
-                        data-bs-target="#createEventModal">
-                        Create New Event
-                    </a>
+
                     <!-- CREATE EVENT MODAL -->
                     <div class="modal fade" id="createEventModal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -126,6 +170,7 @@
 
                             <thead>
                                 <tr>
+                                    <th>Sr No.</th>
                                     <th>Title</th>
                                     <th>Type</th>
                                     <th>Date</th>
@@ -140,10 +185,12 @@
                             <tbody>
 
                                 @if ($events->count() > 0)
+                                    @php $count = 1; @endphp
                                     @foreach ($events as $event)
                                         <tr>
+                                            <td>{{ $count ++ }}.</td>
                                             <td>    
-                                                <a href="{{ url('event-detail', $event->slug) }}" class="text-decoration-none text-reset">
+                                                <a href="{{ url('event-detail/'.$event->slug) }}" class="text-decoration-none text-reset">
                                                     {{ $event->title }}
                                                 </a>
                                             </td>

@@ -49,8 +49,19 @@ class BlogRepository
     }
 
     //Function for get all blogs
-    public function getAllBlogs() {
-        return Blog::with('category_details')->OrderBy('ID', 'DESC')->where('user_id', auth()->id())->paginate(10);
+    public function getAllBlogs($request) {
+        $query = Blog::with('category_details')->where('user_id', auth()->id())
+            ->orderBy('id', 'desc');
+
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        return $query->paginate(10);
     }
 
     //Function for get all categories

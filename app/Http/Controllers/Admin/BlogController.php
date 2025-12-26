@@ -18,9 +18,9 @@ class BlogController extends Controller
     }
 
     //Function for blog page
-    public function index(){
+    public function index(Request $request){
         $categories = $this->blogService->getAllCategories();
-        $blogs = $this->blogService->getAllBlogs();
+        $blogs = $this->blogService->getAllBlogs($request);
         return view('admin.blogs.index', compact('blogs','categories'));
     }
 

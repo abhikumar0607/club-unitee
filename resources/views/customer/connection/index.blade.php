@@ -73,6 +73,7 @@
                                             </div>
                                             <!-- NAME -->
                                             <h5 class="fw-bold">{{ $user->name }}</h5>
+                                            <hp class="text-muted mb-1">{{ $user->email }}</p>
                                             <!-- PROFESSION -->
                                             <p class="text-muted mb-1">{{ $user->profession ?? 'Not Available' }}</p>
                                             <!-- OPTIONAL CONNECTION INFO -->
@@ -125,20 +126,21 @@
                                             </div>
                                             <!-- NAME -->
                                             <h5 class="fw-bold">{{ $user->name }}</h5>
+                                            <hp class="text-muted mb-1">{{ $user->email }}</p>
                                             <!-- PROFESSION -->
                                             <p class="text-muted mb-1">{{ $user->profession ?? 'Not Available' }}</p>
                                             <!-- OPTIONAL CONNECTION INFO -->
                                            <p class="text-muted small">Connected {{ $user->created_at->diffForHumans() }}</p>
-                                            {{-- <div class="d-flex gap-2 mt-3">
+                                           <div class="d-flex gap-2 mt-3">
                                                     <a href="#"
                                                         class="btn btn-outline-uni w-50">
                                                         View
                                                     </a>
                                                
-                                                <a class="btn btn-gradient w-50" href="{{ route('customer.send.connection.request', $user->id) }}">
+                                                <!-- <a class="btn btn-gradient w-50" href="{{ route('customer.send.connection.request', $user->id) }}">
                                                   Request Contact
-                                                </a>
-                                            </div> --}}
+                                                </a> -->
+                                            </div>
 
                                         </div>
                                     </div>
@@ -172,6 +174,7 @@
                                                 @endif
                                             </div>
                                             <h5 class="fw-bold">{{ $request->receiver->name }}</h5>
+                                            <hp class="text-muted mb-1">{{ $user->email }}</p>
                                             <p class="text-muted small mb-3">Request sent on {{ $request->receiver->created_at->diffForHumans() }}</p>
                                             <a href="{{ route('customer.cancel.connection.request', $request->id) }}" class="btn btn-outline-uni w-100">Cancel Request</a>
                                         </div>
@@ -204,6 +207,7 @@
                                             @endif
                                         </div>
                                         <h5 class="fw-bold">{{ $re->sender->name }}</h5>
+                                        <hp class="text-muted mb-1">{{ $user->email }}</p>
                                         <p class="text-muted small mb-3">"Would love to connect!"</p>
 
                                         <div class="d-flex gap-2">

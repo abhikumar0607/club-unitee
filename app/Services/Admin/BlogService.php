@@ -18,8 +18,8 @@ class BlogService
     }
 
     //Function for get all blog
-    public function getAllBlogs(){
-        return $this->blogRepository->getAllBlogs();
+    public function getAllBlogs($request){
+        return $this->blogRepository->getAllBlogs($request);
     }
 
     //Function for get all categories
