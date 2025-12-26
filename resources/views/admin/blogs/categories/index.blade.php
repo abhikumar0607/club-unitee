@@ -88,6 +88,7 @@
 
                             <thead>
                                 <tr>
+                                    <th>Sr No.</th>
                                     <th>Category Name</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -96,8 +97,10 @@
                             <tbody>
 
                                 @if ($categories->count() > 0)
+                                @php $count = 1; @endphp
                                     @foreach ($categories as $category)
                                         <tr>
+                                            <td>{{ $count ++ }}.</td>
                                             <td>{{ $category->name }}</td>
                                             <td>
                                                 @if ($category->status == 'Published')

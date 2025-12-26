@@ -56,6 +56,7 @@
                                 <table class="table table-hover align-middle">
                                     <thead>
                                         <tr>
+                                            <th>Sr No.</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Profession</th>
@@ -66,8 +67,10 @@
 
                                     <tbody>
                                         @if ($pendingApplications->count() > 0)
+                                        @php $count = 1; @endphp
                                             @foreach ($pendingApplications as $pendingApplication)
                                                 <tr>
+                                                    <td>{{ $count ++ }}.</td>
                                                     <td>{{ $pendingApplication->name }}</td>
                                                     <td>{{ $pendingApplication->email }}</td>
                                                     <td>{{ $pendingApplication->profession }}</td>
@@ -111,6 +114,7 @@
 
                                     <thead>
                                         <tr>
+                                            <th>Sr No.</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Profession</th>
@@ -122,9 +126,10 @@
                                     <tbody>
 
                                         @if ($approvedApplications->count() > 0)
+                                        @php $count = 1; @endphp
                                             @foreach ($approvedApplications as $approvedApplication)
                                                 <tr>
-                                                    
+                                                    <td>{{ $count ++ }}.</td>
                                                     <td>{{ $approvedApplication->name }}</td>
                                                     <td>{{ $approvedApplication->email }}</td>
                                                     <td>{{ $approvedApplication->profession }}</td>
@@ -168,6 +173,7 @@
 
                                     <thead>
                                         <tr>
+                                            <th>Sr No.</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Profession</th>
@@ -179,8 +185,10 @@
                                     <tbody>
 
                                         @if ($declinedApplications->count() > 0)
+                                        @php $count = 1; @endphp
                                             @foreach ($declinedApplications as $declinedApplication)
                                                 <tr>
+                                                    <td>{{ $count ++ }}.</td>
                                                     <td>{{ $declinedApplication->name }}</td>
                                                     <td>{{ $declinedApplication->email }}</td>
                                                     <td>{{ $declinedApplication->profession }}</td>

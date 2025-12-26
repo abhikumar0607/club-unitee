@@ -18,8 +18,8 @@ class Eventservice
     }
 
     //function for get all events
-    public function getAllEvents(){
-        return $this->eventRepository->getAllEvents();
+    public function getAllEvents($request){
+        return $this->eventRepository->getAllEvents($request);
     }
 
     //function for edit event

@@ -24,6 +24,48 @@
                 <h1 class="page-title">Blogs Management</h1>
                 <p class="page-subtitle">Create, edit, manage and track club blogs.</p>
             </div>
+            <a href="#" class="btn btn-gradient px-4 create-btn" data-bs-toggle="modal"
+                data-bs-target="#createEventModal">
+                Create New Blog
+            </a>
+        </section>
+
+          <!-- FILTER SECTION -->
+        <section class="pb-4">
+            <div class="container">
+
+                <div class="card card-uni p-4 mb-4">
+                    <h5 class="fw-bold mb-3">Filter Blogs</h5>
+
+                    <form action="{{ route('admin.blogs') }}" method="GET">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control input-uni" placeholder="Search by blog title" name="search" value="{{ request('search') }}">
+                        </div>
+
+                        <div class="col-md-3">
+                            <select class="form-select input-uni" name="status">
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="Published" {{ request('status') == 'Published' ? 'selected' : '' }}>Published</option>
+                                <option value="Draft" {{ request('status') == 'Draft' ? 'selected' : '' }}>Draft</option>
+                                <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-gradient w-100 fw-semibold">Apply Filters</button>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a href="{{ route('admin.blogs') }}" id="clearBtn" class="btn btn-gradient w-100">
+                                Clear
+                            </a>
+                        </div>
+                    </div>
+                    </form>
+
+                </div>
+
+            </div>
         </section>
 
         <!-- ================== Blogs SECTION ================== -->
@@ -32,10 +74,7 @@
 
                 <!-- CREATE BUTTON -->
                 <div class="d-flex justify-content-end mb-3">
-                    <a href="#" class="btn btn-gradient px-4" data-bs-toggle="modal"
-                        data-bs-target="#createEventModal">
-                        Create New Blog
-                    </a>
+
                     <!-- CREATE Blogs MODAL -->
                     <div class="modal fade" id="createEventModal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -160,10 +199,10 @@
 
                             <thead>
                                 <tr>
+                                    <th>Sr No.</th>
                                     <th>Title</th>
                                     <th>Category</th>
                                     <th>Date</th>
-                                    <th>Author</th>
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -173,8 +212,10 @@
                             <tbody>
 
                                 @if ($blogs->count() > 0)
+                                @php $count = 1; @endphp
                                     @foreach ($blogs as $blog)
                                         <tr>
+                                            <td>{{ $count ++ }}.</td>
                                             <td>    
                                                 <a href="{{ url('blog-detail', $blog->slug) }}" class="text-decoration-none text-reset">
                                                     {{ $blog->title }}
@@ -190,7 +231,6 @@
                                             @endif
                                             </span></td>
                                             <td>{{ \Carbon\Carbon::parse($blog->date)->format('d M, Y') }}</td>
-                                            <td>{{ $blog->author_name }}</td>
                                             <td>
                                                 @if($blog->image)
                                                     <a href="{{ url('blog-detail/'.$blog->slug) }}" class="d-inline-block">

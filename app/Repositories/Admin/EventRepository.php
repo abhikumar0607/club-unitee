@@ -37,8 +37,19 @@ class EventRepository
     }
 
     //Function for get all events
-    public function getAllEvents() {
-        return Event::OrderBy('ID', 'DESC')->where('user_id', auth()->id())->paginate(10);
+    public function getAllEvents($request) {
+        $query = Event::where('user_id', auth()->id())
+            ->orderBy('id', 'desc');
+
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+
+        return $query->paginate(10);
     }
 
     //Function for edit event

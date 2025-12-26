@@ -156,13 +156,10 @@
     </section>
 
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
     const membersData = @json($membersData);
     const eventsData  = @json($eventsData);
-    // Total Members (BAR chart – GREEN, Jan to Dec)
     new Chart(document.getElementById('totalMembersChart'), {
         type: 'bar',
         data: {
@@ -187,8 +184,7 @@
             }
         }
     });
-
-    // Total Events (LINE chart – GREEN)
+    //Total Events
     new Chart(document.getElementById('totalEventsChart'), {
         type: 'line',
         data: {
@@ -198,10 +194,10 @@
             ],
             datasets: [{
                   data: eventsData,
-                borderColor: '#1f7a5c',        // green line
-                backgroundColor: 'rgba(31, 122, 92, 0.15)', // light green fill
+                borderColor: '#1f7a5c',       
+                backgroundColor: 'rgba(31, 122, 92, 0.15)', 
                 borderWidth: 2,
-                tension: 0.4,                 // smooth curve
+                tension: 0.4,
                 fill: true,
                 pointBackgroundColor: '#1f7a5c',
                 pointRadius: 4
