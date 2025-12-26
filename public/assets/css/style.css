@@ -1339,7 +1339,7 @@ section.main-event-detail .card.card-uni {
 /* Fake image area (soft gradient) */
 .event-img {
   width: 100%;
-  height: 140px;
+  height: 250px;
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(251, 113, 133, 0.15));
 }
