@@ -2409,3 +2409,12 @@ img.event-images {
 .create-btn{
 	margin: 0px 0px 0px 870px;
 }
+
+section.main-event-detail .card.card-uni .event-img-sm {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: linear-gradient(to right, var(--emerald), var(--rose));
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
