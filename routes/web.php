@@ -8,6 +8,7 @@ Route::get('/', [App\Http\Controllers\Customer\frontController::class, 'index'])
 Route::get('/events', [App\Http\Controllers\Customer\frontController::class, 'events']);
 Route::get('/event-detail/{slug}', [App\Http\Controllers\Customer\frontController::class, 'event_detail']);
 Route::get('/blog', [App\Http\Controllers\Customer\frontController::class, 'blog']);
+Route::get('/blog-detail/{slug}', [App\Http\Controllers\Customer\frontController::class, 'blog_detail']);
 Route::get('/about', [App\Http\Controllers\Customer\frontController::class, 'about']);
 Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'privacy']);
 Route::get('/term', [App\Http\Controllers\Customer\frontController::class, 'term']);

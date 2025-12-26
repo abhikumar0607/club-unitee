@@ -67,7 +67,7 @@
                                         <!-- Event Date -->
                                         <div class="mb-3">
                                             <label class="fw-semibold">Event Date *</label>
-                                            <input type="date" name="date" class="form-control" required>
+                                            <input type="date" name="date" id="event_date" class="form-control" required>
                                         </div>
 
                                         <div class="mb-3">
@@ -143,7 +143,7 @@
                                     @foreach ($events as $event)
                                         <tr>
                                             <td>    
-                                                <a href="{{ url('event-detail', $event->slug) }}" class="text-decoration-none fw-semibold">
+                                                <a href="{{ url('event-detail', $event->slug) }}" class="text-decoration-none text-reset">
                                                     {{ $event->title }}
                                                 </a>
                                             </td>
@@ -153,7 +153,9 @@
                                             <td>--</td>
                                             <td>
                                                 @if($event->image)
+                                                <a href="{{ url('event-detail/'.$event->slug) }}" class="d-inline-block">
                                                     <img src="{{ asset('assets/admin/uploads/events/' .$event->image) }}" class="event-images">
+                                                </a>
                                                 @else
                                                     --
                                                 @endif 
@@ -226,5 +228,13 @@
                 });
             });
         </script>
-
+        <script>
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.id === 'event_date') {
+                if (e.target.showPicker) {
+                    e.target.showPicker();
+                }
+            }
+        });
+        </script>
     @endsection

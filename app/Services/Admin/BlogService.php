@@ -12,33 +12,33 @@ class BlogService
         $this->blogRepository = $blogRepository;
     }
 
-    //Function for store event
+    //Function for store blog
     public function store($request){
         return $this->blogRepository->store($request);
     }
 
-    //function for get all events
+    //Function for get all blog
     public function getAllBlogs(){
         return $this->blogRepository->getAllBlogs();
     }
 
-    //function for get all categories
+    //Function for get all categories
     public function getAllCategories(){
         return $this->blogRepository->getAllCategories();
     }
 
-    //function for edit event
+    //Function for edit blog
     public function edit($id){
         return $this->blogRepository->edit($id);
     }
 
-    //function for update event
+    //Function for update blog
     public function update($request, $id){
         return $this->blogRepository->update($request, $id);
     }
 
-    //function for delete event
-    public function destroy($event_id){
-        return $this->blogRepository->destroy($event_id);
+    //Function for delete blog
+    public function destroy($blog_id){
+        return $this->blogRepository->destroy($blog_id);
     }
 }

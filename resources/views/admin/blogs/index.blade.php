@@ -1,5 +1,6 @@
 @extends('layouts.admin-dashboard')
 @section('content')
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
     <!-- MAIN CONTENT -->
     <div class="main-content">
 
@@ -45,7 +46,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="{{ route('admin.blogs.store') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('admin.blogs.store') }}" enctype="multipart/form-data" id="createBlogForm">
                                         @csrf
                                         <!-- Event Title -->
                                         <div class="mb-3">
@@ -69,27 +70,33 @@
                                         <!-- Blog Date -->
                                         <div class="mb-3">
                                             <label class="fw-semibold">Publish Date *</label>
-                                            <input type="date" name="publish_date" class="form-control" required>
+                                            <input type="date" name="publish_date" id="publish_date" class="form-control" required>
+                                        </div>
+                                     <!-- Short Description -->
+                                    <div class="mb-3">
+                                        <label class="fw-semibold mb-1">Short Description</label>
+
+                                        <div id="shortDescEditor"
+                                            class="border rounded bg-white"
+                                            style="min-height:150px;">
                                         </div>
 
-                                        <!-- Blog type -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Type *</label>
-                                            <input type="text" name="type" class="form-control" required>
+                                        <input type="hidden" name="short_description" id="short_description">
+                                    </div>
+
+                                    <!-- Description -->
+                                    <div class="mb-3">
+                                        <label class="fw-semibold mb-1">Description</label>
+
+                                        <div id="descEditor"
+                                            class="border rounded bg-white"
+                                            style="min-height:220px;">
                                         </div>
 
+                                        <input type="hidden" name="description" id="description">
+                                    </div>
 
-                                        <!-- Description -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Short Description</label>
-                                            <textarea name="short_description" class="form-control" rows="4"></textarea>
-                                        </div>
 
-                                        <!-- Description -->
-                                        <div class="mb-3">
-                                            <label class="fw-semibold">Description</label>
-                                            <textarea name="description	" class="form-control" rows="4"></textarea>
-                                        </div>
 
                                         <!-- Image -->
                                         <div class="mb-3">
@@ -97,7 +104,7 @@
                                             <input type="file" name="image" class="form-control" required>
                                         </div>
 
-                                                <!--Author Name -->
+                                            <!--Author Name -->
                                         <div class="mb-3">
                                             <label class="fw-semibold">Author Name *</label>
                                             <input type="text" name="author_name" class="form-control" required>
@@ -155,8 +162,8 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Category</th>
-                                    <th>Publish Date</th>
-                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Author</th>
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -169,19 +176,29 @@
                                     @foreach ($blogs as $blog)
                                         <tr>
                                             <td>    
-                                                <a href="{{ url('blog-detail', $blog->slug) }}" class="text-decoration-none fw-semibold">
+                                                <a href="{{ url('blog-detail', $blog->slug) }}" class="text-decoration-none text-reset">
                                                     {{ $blog->title }}
                                                 </a>
                                             </td>
-                                            <td><span class="badge bg-success">{{ $blog->type }}</span></td>
+                                            <td><span class="badge bg-success">
+                                            <!--Check if categories exists or not-->
+                                            @if (isset($blog['category_details']))
+                                            <!--Get categories--> 
+                                                @foreach ($blog['category_details'] as $category)   
+                                                {{ $category->name }} @if (!$loop->last), @endif
+                                                @endforeach
+                                            @endif
+                                            </span></td>
                                             <td>{{ \Carbon\Carbon::parse($blog->date)->format('d M, Y') }}</td>
-                                            <td>{{ $blog->short_description }}</td>
+                                            <td>{{ $blog->author_name }}</td>
                                             <td>
                                                 @if($blog->image)
-                                                    <img src="{{ asset('assets/admin/uploads/blogs/' .$blog->image) }}" class="event-images">
+                                                    <a href="{{ url('blog-detail/'.$blog->slug) }}" class="d-inline-block">
+                                                        <img src="{{ asset('assets/admin/uploads/blogs/'.$blog->image) }}" class="event-images">
+                                                    </a>
                                                 @else
                                                     --
-                                                @endif 
+                                                @endif
                                             </td>
                                             <td>
                                                 @if ($blog->status == 'Published')
@@ -234,6 +251,7 @@
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
         <script>
             $('body').on('click', '.editBlogBtn', function() {
                 let eventId = $(this).data('id');
@@ -251,5 +269,78 @@
                 });
             });
         </script>
+       <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
-    @endsection
+            let shortDescEditor, descEditor;
+
+
+            $('#createEventModal').on('shown.bs.modal', function () {
+
+                if (!shortDescEditor) {
+                    shortDescEditor = new Quill('#shortDescEditor', {
+                        theme: 'snow'
+                    });
+                }
+
+                if (!descEditor) {
+                    descEditor = new Quill('#descEditor', {
+                        theme: 'snow'
+                    });
+                }
+            });
+            document.getElementById('createBlogForm').addEventListener('submit', function () {
+
+                document.getElementById('short_description').value =
+                    shortDescEditor.root.innerHTML.trim();
+
+                document.getElementById('description').value =
+                    descEditor.root.innerHTML.trim();
+            });
+
+        });
+        </script>
+        <script>
+let editShortDescEditor = null;
+let editDescEditor = null;
+
+// EDIT MODAL OPEN
+$('#editEventModal').on('shown.bs.modal', function () {
+
+    if (!editShortDescEditor) {
+        editShortDescEditor = new Quill('#editShortDescEditor', {
+            theme: 'snow'
+        });
+    }
+
+    if (!editDescEditor) {
+        editDescEditor = new Quill('#editDescEditor', {
+            theme: 'snow'
+        });
+    }
+});
+
+// EDIT FORM SUBMIT
+$(document).on('submit', '#editBlogForm', function () {
+
+    $('#edit_short_description').val(
+        editShortDescEditor.root.innerHTML.trim()
+    );
+
+    $('#edit_description').val(
+        editDescEditor.root.innerHTML.trim()
+    );
+});
+</script>
+<script>
+document.addEventListener('click', function (e) {
+
+    if (e.target && e.target.id === 'publish_date') {
+        if (e.target.showPicker) {
+            e.target.showPicker();
+        }
+    }
+
+});
+</script>
+@endsection

@@ -21,7 +21,7 @@
                 <h4 class="btn-11">All Event</h4>
                 <hr>
                 <!-- Toggle button (collapsed by default) -->
-                <div class="d-flex justify-content-between align-items-center">
+                <!-- <div class="d-flex justify-content-between align-items-center">
                     <button class="btn filter-toggle collapsed d-flex justify-content-between align-items-center"
                         type="button" data-bs-toggle="collapse" data-bs-target="#eventsFilter" aria-expanded="false"
                         aria-controls="eventsFilter">
@@ -34,7 +34,7 @@
                     <div class="reset-fill">
                         <a href="#">Reset All</a>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Collapsible filter body -->
                 <div class="collapse" id="eventsFilter">

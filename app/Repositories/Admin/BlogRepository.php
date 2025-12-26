@@ -29,7 +29,6 @@ class BlogRepository
             'title' => $request->title,
             'slug' => $slug,
             'publish_date' => $request->publish_date,
-            'type' => $request->type,
             'short_description' => $request->short_description,
             'description' => $request->description,
             'image' => $filename,
@@ -51,7 +50,7 @@ class BlogRepository
 
     //Function for get all blogs
     public function getAllBlogs() {
-        return Blog::OrderBy('ID', 'DESC')->where('user_id', auth()->id())->paginate(10);
+        return Blog::with('category_details')->OrderBy('ID', 'DESC')->where('user_id', auth()->id())->paginate(10);
     }
 
     //Function for get all categories
@@ -61,22 +60,33 @@ class BlogRepository
 
     //Function for edit event
     public function edit($id) {
-        return Blog::findOrFail($id);
+        return Blog::with('category_details')->find($id);
     }
 
-    //Function for update event
+    //Function for update blog
     public function update($request, $id) {
-        //Get event detail
-        $event = Blog::findOrFail($id);
+        //Get blog detail
+        $blog = Blog::findOrFail($id);
         //image upload
-        $filename = $event->image ?? null;
+        $filename = $blog->image ?? null;
         if ($request->hasFile('image')) {
-            if ($event->image) {
-                $this->deleteImage($event->image, 'assets/admin/uploads/events');
+            if ($blog->image) {
+                $this->deleteImage($blog->image, 'assets/admin/uploads/blogs');
             }
             $filename = $this->uploadImage(
                 $request->file('image'),
-                'assets/admin/uploads/events'
+                'assets/admin/uploads/blogs'
+            );
+        }
+        //image upload
+        $author_image = $blog->author_image ?? null;
+        if ($request->hasFile('author_image')) {
+            if ($blog->author_image) {
+                $this->deleteImage($blog->author_image, 'assets/admin/uploads/blogs');
+            }
+            $author_image = $this->uploadImage(
+                $request->file('author_image'),
+                'assets/admin/uploads/blogs'
             );
         }
         //Update slug
@@ -86,23 +96,34 @@ class BlogRepository
             return false;
         }
         //Update event
-        $event->update([
+        $blog->update([
             'title' => $request->title,
             'slug' => $slug,
-            'type' => $request->type,
-            'date' => $request->date,
-            'event_time' => $request->event_time,
-            'location' => $request->location,
+            'publish_date' => $request->publish_date,
+            'short_description' => $request->short_description,
             'description' => $request->description,
-            'status' => $request->status,
             'image' => $filename,
+            'author_name' => $request->author_name,
+            'author_type' => $request->author_type,
+            'status' => $request->status,
+            'author_image' => $author_image,
         ]);
-
+        //Delete old blog
+        BlogCategoryRelation::where('blog_id', $blog->id)->delete();
+        //Get request
+        if ($request->has('category_name')) {
+            foreach ($request->category_name as $category_id) {
+                BlogCategoryRelation::create([
+                    'blog_id' => $blog->id,
+                    'category_id' => $category_id,
+                ]);
+            }
+        }
         return true;
     }
     
     //Function for delete event
-    public function destroy($event_id) {
-        return Blog::findOrFail($event_id)->delete();
+    public function destroy($blog_id) {
+        return Blog::findOrFail($blog_id)->delete();
     }
 }
