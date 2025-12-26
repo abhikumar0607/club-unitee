@@ -10,7 +10,11 @@
                 Join a joyful community of women supporting one another and shaping a better world—on and off the
                 course. Find your next golf buddies here.
             </p>
-            <a href="{{ url('register') }}" class="btn btn-lg px-5 join-apply">Apply to Join</a>
+            @guest
+                <a href="{{ url('register') }}" class="btn btn-lg px-5 join-apply">
+                    Apply to Join
+                </a>
+            @endguest
         </div>
     </div>
 
@@ -224,10 +228,16 @@
         </div>
 
         <!-- Buttons -->
+        @guest
         <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
-            <a href="apply.html" class="btn btn-dark hero-btn-primary">Start Free Trial →</a>
-            <a href="login.html" class="btn hero-btn-secondary">Sign In ↦</a>
+            <a href="{{ url('register') }}" class="btn btn-dark hero-btn-primary">
+                Start Free Trial →
+            </a>
+            <a href="{{ url('login') }}" class="btn hero-btn-secondary">
+                Sign In ↦
+            </a>
         </div>
+        @endguest
 
         <!-- Bottom Text -->
         <p class="hero-small mt-4">
