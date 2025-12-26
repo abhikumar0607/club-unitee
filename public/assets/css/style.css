@@ -657,11 +657,12 @@ a.site-brand {
 
 /* SMALL EVENT IMAGE */
 .event-img-sm {
-  width: 100%;
-  height: 120px;
-  border-radius: 12px;
-  background: linear-gradient(to right, var(--emerald), var(--rose));
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+	width: 100%;
+	height: 250px;
+	border-radius: 12px;
+	background: linear-gradient(to right, var(--emerald), var(--rose));
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+	object-fit: cover;
 }
 
 /* QUICK ACTION TITLES */
