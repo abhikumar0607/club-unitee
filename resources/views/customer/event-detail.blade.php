@@ -8,7 +8,15 @@
       <div class="card card-uni p-4">
 
         <!-- EVENT IMAGE -->
-        <div class="event-img-large mb-4"></div>
+        <div class="event-img-large mb-4">
+        @if($all_events->image)
+            <img src="{{ asset('assets/admin/uploads/events/' . $all_events->image) }}" class="event-img-sm mb-3" alt="{{ $all_events->title }}">
+        @else
+            <div class="event-img-sm mb-3 d-flex align-items-center justify-content-center no-image">
+                No Image Found
+            </div>
+        @endif
+        </div>
 
         <!-- TITLE & META -->
         <h2 class="fw-bold mb-1">{{ $all_events->title }}</h2>

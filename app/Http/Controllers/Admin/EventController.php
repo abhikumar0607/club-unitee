@@ -17,8 +17,8 @@ class EventController extends Controller
         $this->eventService = $eventService;
     }
     //function for event page
-    public function index(){
-        $events = $this->eventService->getAllEvents();
+    public function index(Request $request){
+        $events = $this->eventService->getAllEvents($request);
         return view('admin.events.index', compact('events'));
     }
 

@@ -98,13 +98,20 @@
                              <!-- MEMBER CARD -->
                              <div class="col-md-4">
                                  <div class="card card-uni p-4 text-center">
-                                     <div class="member-photo mb-3"></div>
+                                    <!-- PROFILE PHOTO -->
+                                    <div class="member-photo mb-3">
+                                        @if($member->profile_image)
+                                            <img src="{{ asset('assets/customer/uploads/profile/' . $member->profile_image) }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                        @else
+                                            <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                                        @endif
+                                    </div>
                                      <h5 class="fw-bold">{{ $member->name }}</h5>
                                      <p class="text-muted mb-1">{{ $member->profession }}</p>
                                      <span
-                                         class="badge bg-success-subtle text-success fw-semibold mb-2">{{ $member->golfProfile ? $member->golfProfile->skill_level : 'N/A' }}</span>
-                                     <p class="text-muted small">"{{ $member->bio }}"</p>
-
+                                    class="badge bg-success-subtle text-success fw-semibold mb-2">{{ $member->email }}</span>
+                                     <!-- <p class="text-muted small">"{{ $member->linkedin_url ??'' }}"</p><br>
+                                     <p class="text-muted small">"{{ $member->instagram_handle ?? '' }}"</p> -->
                                      <a href="{{ route('profile.index', $member->id) }}" class="btn btn-gradient w-100 mt-2">View Profile</a>
                                  </div>
                              </div>

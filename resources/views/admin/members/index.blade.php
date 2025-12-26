@@ -65,6 +65,7 @@
                 <table class="table table-hover align-middle">
                     <thead>
                         <tr>
+                            <th>Sr No.</th>
                             <th>Photo</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -75,8 +76,10 @@
                         </tr>
                     </thead>
                     @if ($members->count() > 0)
+                    @php $count = 1; @endphp
                     @foreach ($members as $member)
                     <tr>
+                        <td>{{ $count ++ }}.</td>
                         <td>
                             @if($member->profile_image)
                                 <img src="{{ asset('assets/customer/uploads/profile/' .$member->profile_image) }}" class="rounded-circle" width="50">
