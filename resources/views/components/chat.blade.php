@@ -1,9 +1,14 @@
 <!-- CHAT DRAWER -->
 <div id="chatDrawer" class="chat-drawer">
-    <div class="chat-header">
+    <div class="chat-header d-flex align-items-center">
+        <img id="chatUserProfile" 
+            src="{{ asset('assets/customer/images/person-dummy.jpg') }}" 
+            alt="Profile" 
+            style="width:40px;height:40px;border-radius:50%;margin-right:10px;">
         <span id="chatUserName">Chat</span>
-        <button onclick="closeChat()">✕</button>
+        <button onclick="closeChat()" style="margin-left:auto;">✕</button>
     </div>
+
 
     <div class="chat-body" id="chatMessages"></div>
 
@@ -93,23 +98,39 @@ const baseUrl = "{{ url('/') }}";
 const authUserId = {{ auth()->id() }};
 let currentChatUserId = null;
 
-function openChat(userId, userName) {
+function openChat(userId, userName, profileImage) {
     currentChatUserId = userId;
     document.getElementById('chatUserName').innerText = userName;
+    document.getElementById('chatUserProfile').src = profileImage 
+        ? `${baseUrl}/assets/customer/uploads/profile/${profileImage}` 
+        : `${baseUrl}/assets/customer/images/person-dummy.jpg`;
     document.getElementById('chatDrawer').classList.add('open');
     document.getElementById('chatMessages').innerHTML = '';
 
     fetch(`${baseUrl}/chat/messages/${userId}`)
         .then(res => res.json())
         .then(messages => {
-            messages.forEach(msg => {
-                let div = document.createElement('div');
-                div.className = msg.sender_id == authUserId
-                    ? 'chat-msg sent'
-                    : 'chat-msg received';
-                div.innerText = msg.message;
-                document.getElementById('chatMessages').appendChild(div);
-            });
+           messages.forEach(msg => {
+            let div = document.createElement('div');
+            div.className = msg.sender_id == authUserId ? 'chat-msg sent' : 'chat-msg received';
+
+            // Message content
+            let msgContent = document.createElement('div');
+            msgContent.innerText = msg.message;
+
+            // Timestamp
+            let timestamp = document.createElement('div');
+            timestamp.style.fontSize = '10px';
+            timestamp.style.color = '#666';
+            timestamp.style.marginTop = '2px';
+            timestamp.innerText = new Date(msg.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+            div.appendChild(msgContent);
+            div.appendChild(timestamp);
+
+            document.getElementById('chatMessages').appendChild(div);
+        });
+
             scrollToBottom();
         });
 }
@@ -167,9 +188,22 @@ channel.bind('message.sent', function (data) {
     if (currentChatUserId == data.message.sender_id) {
         let div = document.createElement('div');
         div.className = 'chat-msg received';
-        div.innerText = data.message.message;
+
+        let msgContent = document.createElement('div');
+        msgContent.innerText = data.message.message;
+
+        let timestamp = document.createElement('div');
+        timestamp.style.fontSize = '10px';
+        timestamp.style.color = '#666';
+        timestamp.style.marginTop = '2px';
+        timestamp.innerText = new Date(data.message.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+        div.appendChild(msgContent);
+        div.appendChild(timestamp);
+
         document.getElementById('chatMessages').appendChild(div);
         scrollToBottom();
     }
 });
+
 </script>
