@@ -1339,7 +1339,7 @@ section.main-event-detail .card.card-uni {
 /* Fake image area (soft gradient) */
 .event-img {
   width: 100%;
-  height: 140px;
+  height: 250px;
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(251, 113, 133, 0.15));
 }
@@ -2408,4 +2408,27 @@ img.event-images {
 }
 .create-btn{
 	margin: 0px 0px 0px 870px;
+}
+
+section.main-event-detail .card.card-uni .event-img-sm {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: linear-gradient(to right, var(--emerald), var(--rose));
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+.main-view-btn {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.main-view-btn a.btn-gradient {
+    width: 50% !important;
+}
+
+.main-view-btn button.btn-gradient {
+    width: 50%;
+    padding: 7px 0px !important;
 }
