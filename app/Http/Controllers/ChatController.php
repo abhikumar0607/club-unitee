@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Broadcast;
+use Pusher\Pusher;
+use App\Events\MessageSent;
 
 class ChatController extends Controller
 {
@@ -29,7 +33,7 @@ class ChatController extends Controller
         ]);
 
         // Broadcast event
-        broadcast(new \App\Events\MessageSent($message))->toOthers();
+        broadcast(new MessageSent($message))->toOthers();
 
         return response()->json($message);
     }
