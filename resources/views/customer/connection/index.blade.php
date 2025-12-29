@@ -174,7 +174,7 @@
                                                 @endif
                                             </div>
                                             <h5 class="fw-bold">{{ $request->receiver->name }}</h5>
-                                            <hp class="text-muted mb-1">{{ $user->email }}</p>
+                                            <hp class="text-muted mb-1">{{ $request->receiver->email }}</p>
                                             <p class="text-muted small mb-3">Request sent on {{ $request->receiver->created_at->diffForHumans() }}</p>
                                             <a href="{{ route('customer.cancel.connection.request', $request->id) }}" class="btn btn-outline-uni w-100">Cancel Request</a>
                                         </div>

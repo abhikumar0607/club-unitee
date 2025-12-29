@@ -13,6 +13,9 @@ Route::get('/about', [App\Http\Controllers\Customer\frontController::class, 'abo
 Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'privacy']);
 Route::get('/term', [App\Http\Controllers\Customer\frontController::class, 'term']);
 Route::get('/thankyou', [App\Http\Controllers\Customer\frontController::class, 'thankyou'])->name('customer.thank');
+Route::get('/chat/messages/{userId}', [App\Http\Controllers\ChatController::class, 'getMessages']);
+Route::post('/chat/messages', [App\Http\Controllers\ChatController::class, 'sendMessage']);
+
 
 //customer dashboard routes
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
