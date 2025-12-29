@@ -2418,3 +2418,17 @@ section.main-event-detail .card.card-uni .event-img-sm {
     background: linear-gradient(to right, var(--emerald), var(--rose));
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
+.main-view-btn {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.main-view-btn a.btn-gradient {
+    width: 50% !important;
+}
+
+.main-view-btn button.btn-gradient {
+    width: 50%;
+    padding: 7px 0px !important;
+}
