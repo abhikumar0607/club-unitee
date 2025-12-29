@@ -207,7 +207,7 @@
                                             @endif
                                         </div>
                                         <h5 class="fw-bold">{{ $re->sender->name }}</h5>
-                                        <hp class="text-muted mb-1">{{ $user->email }}</p>
+                                        <hp class="text-muted mb-1">{{ $re->sender->email }}</p>
                                         <p class="text-muted small mb-3">"Would love to connect!"</p>
 
                                         <div class="d-flex gap-2">
