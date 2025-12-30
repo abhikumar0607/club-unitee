@@ -2432,3 +2432,13 @@ section.main-event-detail .card.card-uni .event-img-sm {
     width: 50%;
     padding: 7px 0px !important;
 }
+
+.btn-gradient {
+    border-radius: 99px;
+}
+
+input.form-control.input-uni {border-radius: 99px;}
+
+select.form-select.input-uni {
+    border-radius: 99px;
+}

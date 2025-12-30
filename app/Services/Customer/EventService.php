@@ -23,7 +23,10 @@ class Eventservice
         if($request->filled('type')){
             $query->where('type', $request->type);
         }
-          
+        
+        $query->with(['rsvps' => function($q){
+            $q->where('user_id', auth()->user()->id);
+        }]);
         return $query->paginate(6);
     }
 

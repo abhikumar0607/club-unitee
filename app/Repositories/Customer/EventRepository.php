@@ -8,4 +8,5 @@ class EventRepository
     public function getAllEvents(){
         return Event::OrderBy('id','desc');
     }
+
 }
