@@ -13,17 +13,22 @@ Route::get('/about', [App\Http\Controllers\Customer\frontController::class, 'abo
 Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'privacy']);
 Route::get('/term', [App\Http\Controllers\Customer\frontController::class, 'term']);
 Route::get('/thankyou', [App\Http\Controllers\Customer\frontController::class, 'thankyou'])->name('customer.thank');
-Route::get('/chat/messages/{userId}', [App\Http\Controllers\ChatController::class, 'getMessages']);
-Route::post('/chat/messages', [App\Http\Controllers\ChatController::class, 'sendMessage']);
+
 
 
 //customer dashboard routes
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
+    //Route::get('/connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
+    Route::get('/connections/match-suggestions', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'match_suggestions'])->name('match.suggestions');
+    Route::get('/connections/my-connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'my_connections'])->name('my.connections');
+    Route::get('/connections/sent-requests', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'sent_requests'])->name('sent.requests');
+    Route::get('/connections/received-requests', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'received_requests'])->name('received.requests');
 
     //events
     Route::get('/events', [App\Http\Controllers\Customer\Event\EventController::class, 'index'])->name('dashboard.events');
+    Route::post('/confirm-rsvp/{id}', [App\Http\Controllers\Customer\Event\EventController::class, 'confirmRsvp'])->name('dashboard.confirm.rsvp');
+    Route::post('/cancel-rsvp/{id}', [App\Http\Controllers\Customer\Event\EventController::class, 'cancelRsvp'])->name('dashboard.cancel.rsvp');
     //profile
     Route::get('/profile', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'index'])->name('dashboard.profile');
     Route::get('/profile/edit', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'edit'])->name('dashboard.profile.edit');
@@ -57,6 +62,7 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/events/edit/{id}', [App\Http\Controllers\Admin\EventController::class, 'edit'])->name('events.edit');
     Route::post('/events/update/{id}', [App\Http\Controllers\Admin\EventController::class, 'update'])->name('events.update');
     Route::get('/events/destroy', [App\Http\Controllers\Admin\EventController::class, 'destroy']);
+    Route::get('/events/rsvp/{id}', [App\Http\Controllers\Admin\EventController::class, 'rsvp'])->name('events.rsvp');
 
     //Categories
     Route::get('/categories', [App\Http\Controllers\Admin\BlogCategoryController::class, 'index'])->name('categories');
@@ -82,6 +88,8 @@ Route::middleware('auth')->group(function () {
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/{id?}', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/chat/messages/{userId}', [App\Http\Controllers\ChatController::class, 'getMessages']);
+    Route::post('/chat/messages', [App\Http\Controllers\ChatController::class, 'sendMessage']);
 });
 
 require __DIR__.'/auth.php';

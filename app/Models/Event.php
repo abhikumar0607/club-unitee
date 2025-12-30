@@ -19,4 +19,14 @@ class Event extends Model
         'image',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function rsvps()
+    {
+        return $this->hasMany(EventRsvp::class)->with('user');
+    }
 }

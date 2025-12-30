@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Admin;
 use App\Models\Event;
+use App\Models\EventRsvp;
 use App\Traits\HandlesFileUpload;
 use Illuminate\Support\Str;
 
@@ -49,6 +50,7 @@ class EventRepository
             $query->where('type', $request->type);
         }
 
+        $query->with('rsvps');
         return $query->paginate(10);
     }
 
@@ -97,5 +99,10 @@ class EventRepository
     //Function for delete event
     public function destroy($event_id) {
         return Event::findOrFail($event_id)->delete();
+    }
+
+    //function for get event rsvps
+    public function getEventRsvps($id) {
+        return EventRsvp::where('event_id', $id)->with('user')->paginate(10);
     }
 }
