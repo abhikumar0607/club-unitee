@@ -24,6 +24,8 @@ Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->
 
     //events
     Route::get('/events', [App\Http\Controllers\Customer\Event\EventController::class, 'index'])->name('dashboard.events');
+    Route::post('/confirm-rsvp/{id}', [App\Http\Controllers\Customer\Event\EventController::class, 'confirmRsvp'])->name('dashboard.confirm.rsvp');
+    Route::post('/cancel-rsvp/{id}', [App\Http\Controllers\Customer\Event\EventController::class, 'cancelRsvp'])->name('dashboard.cancel.rsvp');
     //profile
     Route::get('/profile', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'index'])->name('dashboard.profile');
     Route::get('/profile/edit', [App\Http\Controllers\Customer\Profile\ProfileController::class, 'edit'])->name('dashboard.profile.edit');
