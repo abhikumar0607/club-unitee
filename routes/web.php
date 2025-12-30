@@ -20,7 +20,11 @@ Route::post('/chat/messages', [App\Http\Controllers\ChatController::class, 'send
 //customer dashboard routes
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
+    //Route::get('/connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'index'])->name('dashboard.connection');
+    Route::get('/connections/match-suggestions', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'match_suggestions'])->name('match.suggestions');
+    Route::get('/connections/my-connections', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'my_connections'])->name('my.connections');
+    Route::get('/connections/sent-requests', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'sent_requests'])->name('sent.requests');
+    Route::get('/connections/received-requests', [App\Http\Controllers\Customer\Connection\ConnectionController::class, 'received_requests'])->name('received.requests');
 
     //events
     Route::get('/events', [App\Http\Controllers\Customer\Event\EventController::class, 'index'])->name('dashboard.events');
