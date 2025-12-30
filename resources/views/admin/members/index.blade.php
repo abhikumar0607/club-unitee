@@ -30,7 +30,6 @@
                             <label class="form-label fw-bold">Status</label>
                             <select name="status" class="form-select input-uni">
                                 <option value="" disabled selected>Select</option>
-                                <option value="">All</option>
                                 <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Active</option>
                                 <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Inactive</option>
                                 <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
