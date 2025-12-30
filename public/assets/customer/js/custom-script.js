@@ -1,22 +1,29 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
-        document.querySelectorAll('.alert').forEach(function (alert) {
-            if (window.bootstrap) {
-                let bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
-                bsAlert.close();
-            }
+
+    const clearBtn = document.getElementById('clearBtn');
+    if (!clearBtn) return;
+
+
+    const fields = document.querySelectorAll(`
+        input[name="search"],
+        select[name="golf_skill_level"],
+        select[name="availability"],
+        select[name="type"]
+    `);
+
+    function toggleClear() {
+        const hasValue = [...fields].some(field => {
+            return field && field.value && field.value.trim() !== '';
         });
-    }, 4000);
+
+        clearBtn.classList.toggle('d-none', !hasValue);
+    }
+
+    fields.forEach(field => {
+        field.addEventListener('input', toggleClear);
+        field.addEventListener('change', toggleClear);
+    });
+    toggleClear();
 });
-const clearBtn = document.getElementById('clearBtn');
-const fields = document.querySelectorAll('input[name="search"], select[name="status"], select[name="sort"]');
 
-function toggleClear(){
-    clearBtn.classList.toggle(
-        'd-none',
-        ![...fields].some(f => f.value.trim() !== '')
-    );
-}
-
-fields.forEach(f => f.addEventListener('input', toggleClear));
-toggleClear();

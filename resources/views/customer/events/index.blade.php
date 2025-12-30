@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <select class="form-select input-uni" name="type">
+                            <select name="type" class="form-select input-uni" name="type">
                                 <option value="" disabled selected>Select Type</option>
                                 <option value="Golf Outing" {{ request('type') == 'Golf Outing' ? 'selected' : '' }}>
                                     Golf Outing</option>
