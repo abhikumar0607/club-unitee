@@ -40,8 +40,8 @@
         </ul>
     </div>
     @yield('content')
-    {{-- <script src="{{ asset('assets/admin/js/custom-script.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/custom-ajax.js') }}"></script> --}}
+    <script src="{{ asset('assets/customer/js/custom-script.js') }}"></script>
+    <script src="{{ asset('assets/customer/js/custom-ajax.js') }}"></script>
 </body>
 
 </html>
