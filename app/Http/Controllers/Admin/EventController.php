@@ -55,4 +55,10 @@ class EventController extends Controller
         $this->eventService->destroy($request->event_id);
         return redirect()->route('admin.events')->with('success', 'Event deleted successfully');
     }
+
+    //function for event rsvp page
+    public function rsvp($id){
+        $events = $this->eventService->getEventRsvps($id);
+        return view('admin.events.event-rsvps', compact('events'));
+    }
 }

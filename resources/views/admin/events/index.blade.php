@@ -197,7 +197,7 @@
                                             <td><span class="badge bg-success">{{ $event->type }}</span></td>
                                             <td>{{ \Carbon\Carbon::parse($event->date)->format('d M, Y') }}</td>
                                             <td>{{ $event->location }}</td>
-                                            <td>--</td>
+                                            <td>{{ $event?->rsvps?->count() ?? '--' }}</td>
                                             <td>
                                                 @if($event->image)
                                                 <a href="{{ url('event-detail/'.$event->slug) }}" class="d-inline-block">
@@ -221,6 +221,7 @@
                                                 <a href="javascript:void(0);" class="editEventBtn btn btn-gradient btn-sm"
                                                     data-id="{{ $event->id }}">Edit</a>
                                                 <a class="btn btn-outline-uni btn-sm delete_event_record" data-event_id="{{ $event->id }}">Delete</a>
+                                                <a href="{{ url('admin/events/rsvp/'.$event->id) }}" class="btn btn-outline-uni btn-sm">View RSVPs</a>
                                             </td>
                                         </tr>
                                     @endforeach
