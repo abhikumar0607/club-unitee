@@ -2442,3 +2442,12 @@ input.form-control.input-uni {border-radius: 99px;}
 select.form-select.input-uni {
     border-radius: 99px;
 }
+.back-arrow {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 14px;
+  color: var(--emerald);
+  text-decoration: none;
+  font-weight: 500;
+}
