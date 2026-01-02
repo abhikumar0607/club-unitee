@@ -164,33 +164,22 @@
         <h2 class="section-title text-center">Meet Some Members</h2>
 
         <div class="row g-4">
-
+             
+            @foreach($customers as $customer)
             <div class="col-md-4">
                 <div class="card-uni01">
-                    <img src="{{ asset('assets/customer/images/01.png') }}" class="avatar mb-3" alt="">
-                    <h5>Priya Sharma</h5>
-                    <p class="text-muted">Program Manager (Beginner)</p>
-                    <p class="small">“New to LA and excited to connect with mission-driven women.”</p>
+                    @if($customer->profile_image)
+                        <img src="{{ asset('assets/customer/uploads/profile/' . $customer->profile_image) }}" class="avatar mb-3" alt="">
+                    @else
+                        <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="avatar mb-3" alt="">
+                    @endif
+                    <h5>{{ $customer->name }}</h5>
+                    <p class="text-muted">{{ $customer->profession }} ({{$customer->organization}})</p>
+                    <p class="small">{{ $customer->bio }}</p>
                 </div>
             </div>
+            @endforeach
 
-            <div class="col-md-4">
-                <div class="card-uni01">
-                    <img src="{{ asset('assets/customer/images/02.png') }}" class="avatar mb-3" alt="">
-                    <h5>Maya Rodriguez</h5>
-                    <p class="text-muted">Director of Development (Intermediate)</p>
-                    <p class="small">“Love the strategy and connection golf brings.”</p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card-uni01">
-                    <img src="{{ asset('assets/customer/images/03.png') }}" class="avatar mb-3" alt="">
-                    <h5>Zara Chen</h5>
-                    <p class="text-muted">Tech Founder (Beginner)</p>
-                    <p class="small">“Trying golf for the first time; looking for community.”</p>
-                </div>
-            </div>
 
 
 

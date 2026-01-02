@@ -36,9 +36,10 @@
                 </div>
                 <!--Forgot Password-->
                 <div class="text-end mb-3">
-                    <a href="{{ route('password.request') }}"
-                        style="color:var(--emerald); font-size:14px;">Forgot Password?
-                    </a>
+                <a href="{{ route('password.request') }}"
+                    style="color:red; font-size:14px;">
+                    Forgot Password?
+                </a>
                 </div>
                 <!--Login Button-->
                 <button type="submit" class="btn-uni w-100 mt-2">Login</button>
