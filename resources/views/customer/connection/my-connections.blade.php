@@ -80,7 +80,7 @@
                         <p class="text-muted mb-1">{{ $user->profession ?? 'Not Available' }}</p>
                         <!-- OPTIONAL CONNECTION INFO -->
                         <p class="text-muted small">Connected {{ $user->created_at->diffForHumans() }}</p>
-                        <div class="d-flex gap-2 mt-3">
+                        <div class="gap-2 mt-3">
                            <a href="{{ route('profile.index', $user->id) }}"
                               class="btn btn-outline-uni w-50">
                            View
