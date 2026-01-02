@@ -34,7 +34,7 @@
                          </div>
 
                          <!-- GOLF SKILL LEVEL -->
-                         <div class="col-md-3">
+                         <div class="col-md-2">
                              <select name="golf_skill_level" class="form-select input-uni">
                                  <option value="">Golf Skill Level</option>
                                  <option value="Beginner"
@@ -53,7 +53,7 @@
                          </div>
 
                          <!-- AVAILABILITY -->
-                         <div class="col-md-3">
+                         <div class="col-md-2">
                              <select name="availability" class="form-select input-uni">
                                  <option value="">Availability</option>
                                  <option value="Weekday Mornings"
@@ -80,6 +80,13 @@
                                  Apply
                              </button>
                          </div>
+
+                        <div class="col-md-2">
+                            <a href="{{ route('customer.members') }}" id="clearBtn"
+                                class="btn btn-gradient w-100">
+                                Clear
+                            </a>
+                        </div>
 
                      </div>
                  </form>

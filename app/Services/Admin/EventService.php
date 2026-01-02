@@ -36,4 +36,9 @@ class Eventservice
     public function destroy($event_id){
         return $this->eventRepository->destroy($event_id);
     }
+
+    //function for get event rsvps
+    public function getEventRsvps($id){
+        return $this->eventRepository->getEventRsvps($id);
+    }
 }

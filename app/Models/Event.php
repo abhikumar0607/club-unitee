@@ -27,6 +27,6 @@ class Event extends Model
 
     public function rsvps()
     {
-        return $this->hasMany(EventRsvp::class);
+        return $this->hasMany(EventRsvp::class)->with('user');
     }
 }

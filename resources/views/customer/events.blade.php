@@ -125,7 +125,9 @@
                     <div class="col-md-4">
                         <div class="card card-uni-11 event-card h-100 d-flex flex-column">
                         @if($event->image)
-                            <img src="{{ asset('assets/admin/uploads/events/' . $event->image) }}" class="event-img-sm mb-3" alt="{{ $event->title }}">
+                            <a href="{{ url('event-detail/'.$event['slug']) }}">
+                                <img src="{{ asset('assets/admin/uploads/events/' . $event->image) }}" class="event-img-sm mb-3" alt="{{ $event->title }}">
+                            </a>
                         @else
                             <div class="event-img-sm mb-3 d-flex align-items-center justify-content-center no-image">
                                 No Image Found
@@ -151,16 +153,22 @@
                                 @endif
                                 </span>
                             </div>
-
-                            <h5 class="fw-bold mb-1">{{ $event->title }}</h5>
+                            <h5 class="fw-bold mb-1">
+                                <a href="{{ url('event-detail', $event->slug) }}"
+                                class="text-decoration-none"
+                                style="color:#0f766e;">
+                                    {{ $event->title }}
+                                </a>
+                            </h5>
                             <!-- <p class="text-muted small mb-2">{{ $event->location }}</p> -->
                             <p class="text-muted small flex-grow-1">
                                 {{ $event->description }}
                             </p>
-
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <p class="small text-muted mb-0"></p>
-                                <a href="{{ url('event-detail', $event->slug) }}" class="btn btn-outline-uni btn-sm px-3">View details</a>
+                            <div class="d-flex justify-content-center mt-2">
+                                <a href="{{ url('event-detail', $event->slug) }}"
+                                class="btn btn-outline-uni btn-sm px-3">
+                                    View details
+                                </a>
                             </div>
                         </div>
                     </div>

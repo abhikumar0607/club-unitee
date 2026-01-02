@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Blog;
 use App\Models\BlogCategory;
@@ -12,12 +13,15 @@ use App\Models\BlogCategoryRelation;
 
 class frontController extends Controller
 {
-    //function to show home page
+    //Function for home page
     public function index(){
-        return view('customer.home');
+        //Get latest customers
+        $customers = User::where('role', 'customer')->latest()->take(3)->get();
+        // echo "<pre>"; print_r($customers->toArray());exit;
+        return view('customer.home', compact('customers'));
     }
 
-    //function for events page
+    //Function for events page
     public function events(){
         //Get events
         $all_events = Event::whereDate('date', '>=', now())->orderBy('date', 'asc')->paginate(6);
@@ -53,17 +57,17 @@ class frontController extends Controller
         return view('customer.about');
     }
 
-    //function for privacy page
+    //Function for privacy page
     public function privacy(){
         return view('customer.privacy');
     }
 
-    //function for term page
+    //Function for term page
     public function term(){
         return view('customer.term');
     }
 
-    //function for thank you page 
+    //Function for thank you page 
     public function thankyou(){
         return view('customer.thankyou');
     }

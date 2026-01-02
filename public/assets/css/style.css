@@ -2382,7 +2382,7 @@ img.event-images {
 .alert.alert-success {
   background: #90e7abbf;
   color: #06a906;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .main-back-btn-11 {
@@ -2441,4 +2441,13 @@ input.form-control.input-uni {border-radius: 99px;}
 
 select.form-select.input-uni {
     border-radius: 99px;
+}
+.back-arrow {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 14px;
+  color: var(--emerald);
+  text-decoration: none;
+  font-weight: 500;
 }
