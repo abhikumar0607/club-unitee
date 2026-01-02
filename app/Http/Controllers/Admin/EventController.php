@@ -16,13 +16,14 @@ class EventController extends Controller
     {
         $this->eventService = $eventService;
     }
-    //function for event page
+
+    //Function for event page
     public function index(Request $request){
         $events = $this->eventService->getAllEvents($request);
         return view('admin.events.index', compact('events'));
     }
 
-    //function for store event
+    //Function for store event
     public function store(Request $request){
         $created = $this->eventService->store($request);
         if ($created === true) {
@@ -31,7 +32,7 @@ class EventController extends Controller
         return redirect()->back()->withInput()->with('error', 'Event title already exists. Please use a different title.');
     }
 
-    //function for edit event
+    //Function for edit event
     public function edit($id){
         $event = $this->eventService->edit($id);
         $html = view('admin.events.edit-form', compact('event'))->render();
@@ -41,7 +42,7 @@ class EventController extends Controller
         ]);
     }
 
-    // //function for update event
+    //Function for update event
     public function update(Request $request, $id){
         $created = $this->eventService->update($request, $id);
         if ($created === true) {
@@ -50,13 +51,13 @@ class EventController extends Controller
         return redirect()->back()->withInput()->with('error', 'Event title already exists. Please use a different title.');
     }
 
-    //function for delete event
+    //Function for delete event
     public function destroy(Request $request){
         $this->eventService->destroy($request->event_id);
         return redirect()->route('admin.events')->with('success', 'Event deleted successfully');
     }
 
-    //function for event rsvp page
+    //Function for event rsvp page
     public function rsvp($id){
         $events = $this->eventService->getEventRsvps($id);
         return view('admin.events.event-rsvps', compact('events'));
