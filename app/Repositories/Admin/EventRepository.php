@@ -40,7 +40,7 @@ class EventRepository
     //Function for get all events
     public function getAllEvents($request) {
         $query = Event::where('user_id', auth()->id())
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')->whereIn('status', ['Published','Completed']);
 
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');

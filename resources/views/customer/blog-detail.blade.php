@@ -26,7 +26,11 @@
                     <h1 class="blog-detail-title">{{ $blog_detail->title }}</h1>
 
                     <div class="blog-detail-author d-flex align-items-center gap-2 mt-3">
-                        <img src="{{ asset('assets/customer/images/playing-golf.jpg') }}" class="author-photo">
+                        @if($blog_detail->author_image)
+                            <img src="{{ asset('assets/admin/uploads/blogs/' .$blog_detail->author_image) }}" class="author-photo">
+                        @else
+                            No Image found
+                        @endif  
                         <div>
                             <p class="author-name">{{ $blog_detail->author_name }}</p>
                             <p class="author-role">{{ $blog_detail->author_type }}</p>
