@@ -61,6 +61,16 @@ class ProfileController extends Controller
 
     public function index(Request $request, $id = null)
     {
+        $previousUrl = url()->previous();
+
+        if (str_contains($previousUrl, 'applications')) {
+            session(['profile_from' => 'applications']);
+        } elseif (str_contains($previousUrl, 'members')) {
+            session(['profile_from' => 'members']);
+        } elseif (str_contains($previousUrl, 'connection')) {
+            session(['profile_from' => 'connection']);
+        }
+
         if ($id) {
             $user = User::find($id);
         } else {

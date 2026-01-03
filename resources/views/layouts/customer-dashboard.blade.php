@@ -27,12 +27,12 @@
                 </li>
             @endcan
             <li>
-                <a href="{{ url('customer/members ') }}" class="{{ request()->is('customer/members') ? 'active' : '' }}">
+                <a href="{{ url('customer/members ') }}" class="{{ request()->is('customer/members') || (request()->is('profile*') && session('profile_from') === 'members') ? 'active' : '' }}">
                     Members
                 </a>
             </li>
             <li>
-                <a href="{{ route('customer.match.suggestions') }}" class="{{ request()->is('customer/connections/*') || request()->is('profile/*') ? 'active' : '' }}">
+                <a href="{{ route('customer.match.suggestions') }}" class="{{ request()->is('customer/connections/*') || (request()->is('profile*') && session('profile_from') === 'connection') ? 'active' : '' }}">
                     Connections
                 </a>
             </li>
