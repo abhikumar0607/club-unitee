@@ -1,5 +1,21 @@
 @extends('layouts.customer-frontend')
 @section('content')
+
+<style>
+.customer-slider .slick-slide {
+    display: flex;
+    height: auto;
+}
+
+.customer-slider .card-uni01 {
+    width: 100%;
+    min-height: 302px;
+}
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
 <!-- HERO SECTION -->
 <section class="py-5 hero-section"
     style="background-image:url('{{ asset('assets/customer/images/Golfers enjoying a sunny moment.png') }}');">
@@ -11,9 +27,9 @@
                 course. Find your next golf buddies here.
             </p>
             @guest
-                <a href="{{ url('register') }}" class="btn btn-lg px-5 join-apply">
-                    Apply to Join
-                </a>
+            <a href="{{ url('register') }}" class="btn btn-lg px-5 join-apply">
+                Apply to Join
+            </a>
             @endguest
         </div>
     </div>
@@ -163,25 +179,89 @@
     <div class="container">
         <h2 class="section-title text-center">Meet Some Members</h2>
 
-        <div class="row g-4">
-             
+        <div class="customer-slider">
+
             @foreach($customers as $customer)
-            <div class="col-md-4">
-                <div class="card-uni01">
+            <div class="px-3">
+                <div class="card-uni01 text-center">
+
                     @if($customer->profile_image)
-                        <img src="{{ asset('assets/customer/uploads/profile/' . $customer->profile_image) }}" class="avatar mb-3" alt="">
+                    <img src="{{ asset('assets/customer/uploads/profile/' . $customer->profile_image) }}"
+                        class="avatar mb-3" alt="">
                     @else
-                        <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="avatar mb-3" alt="">
+                    <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="avatar mb-3" alt="">
                     @endif
+
                     <h5>{{ $customer->name }}</h5>
-                    <p class="text-muted">{{ $customer->profession }} ({{$customer->organization}})</p>
-                    <p class="small">{{ $customer->bio }}</p>
+
+                    <p class="text-muted">
+                        {{ $customer->profession }} ({{ $customer->organization }})
+                    </p>
+
+                    <p class="small">
+                        <span id="short-{{ $customer->id }}">
+                            {{ \Illuminate\Support\Str::words($customer->bio, 15, '...') }}
+                        </span>
+
+                        <span id="full-{{ $customer->id }}" class="d-none">
+                            {{ $customer->bio }}
+                        </span>
+                    </p>
+
+                    @if(str_word_count($customer->bio) > 30)
+                    <a href="javascript:void(0)" class="text-primary small" onclick="
+                        document.getElementById('short-{{ $customer->id }}').classList.toggle('d-none');
+                        document.getElementById('full-{{ $customer->id }}').classList.toggle('d-none');
+                        this.innerText = this.innerText === 'Read more' ? 'Show less' : 'Read more';
+                   ">
+                        Read more
+                    </a>
+                    @endif
+
                 </div>
             </div>
             @endforeach
 
+           @foreach($customers as $customer)
+            <div class="px-3">
+                <div class="card-uni01 text-center">
 
+                    @if($customer->profile_image)
+                    <img src="{{ asset('assets/customer/uploads/profile/' . $customer->profile_image) }}"
+                        class="avatar mb-3" alt="">
+                    @else
+                    <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="avatar mb-3" alt="">
+                    @endif
 
+                    <h5>{{ $customer->name }}</h5>
+
+                    <p class="text-muted">
+                        {{ $customer->profession }} ({{ $customer->organization }})
+                    </p>
+
+                    <p class="small">
+                        <span id="short-{{ $customer->id }}">
+                            {{ \Illuminate\Support\Str::words($customer->bio, 15, '...') }}
+                        </span>
+
+                        <span id="full-{{ $customer->id }}" class="d-none">
+                            {{ $customer->bio }}
+                        </span>
+                    </p>
+
+                    @if(str_word_count($customer->bio) > 30)
+                    <a href="javascript:void(0)" class="text-primary small" onclick="
+                        document.getElementById('short-{{ $customer->id }}').classList.toggle('d-none');
+                        document.getElementById('full-{{ $customer->id }}').classList.toggle('d-none');
+                        this.innerText = this.innerText === 'Read more' ? 'Show less' : 'Read more';
+                   ">
+                        Read more
+                    </a>
+                    @endif
+
+                </div>
+            </div>
+            @endforeach
 
         </div>
     </div>
@@ -235,4 +315,39 @@
 
     </div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    if ($('.customer-slider').length) {
+        $('.customer-slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+            dots: false,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            infinite: true,
+            responsive: [{
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    }
+});
+</script>
+
+
 @endsection
