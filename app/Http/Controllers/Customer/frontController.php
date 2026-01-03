@@ -24,7 +24,7 @@ class frontController extends Controller
     //Function for events page
     public function events(){
         //Get events
-        $all_events = Event::whereDate('date', '>=', now())->orderBy('date', 'asc')->paginate(6);
+        $all_events = Event::whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published','Completed'])->paginate(6);
         return view('customer.events', compact('all_events'));
     }
 
@@ -40,7 +40,7 @@ class frontController extends Controller
         //All features
         $featuredBlog = Blog::with('category_details')->latest()->first();
         //Blogs
-        $blogs = Blog::with('category_details')->take(6)->get();
+        $blogs = Blog::with('category_details')->whereIn('status', ['Published','Completed'])->take(6)->get();
         //Categories
         $categories = BlogCategory::take(4)->get();
         return view('customer.blog', compact('featuredBlog','categories','blogs'));

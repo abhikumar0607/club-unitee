@@ -4,9 +4,8 @@ namespace App\Repositories\Customer;
 use App\Models\Event;
 class EventRepository
 {
-    //function for get all events
+    //Function for get all events
     public function getAllEvents(){
-        return Event::OrderBy('id','desc');
+        return Event::OrderBy('id','desc')->whereIn('status', ['Published','Completed']);
     }
-
 }

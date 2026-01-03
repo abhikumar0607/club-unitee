@@ -50,7 +50,7 @@ class BlogRepository
 
     //Function for get all blogs
     public function getAllBlogs($request) {
-        $query = Blog::with('category_details')->where('user_id', auth()->id())
+        $query = Blog::with('category_details')->where('user_id', auth()->id())->whereIn('status', ['Published','Completed'])
             ->orderBy('id', 'desc');
 
         if ($request->filled('search')) {
