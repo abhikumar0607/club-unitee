@@ -14,8 +14,6 @@ Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'p
 Route::get('/term', [App\Http\Controllers\Customer\frontController::class, 'term']);
 Route::get('/thankyou', [App\Http\Controllers\Customer\frontController::class, 'thankyou'])->name('customer.thank');
 
-
-
 //customer dashboard routes
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Customer\Dashboard\DashboardController::class, 'index'])->name('dashboard');

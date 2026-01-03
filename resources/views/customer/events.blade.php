@@ -164,11 +164,28 @@
                             <p class="text-muted small flex-grow-1">
                                {{ \Illuminate\Support\Str::words(strip_tags($event->description), 20) }}
                             </p>
-                            <div class="d-flex justify-content-center mt-2">
+                            <div class="main-view-btn">
                                 <a href="{{ url('event-detail', $event->slug) }}"
                                 class="btn btn-outline-uni btn-sm px-3">
                                     View details
                                 </a>
+                                @auth
+                                    @if($event->rsvps->count())
+                                        <button class="btn btn-success btn-sm btn-gradient"
+                                            onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">
+                                            You're Going (Cancel)
+                                        </button>
+                                    @else
+                                        <button class="btn btn-gradient"
+                                            onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">
+                                            RSVP
+                                        </button>
+                                    @endif
+                                @else
+                                    <a href="{{ route('login') }}" class="btn btn-gradient">
+                                        RSVP
+                                    </a>
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -184,4 +201,6 @@
 
         </div>  
     </section>
+    <!--RSVP Modal-->
+<x-rsvp-event-modal />
 @endsection
