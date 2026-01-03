@@ -83,7 +83,7 @@
 
                     @foreach($blogs as $blog)
                         <div class="col-md-4">
-                            <div class="post-card card-uni h-100">
+                            <div class="post-card card-uni">
 
                                 <div class="mid-post-card">
                                     <a href="{{ url('blog-detail/'.$blog['slug']) }}">
@@ -153,7 +153,7 @@
                                 @php $hasBlog = true; @endphp
 
                                 <div class="col-md-4">
-                                    <div class="post-card card-uni h-100">
+                                    <div class="post-card card-uni">
 
                                         <div class="mid-post-card">
                                         <a href="{{ url('blog-detail/'.$blog['slug']) }}">
@@ -174,12 +174,12 @@
                                             </div>
                                             <h5 class="post-title">
                                                 <a href="{{ url('blog-detail/'.$blog['slug']) }}" class="text-decoration-none text-reset">
-                                                    {{ $blog['title'] }}
+                                                    {{ \Illuminate\Support\Str::words(strip_tags($blog->title), 20) }}
                                                 </a>
                                             </h5>
 
                                             <p class="post-desc">
-                                                {!! $blog['short_description'] !!}
+                                                {!! \Illuminate\Support\Str::words(strip_tags($blog->short_description), 20) !!}
                                             </p>
 
                                             <hr>

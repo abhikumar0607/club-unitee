@@ -2231,6 +2231,9 @@ a.learn-btn-12:hover {
   border-radius: .5rem;
   padding: 3.5rem 2.5rem;
 }
+.post-card.card-uni {
+    height: fit-content !important;
+}
 
 .btn-uni {
   background: #0f766e;
@@ -2450,4 +2453,8 @@ select.form-select.input-uni {
   color: var(--emerald);
   text-decoration: none;
   font-weight: 500;
+}
+a.read-more-001 {
+    color: #000 !important;
+    font-size: 16px;
 }

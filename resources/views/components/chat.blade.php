@@ -31,6 +31,7 @@
     z-index: 9999;
     display: flex;
     flex-direction: column;
+    border-radius: 10px 10px 0 0;
 }
 .chat-drawer.open { right: 0; }
 .chat-header {
@@ -41,6 +42,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 11px 11px 0 0;
 }
  
 .chat-header button {

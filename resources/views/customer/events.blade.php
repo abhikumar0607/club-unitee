@@ -162,7 +162,7 @@
                             </h5>
                             <!-- <p class="text-muted small mb-2">{{ $event->location }}</p> -->
                             <p class="text-muted small flex-grow-1">
-                                {{ $event->description }}
+                               {{ \Illuminate\Support\Str::words(strip_tags($event->description), 20) }}
                             </p>
                             <div class="d-flex justify-content-center mt-2">
                                 <a href="{{ url('event-detail', $event->slug) }}"
