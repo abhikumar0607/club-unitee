@@ -137,12 +137,12 @@
                             <a href="{{ url('event-detail', $event->slug) }}"
                                 class="text-decoration-none"
                                 style="color:#0f766e;">
-                            {{ $event->title }}
+                                {{ $event->title }}
                             </a>
                         </h5>
                         <!--<p class="text-muted small mb-2">{{ $event->location }}</p>-->
                         <p class="text-muted small flex-grow-1">
-                            {{ $event->description }}
+                            {{ \Illuminate\Support\Str::words(strip_tags($event->description), 20) }}
                         </p>
                         <div class="main-view-btn">
                             <a href="{{ url('event-detail', $event->slug) }}" class="btn btn-outline-uni btn-sm px-3">

@@ -183,7 +183,7 @@
                         @elseif($event->status == 'Completed')
                            <span class="badge bg-secondary">Completed</span>
                         @else
-                           <span class="badge bg-warning text-dark">Draft</span>
+                           <span class="badge bg-warning text-dark draft-btn">Draft</span>
                         @endif
                      </td>
                      <td>
