@@ -16,7 +16,7 @@ class frontController extends Controller
     //Function for home page
     public function index(){
         //Get latest customers
-        $customers = User::where('role', 'customer')->latest()->take(3)->get();
+        $customers = User::where('role', 'customer')->latest()->take(20)->get();
         // echo "<pre>"; print_r($customers->toArray());exit;
         return view('customer.home', compact('customers'));
     }
@@ -24,7 +24,9 @@ class frontController extends Controller
     //Function for events page
     public function events(){
         //Get events
-        $all_events = Event::whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published','Completed'])->paginate(6);
+        $all_events = Event::with('rsvps')->whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published','Completed'])->paginate(6);
+
+        // echo "<pre>"; print_r($all_events->toArray());exit;
         return view('customer.events', compact('all_events'));
     }
 

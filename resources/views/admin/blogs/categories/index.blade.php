@@ -93,11 +93,11 @@
                             <td>{{ $category->name }}</td>
                             <td>
                                 @if ($category->status == 'Published')
-                                <span class="badge bg-primary">Published</span>
+                                <span class="badge bg-primary published-btn">Published</span>
                                 @elseif($category->status == 'Completed')
                                 <span class="badge bg-secondary">Completed</span>
                                 @else
-                                <span class="badge bg-warning text-dark">Draft</span>
+                                <span class="badge bg-warning text-dark draft-btn">Draft</span>
                                 @endif
                             </td>
                             <td>

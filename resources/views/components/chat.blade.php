@@ -21,16 +21,17 @@
 <style>
 .chat-drawer {
     position: fixed;
-    top: 0;
+    bottom: 0;
     right: -400px;
     width: 380px;
-    height: 100%;
+    height: 50%;
     background: #fff;
     box-shadow: -4px 0 15px rgba(0,0,0,.15);
     transition: right .3s ease;
     z-index: 9999;
     display: flex;
     flex-direction: column;
+    border-radius: 10px 10px 0 0;
 }
 .chat-drawer.open { right: 0; }
 .chat-header {
@@ -41,6 +42,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 11px 11px 0 0;
 }
  
 .chat-header button {
@@ -61,22 +63,20 @@
     margin-bottom: 10px;
     border-radius: 18px;
     font-size: 14px;
+    width: fit-content;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 .chat-msg.sent {
     background: #10b981;
     border: 1px solid #10b981;
     color: #fff;
     margin-left: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
 }
 .chat-msg.received {
     background: #ddd;
     border: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
 }
 .chat-footer {
     display: flex;
@@ -96,6 +96,7 @@
     padding: 0 18px;
     border-radius: 20px;
 }
+
 </style>
  
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
@@ -130,6 +131,7 @@ function openChat(userId, userName, profileImage) {
             timestamp.style.fontSize = '10px';
             timestamp.style.color = '#fff';
             timestamp.style.marginTop = '2px';
+            timestamp.style.textAlign = 'end';
             timestamp.innerText = new Date(msg.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
  
             div.appendChild(msgContent);
