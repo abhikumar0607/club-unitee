@@ -79,7 +79,7 @@
                                 {{ $event->type }}
                             </span>
                         @elseif($event->type == 'Workshop')
-                            <span class="badge bg-primary-subtle text-primary fw-semibold mb-2">
+                            <span class="badge bg-primary-subtle text-primary fw-semibold mb-2 published-btn">
                                 {{ $event->type }}
                             </span>
                         @endif

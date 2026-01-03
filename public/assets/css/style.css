@@ -1590,10 +1590,10 @@ section.main-event-detail .card.card-uni {
 }
 
 section.blog-detail-content {
-  background: #fff;
-  padding: 50px;
-  border-radius: 12px;
-  box-shadow: var(--shadow-medium);
+    background: #fff;
+    padding: 10px 50px 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-medium);
 }
 
 .blog-detail-title {
@@ -2458,3 +2458,10 @@ a.read-more-001 {
     color: #000 !important;
     font-size: 16px;
 }
+span.published-btn {
+    background: #1cb581 !important;
+}
+/* span.badge {
+    width: fit-content;
+    margin: auto;
+} */
