@@ -222,46 +222,7 @@
             </div>
             @endforeach
 
-           @foreach($customers as $customer)
-            <div class="px-3">
-                <div class="card-uni01 text-center">
-
-                    @if($customer->profile_image)
-                    <img src="{{ asset('assets/customer/uploads/profile/' . $customer->profile_image) }}"
-                        class="avatar mb-3" alt="">
-                    @else
-                    <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="avatar mb-3" alt="">
-                    @endif
-
-                    <h5>{{ $customer->name }}</h5>
-
-                    <p class="text-muted">
-                        {{ $customer->profession }} ({{ $customer->organization }})
-                    </p>
-
-                    <p class="small">
-                        <span id="short-{{ $customer->id }}">
-                            {{ \Illuminate\Support\Str::words($customer->bio, 15, '...') }}
-                        </span>
-
-                        <span id="full-{{ $customer->id }}" class="d-none">
-                            {{ $customer->bio }}
-                        </span>
-                    </p>
-
-                    @if(str_word_count($customer->bio) > 30)
-                    <a href="javascript:void(0)" class="text-primary small" onclick="
-                        document.getElementById('short-{{ $customer->id }}').classList.toggle('d-none');
-                        document.getElementById('full-{{ $customer->id }}').classList.toggle('d-none');
-                        this.innerText = this.innerText === 'Read more' ? 'Show less' : 'Read more';
-                   ">
-                        Read more
-                    </a>
-                    @endif
-
-                </div>
-            </div>
-            @endforeach
+           
 
         </div>
     </div>
