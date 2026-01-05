@@ -24,9 +24,8 @@ class frontController extends Controller
     //Function for events page
     public function events(){
         //Get events
-        $all_events = Event::with('rsvps')->whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published','Completed'])->paginate(6);
-
-        // echo "<pre>"; print_r($all_events->toArray());exit;
+        $all_events = Event::with('rsvps')->whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published'])->paginate(6);
+        //echo "<pre>"; print_r($all_events->toArray());exit;
         return view('customer.events', compact('all_events'));
     }
 
@@ -38,13 +37,21 @@ class frontController extends Controller
     }
 
     //Function for blog page
-    public function blog(){
+    public function blogs(Request $request){
         //All features
         $featuredBlog = Blog::with('category_details')->latest()->first();
-        //Blogs
-        $blogs = Blog::with('category_details')->whereIn('status', ['Published'])->take(6)->get();
+        //Get blogs
+        $blogs = Blog::with('category_details')->whereIn('status', ['Published'])
+            ->when($request->category, function ($q) use ($request) {
+                $q->whereHas('category_details', function ($sub) use ($request) {
+                    $sub->where('slug', $request->category); 
+                });
+            })
+            ->latest()
+            ->paginate(6)
+            ->appends($request->query());
         //Categories
-        $categories = BlogCategory::take(4)->get();
+        $categories = BlogCategory::OrderBy('ID', 'DESC')->get();
         return view('customer.blog', compact('featuredBlog','categories','blogs'));
     }
 
