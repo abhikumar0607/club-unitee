@@ -55,7 +55,7 @@
                 </div>
                 <!--Profession-->
                 <div class="mb-3">
-                    <label class="fw-medium">Current Profession / Title *</label>
+                    <label class="fw-medium">Current Profession / Title </label>
                     <input type="text" name="profession"
                         class="form-control @error('profession') is-invalid @enderror"
                         value="{{ old('profession') }}" placeholder="Program Director, Professor, etc.">

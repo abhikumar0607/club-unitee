@@ -2465,3 +2465,7 @@ span.published-btn {
     width: fit-content;
     margin: auto;
 } */
+ .blog-empty-msg{
+  color: #dc3545 !important;       
+  font-weight: 600 !important;
+}
