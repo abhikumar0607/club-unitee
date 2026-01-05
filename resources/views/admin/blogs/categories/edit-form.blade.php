@@ -17,7 +17,7 @@
         <select name="status" class="form-select" required>
             <option value="" disabled selected>Select</option>
             <option value="Published" {{ $category->status == 'Published' ? 'selected' : '' }}>Published</option>
-            <option value="Completed" {{ $category->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+            <!--<option value="Completed" {{ $category->status == 'Completed' ? 'selected' : '' }}>Completed</option>-->
             <option value="Draft" {{ $category->status == 'Draft' ? 'selected' : '' }}>Draft</option>
         </select>
     </div>

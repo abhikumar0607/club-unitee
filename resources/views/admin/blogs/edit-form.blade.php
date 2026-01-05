@@ -92,7 +92,7 @@
         <select name="status" class="form-select" required>
             <option value ="" disabled selected></option>
             <option value="Published" {{ $blogs->status == 'Published' ? 'selected' : '' }}>Published</option>
-            <option value="Completed" {{ $blogs->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+            <!--<option value="Completed" {{ $blogs->status == 'Completed' ? 'selected' : '' }}>Completed</option> -->
             <option value="Draft" {{ $blogs->status == 'Draft' ? 'selected' : '' }}>Draft</option>
         </select>
     </div>
