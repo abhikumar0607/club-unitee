@@ -82,7 +82,7 @@
                             View
                             </a>
                             <a class="btn btn-gradient w-50" href="{{ route('customer.send.connection.request', $user->id) }}">
-                            Request Contact
+                            Connect Contact
                             </a>
                         </div>
                     </div>
