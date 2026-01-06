@@ -218,16 +218,24 @@ let pusher=new Pusher("{{ config('broadcasting.connections.pusher.key') }}",{
 let channel=pusher.subscribe('private-chat.{{ auth()->id() }}');
 
 /* REALTIME MESSAGE */
-channel.bind('message.sent',data=>{
-    loadUnseenCount(data.message.sender_id);
-    if(currentChatUserId===data.message.sender_id){
+channel.bind('message.sent', data => {
+
+    const senderId = data.message.sender_id;
+    loadUnseenCount(senderId);
+    if (
+        currentChatUserId === senderId &&
+        chatDrawer.classList.contains('open')
+    ) {
         renderMessage(data.message);
         scrollToBottom();
-        fetch(`${baseUrl}/chat/seen/${data.message.sender_id}`,{
-            method:'POST',headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}'}
+
+        fetch(`${baseUrl}/chat/seen/${senderId}`, {
+            method:'POST',
+            headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}'}
         }).then(updateSeenUI);
     }
 });
+
 
 /* REALTIME SEEN */
 channel.bind('message.seen',data=>{
