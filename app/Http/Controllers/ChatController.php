@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
 use Pusher\Pusher;
 use App\Events\MessageSent;
+use App\Events\MessageSeen;
 
 class ChatController extends Controller
 {
@@ -36,5 +37,38 @@ class ChatController extends Controller
         broadcast(new MessageSent($message))->toOthers();
 
         return response()->json($message);
+    }
+
+
+    public function markAsSeen($userId)
+    {
+        $authId = auth()->id();
+
+        $messages = Message::where('sender_id', $userId)
+            ->where('receiver_id', $authId)
+            ->where('is_seen', false)
+            ->get();
+
+        foreach ($messages as $msg) {
+            $msg->update([
+                'is_seen' => true,
+                'seen_at' => now(),
+            ]);
+
+            broadcast(new MessageSeen($msg))->toOthers();
+        }
+
+        return response()->json(['status' => true]);
+    }
+
+    public function unseen_count($userId){
+        $auth_id = auth()->id();
+        $count = Message::where('sender_id', $userId)
+        ->where('receiver_id', auth()->id())
+        ->where('is_seen', false)
+        ->count();
+         return response()->json([
+            'count' => $count
+        ]);
     }
 }
