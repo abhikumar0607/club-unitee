@@ -33,11 +33,13 @@
                Match Suggestions
                </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item position-relative">
                <a class="nav-link1 {{ request()->routeIs('customer.my.connections') ? 'active' : '' }}"
                   href="{{ route('customer.my.connections') }}">
                My Connections
                </a>
+              <!-- unread badge -->
+              {{-- <span class="unread-badge-new" id="unread-badge">{{ count($myConnections) }}</span> --}}
             </li>
             <li class="nav-item"> 
                <a class="nav-link1 {{ request()->routeIs('customer.sent.requests') ? 'active' : '' }}"

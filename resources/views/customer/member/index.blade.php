@@ -125,10 +125,14 @@
                          <div class="main-view-btn">
                              <a href="{{ route('profile.index', $member->id) }}"
                                  class="btn btn-gradient w-100 mt-2">View Profile</a>
-                             <button class="btn btn-gradient btn-sm mt-2"
-                                 onclick="openChat({{ $member->id }}, '{{ $member->name }}' , '{{ $member->profile_image }}')">
-                                 Chat
-                             </button>
+                             <button class="btn btn-gradient btn-sm mt-2 position-relative"
+                                onclick="openChat({{ $member->id }}, '{{ $member->name }}', '{{ $member->profile_image }}')">
+
+                                Chat
+
+                                <!-- unread badge -->
+                                <span class="unread-badge d-none" id="unread-{{ $member->id }}"></span>
+                            </button>
                          </div>
                      </div>
                  </div>
@@ -150,5 +154,10 @@
 
  <!-- CHAT DRAWER -->
  <x-chat />
+<script>
+@foreach($members as $member)
+    loadUnseenCount({{ $member->id }});
+@endforeach
+</script>
 
  @endsection
