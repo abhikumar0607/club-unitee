@@ -34,7 +34,7 @@ class ProfileController extends Controller
         // exit;
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'profession' => ['required', 'string', 'max:255'],
+            'profession' => ['nullable', 'string', 'max:255'],
             'organization' => ['nullable', 'string', 'max:255'],
             'bio' => ['required', 'string'],
 

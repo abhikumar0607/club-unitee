@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\Customer\frontController::class, 'index'])->name('customer.home');
 Route::get('/events', [App\Http\Controllers\Customer\frontController::class, 'events']);
 Route::get('/event-detail/{slug}', [App\Http\Controllers\Customer\frontController::class, 'event_detail']);
-Route::get('/blog', [App\Http\Controllers\Customer\frontController::class, 'blog']);
+Route::get('/blogs', [App\Http\Controllers\Customer\frontController::class, 'blogs'])->name('blog');
 Route::get('/blog-detail/{slug}', [App\Http\Controllers\Customer\frontController::class, 'blog_detail']);
 Route::get('/about', [App\Http\Controllers\Customer\frontController::class, 'about']);
 Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'privacy']);
@@ -88,6 +88,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{id?}', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/chat/messages/{userId}', [App\Http\Controllers\ChatController::class, 'getMessages']);
     Route::post('/chat/messages', [App\Http\Controllers\ChatController::class, 'sendMessage']);
+    Route::post('/chat/seen/{userId}', [App\Http\Controllers\ChatController::class, 'markAsSeen'])->name('chat.markAsSeen');
+    Route::get('/chat/unseen-count/{userId}', [App\Http\Controllers\ChatController::class, 'unseen_count'])->name('chat.unseenCount');
 });
 
 require __DIR__.'/auth.php';

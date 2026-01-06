@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'profession' => ['required', 'string', 'max:255'],
+            'profession' => ['nullable', 'string', 'max:255'],
             'organization' => ['nullable', 'string', 'max:255'],
             'bio' => ['required', 'string', 'max:255'],
             'referral_source' => ['nullable', 'string', 'max:255'],

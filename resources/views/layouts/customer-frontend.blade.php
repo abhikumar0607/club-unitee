@@ -39,8 +39,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('blog') }}"
-                       class="nav-link nav-item-uni {{ request()->is('blog') || request()->is('blog-detail*') ? 'active' : '' }}">
+                    <a href="{{ url('blogs') }}"
+                       class="nav-link nav-item-uni {{ request()->is('blogs') || request()->is('blog-detail*') ? 'active' : '' }}">
                         Blog
                     </a>
                 </li>

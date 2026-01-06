@@ -26,7 +26,7 @@ class BlogCategoryRepository
 
     //Function for all categories
     public function getAllCategories(){
-        return BlogCategory::OrderBy('ID', 'DESC')->where('user_id', auth()->id())->whereIn('status', ['Published','Completed'])->paginate(10);
+        return BlogCategory::OrderBy('ID', 'DESC')->where('user_id', auth()->id())->paginate(10);
     }
 
     //Function for edit category

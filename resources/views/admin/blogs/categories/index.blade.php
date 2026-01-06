@@ -53,7 +53,7 @@
                                     <select name="status" class="form-select" required>
                                         <option value="" disabled selected>Select Status</option>
                                         <option value="Published">Published</option>
-                                        <option value="Completed">Completed</option>
+                                        <!--<option value="Completed">Completed</option>-->
                                         <option value="Draft">Draft</option>
                                     </select>
                                 </div>

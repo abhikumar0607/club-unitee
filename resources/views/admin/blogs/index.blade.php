@@ -42,7 +42,7 @@
                             <option value="" disabled selected>Select Status</option>
                             <option value="Published" {{ request('status') == 'Published' ? 'selected' : '' }}>Published</option>
                             <option value="Draft" {{ request('status') == 'Draft' ? 'selected' : '' }}>Draft</option>
-                            <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
+                            <!--<option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>-->
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -77,7 +77,17 @@
                                 <!--Event Title-->
                                 <div class="mb-3">
                                     <label class="fw-semibold">Blog Title *</label>
-                                    <input type="text" name="title" class="form-control" required>
+                                    <input type="text"
+                                        name="title"
+                                        id="blogTitle"
+                                        class="form-control"
+                                        required>
+                                    <div class="d-flex justify-content-between mt-1">
+                                        <small id="wordCount" class="text-muted">0 / 20 words</small>
+                                        <small id="wordError" class="text-danger d-none">
+                                            Maximum 20 words allowed
+                                        </small>
+                                    </div>
                                 </div>
                                 <!--Event Type-->
                                 <div class="mb-3">
@@ -139,7 +149,7 @@
                                     <select name="status" class="form-select" required>
                                         <option value="" disabled selected>Select Status</option>
                                         <option value="Published">Published</option>
-                                        <option value="Completed">Completed</option>
+                                        <!--<option value="Completed">Completed</option>-->
                                         <option value="Draft">Draft</option>
                                     </select>
                                 </div>

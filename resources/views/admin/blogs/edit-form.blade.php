@@ -90,9 +90,9 @@
     <div class="mb-3">
         <label class="fw-semibold">Status *</label>
         <select name="status" class="form-select" required>
-            <option value ="" disabled selected></option>
+            <option value ="" disabled selected>Select</option>
             <option value="Published" {{ $blogs->status == 'Published' ? 'selected' : '' }}>Published</option>
-            <option value="Completed" {{ $blogs->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+            <!--<option value="Completed" {{ $blogs->status == 'Completed' ? 'selected' : '' }}>Completed</option> -->
             <option value="Draft" {{ $blogs->status == 'Draft' ? 'selected' : '' }}>Draft</option>
         </select>
     </div>

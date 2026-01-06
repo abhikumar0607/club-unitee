@@ -17,7 +17,7 @@
     </nav>
 
     <!-- HEADER -->
-    <section class="page-header text-center py-3">
+    <!-- <section class="page-header text-center py-3">
         <div class="container">
             <div class="main-back-btn-11">
                 <a href="{{ url()->previous() }}" class="btn btn-secondary back-button">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-    </section>
+    </section> -->
     <!-- PROFILE CONTENT -->
     <section class="pb-5">
         <div class="container">
