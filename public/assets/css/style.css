@@ -2469,3 +2469,18 @@ span.published-btn {
   color: #dc3545 !important;       
   font-weight: 600 !important;
 }
+/* ===== UNREAD BADGE ===== */
+.unread-badge-new {
+    position: absolute;
+    top: -24px;
+    right: -6px;
+    background: #ef4444;
+    color: #fff;
+    min-width: 24px;
+    height: 24px;
+    font-size: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
