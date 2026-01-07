@@ -103,6 +103,13 @@
                 <!--EVENT CARD 1-->
                 <div class="col-md-4">
                     <div class="card card-uni-11 event-card h-100 d-flex flex-column">
+                        @auth
+                        @if($event->rsvps->where('user_id', auth()->id())->first())
+                            <div class="going-ribbon-01">
+                                 You're Going
+                            </div>
+                        @endif
+                        @endauth
                         @if($event->image)
                         <a href="{{ url('event-detail/'.$event['slug']) }}">
                             <img src="{{ asset('assets/admin/uploads/events/' . $event->image) }}" class="event-img-sm mb-3" alt="{{ $event->title }}">

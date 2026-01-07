@@ -61,9 +61,11 @@
                     <div class="card card-uni p-3 h-100">
                         <div class="event-img mb-3 position-relative">
 
-                            <div class="going-ribbon">
-                                You're Going
-                            </div>
+                            @if($event->rsvps->where('user_id', auth()->id())->first())
+                                <div class="going-ribbon-01">
+                                    You're Going
+                                </div>
+                            @endif
                             
                             <a href="{{ url('event-detail/' . $event->slug) }}" class="stretched-link"></a>
                             @if ($event->image)
@@ -103,8 +105,7 @@
                             </a>
                             @if($event->rsvps->count())
                             <button class="btn btn-success btn-sm btn-gradient"
-                                onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">You're Going
-                                (Cancel)
+                                onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">Cancel
                             </button>
                             @else
                             <button class="btn btn-gradient"

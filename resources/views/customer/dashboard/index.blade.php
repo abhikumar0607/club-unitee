@@ -65,6 +65,11 @@
                 @foreach($upcomingEvents as $event)
                 <div class="col-md-4">
                     <div class="card card-uni p-3">
+                         @if($event->rsvps->where('user_id', auth()->id())->first())
+                            <div class="going-ribbon-01">
+                                 You're Going
+                            </div>
+                        @endif
                         @if($event->image)
                             <a href="{{ url('event-detail/' . $event->slug) }}">
                                 <img src="{{ asset('assets/admin/uploads/events/' . $event->image) }}" class="event-img-sm mb-3" alt="{{ $event->title }}">
@@ -97,7 +102,7 @@
                             </a>
                             @if($event->rsvps->count())
                                 <button class="btn btn-success btn-sm btn-gradient"
-                                    onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">You're Going (Cancel)
+                                    onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">Cancel
                                 </button>
                             @else
                                 <button class="btn btn-gradient"
