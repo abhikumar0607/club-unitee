@@ -62,7 +62,7 @@
                         <div class="event-img mb-3 position-relative">
 
                             @if($event->rsvps->where('user_id', auth()->id())->first())
-                                <div class="going-ribbon-01">
+                                <div class="going-ribbon-03">
                                     You're Going
                                 </div>
                             @endif
