@@ -2414,8 +2414,8 @@ img.event-images {
   /* background: #f8f9fa;
   border: 1px dashed #dc3545; */
 }
-.create-btn{
-	margin: 0px 0px 0px 870px;
+.main-create-btn {
+    text-align: end;
 }
 
 section.main-event-detail .card.card-uni .event-img-sm {

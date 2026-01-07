@@ -20,9 +20,11 @@
       @endif
       <h1 class="page-title">Events Management</h1>
       <p class="page-subtitle">Create, edit, manage and track club events.</p>
+      <div class="main-create-btn">
       <a href="#" class="btn btn-gradient px-4 create-btn" data-bs-toggle="modal" data-bs-target="#createEventModal">
          Create New Event
       </a>
+      </div>   
    </div>
 </section>
 <!--FILTER SECTION-->
