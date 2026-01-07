@@ -25,7 +25,6 @@ class frontController extends Controller
     public function events(){
         //Get events
         $all_events = Event::with('rsvps')->whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published'])->paginate(6);
-        //echo "<pre>"; print_r($all_events->toArray());exit;
         return view('customer.events', compact('all_events'));
     }
 
@@ -61,7 +60,7 @@ class frontController extends Controller
         $blogs = Blog::whereNotIn('slug', [$slug])->whereIn('status', ['Published'])
                 ->with('category_details')
                 ->latest()
-                ->take(2)
+                ->take(3)
                 ->get();
 
         //echo "<pre>"; print_r($blog->toArray());exit;

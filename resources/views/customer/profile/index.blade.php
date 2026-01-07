@@ -55,7 +55,7 @@
                                 <a href="{{ route('customer.dashboard.profile.edit') }}" class="btn btn-gradient px-4">
                                     Edit Profile
                                 </a>
-                                <a href="{{ route('customer.dashboard.profile.delete.account') }}" class="btn btn-outline-uni px-4">Delete Account</a>
+                                {{-- <a href="{{ route('customer.dashboard.profile.delete.account') }}" class="btn btn-outline-uni px-4">Delete Account</a> --}}
                             </div>
                         </div>
                     </div>

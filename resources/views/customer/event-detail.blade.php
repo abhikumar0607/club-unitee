@@ -9,6 +9,18 @@
 
                  <!-- EVENT IMAGE -->
                  <div class="event-img-large mb-4">
+                     @auth
+                         @php
+                             $userRsvp = $all_events->rsvps->where('user_id', auth()->id())->first();
+                         @endphp
+
+                         @if ($userRsvp)
+                             <div class="going-ribbon-01">
+                                 You're Going
+                             </div>
+                         @endif
+                     @endauth
+
                      @if ($all_events->image)
                          <img src="{{ asset('assets/admin/uploads/events/' . $all_events->image) }}" class="event-img-sm mb-3"
                              alt="{{ $all_events->title }}">
@@ -60,29 +72,14 @@
 
                      <div class="col-md-4">
                          <p class="small text-muted fw-semibold mb-1">Time</p>
-                         <p class="text-muted">{{ \Carbon\Carbon::parse($all_events->event_time)->format('g:i A') }}</p>
+                         <p class="text-muted">{{ \Carbon\Carbon::parse($all_events->event_time)->format('g:i A') }}
+                         </p>
                      </div>
 
                      <div class="col-md-4">
                          <p class="small text-muted fw-semibold mb-1">Location</p>
                          <p class="text-muted">{{ $all_events->location }}</p>
                      </div>
-
-                     <!-- <div class="col-md-4">
-                <p class="small text-muted fw-semibold mb-1">Skill Level</p>
-                <p class="text-muted">Beginner</p>
-              </div>
-
-              <div class="col-md-4">
-                <p class="small text-muted fw-semibold mb-1">Event Type</p>
-                <p class="text-muted">Golf Outing</p>
-              </div>
-
-              <div class="col-md-4">
-                <p class="small text-muted fw-semibold mb-1">Capacity</p>
-                <p class="text-muted">12 / 20 spots filled</p>
-              </div> -->
-
                  </div>
 
                  <!-- <hr class="mt-4 mb-4"> -->
@@ -118,31 +115,10 @@
                      @endauth
 
                  </div>
-
-                 <!-- Add to Calendar -->
-                 <!-- <div class="mt-4">
-              <a href="#" class="btn btn-outline-uni px-4">Add to Calendar</a>
-            </div>
-
-            <hr class="mt-4"> -->
-
-                 <!-- ATTENDEES -->
-                 <!-- <h4 class="fw-bold section-title-uni mt-3 mb-3">Attending Members</h4>
-
-            <div class="d-flex flex-wrap gap-4"> -->
-
-                 <!-- Profile Circle -->
-                 <!-- <div class="attendee"></div>
-              <div class="attendee"></div>
-              <div class="attendee"></div>
-              <div class="attendee"></div>
-
-            </div> -->
-
              </div>
 
          </div>
      </section>
      <!--RSVP Modal-->
-<x-rsvp-event-modal />
+     <x-rsvp-event-modal />
  @endsection
