@@ -92,6 +92,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/chat/messages', [App\Http\Controllers\ChatController::class, 'sendMessage']);
     Route::post('/chat/seen/{userId}', [App\Http\Controllers\ChatController::class, 'markAsSeen'])->name('chat.markAsSeen');
     Route::get('/chat/unseen-count/{userId}', [App\Http\Controllers\ChatController::class, 'unseen_count'])->name('chat.unseenCount');
+
+    //chat
+    Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index'])->name('chat.index');
 });
 
 require __DIR__.'/auth.php';

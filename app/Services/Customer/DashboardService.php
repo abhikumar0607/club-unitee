@@ -36,6 +36,12 @@ class DashboardService
 
     //Function for upcoming events
     public function upcomingEvents() {
-        return $this->repo->upcomingEvents();
+       $query = $this->repo->upcomingEvents();
+
+        $query->with(['rsvps' => function($q){
+            $q->where('user_id', auth()->user()->id);
+        }]);
+        
+        return $query->paginate(6);
     }
 }

@@ -47,6 +47,6 @@ class DashboardRepository
     public function upcomingEvents() {
         return Event::whereDate('date', '>=', now())
         ->orderBy('date', 'asc')
-        ->paginate(6);
+        ->whereIn('status', ['Published']);
     }
 }

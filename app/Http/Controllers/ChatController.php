@@ -12,6 +12,14 @@ use App\Events\MessageSeen;
 
 class ChatController extends Controller
 {
+
+    //function for chat file
+    public function index()
+    {
+        return view('chat');
+    }
+
+
     public function getMessages($userId)
     {
         $authUserId = auth()->id();
