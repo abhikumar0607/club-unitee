@@ -97,7 +97,7 @@
                          @endphp
 
                          @if ($isAdmin)
-                             <a href="{{ url('admin/events/rsvp/' . $event->id) }}"
+                             <a href="{{ url('admin/events/rsvp/' . $all_events->id) }}"
                                  class="btn btn-gradient text-decoration-none">
                                  <strong>{{ $all_events->rsvps->count() }}</strong> RSVP’s
                              </a>

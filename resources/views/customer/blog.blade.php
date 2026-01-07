@@ -7,11 +7,13 @@
                 <h2 class="section-label mb-3 text-black">Featured</h2>
                 <div class="featured-card">
                     @if ($featuredBlog->image)
-                        <img src="{{ asset('assets/admin/uploads/blogs/' . $featuredBlog->image) }}" class="featured-img"
-                            alt="Featured">
-                    @else
-                        No image found
+                        <a href="{{ url('blog-detail/' . $featuredBlog->slug) }}">
+                            <img src="{{ asset('assets/admin/uploads/blogs/' . $featuredBlog->image) }}" class="featured-img"
+                                alt="Featured">
+                        @else
+                            No image found
                     @endif
+                    </a>
                     <div class="featured-content">
                         <h1 class="featured-title">{{ $featuredBlog->title }}</h1>
                         <p class="featured-desc">{!! $featuredBlog->short_description !!}</p>
