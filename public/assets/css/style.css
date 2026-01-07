@@ -118,10 +118,11 @@ h4.text-uni {
 
 /* Profile avatars */
 .avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: var(--r-full);
-  object-fit: cover;
+    width: 70px;
+    height: 70px;
+    border-radius: var(--r-full);
+    object-fit: cover;
+    margin: 0 auto;
 }
 
 /* Navigation */
@@ -635,8 +636,8 @@ a.nav-link:hover {
 
 
 a.site-brand img {
-  width: 140px;
-  height: 40px;
+    /* width: 200px; */
+    height: 50px;
 }
 
 a.site-brand {
@@ -1048,8 +1049,8 @@ footer.back-color-footer {
 }
 
 .footer-logo {
-  width: 165px;
-  height: 57px;
+    /* width: 165px; */
+    height: 50px;
 }
 
 .footer-text {
@@ -1441,10 +1442,11 @@ section.main-event-detail .card.card-uni {
 }
 
 .featured-content {
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
-  right: 30px;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    width: fit-content;
 }
 
 .featured-title {
@@ -2223,13 +2225,16 @@ a.learn-btn-12:hover {
 
 .nav-tabs .nav-link {
   cursor: pointer;
-}
+} 
 
 /* tiny visual polish for the example */
 .card-uni {
   border: 1px solid #e6e6e6;
   border-radius: .5rem;
-  padding: 3.5rem 2.5rem;
+  padding: 2.5rem;
+}
+.input-bio {
+	border-radius: 16px;
 }
 .post-card.card-uni {
     height: fit-content !important;
@@ -2483,4 +2488,22 @@ span.published-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+button.inner-event-btn {
+    width: fit-content;
+    padding: 8px 30px;
+}
+section.main-inner-event-btn {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+a.readmore-btn {
+    color: #000 !important;
+    text-decoration: none;
+    border: 2px solid #d1fae5;
+    padding: 10px 17px;
+    border-radius: 9px;
 }

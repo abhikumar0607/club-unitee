@@ -8,7 +8,7 @@
         </nav>
 
         <!-- HEADER -->
-        <section class="page-header text-center py-5">
+        <section class="page-header text-center pt-5">
             <div class="container">
                  @if(session('success'))
                     <div class="alert alert-success">
