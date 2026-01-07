@@ -66,7 +66,7 @@
                 <div class="col-md-4">
                     <div class="card card-uni p-3">
                          @if($event->rsvps->where('user_id', auth()->id())->first())
-                            <div class="going-ribbon-01">
+                            <div class="going-ribbon-02">
                                  You're Going
                             </div>
                         @endif

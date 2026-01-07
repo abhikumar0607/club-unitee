@@ -105,7 +105,7 @@
                     <div class="card card-uni-11 event-card h-100 d-flex flex-column">
                         @auth
                         @if($event->rsvps->where('user_id', auth()->id())->first())
-                            <div class="going-ribbon-01">
+                            <div class="going-ribbon-03">
                                  You're Going
                             </div>
                         @endif
