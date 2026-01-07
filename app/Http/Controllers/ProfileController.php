@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use DB;
 
 class ProfileController extends Controller
 {
@@ -29,13 +30,13 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        // if ($request->user()->isDirty('email')) {
+        //     $request->user()->email_verified_at = null;
+        // }
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'profile Updated Successfully');
     }
 
     /**
@@ -51,6 +52,14 @@ class ProfileController extends Controller
 
         Auth::logout();
 
+        \DB::table('golf_profiles')->where('user_id', $user->id)->delete();
+        \DB::table('user_availability')->where('user_id', $user->id)->delete();
+        \DB::table('user_matching_preffrence')->where('user_id', $user->id)->delete();
+        \DB::table('event_rsvps')->where('user_id', $user->id)->delete();
+        \DB::table('events')->where('user_id', $user->id)->delete();
+        \DB::table('connection_requests')->where('sender_id', $user->id)->orWhere('receiver_id', $user->id)->delete();
+        \DB::table('blogs')->where('user_id', $user->id)->delete();
+        \DB::table('blog_categories')->where('user_id', $user->id)->delete();
         $user->delete();
 
         $request->session()->invalidate();
