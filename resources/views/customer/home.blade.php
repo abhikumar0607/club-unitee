@@ -209,7 +209,7 @@
                     </p>
 
                     @if(str_word_count($customer->bio) > 30)
-                    <a href="javascript:void(0)" class="text-primary small" onclick="
+                    <a href="javascript:void(0)" class="text-primary small readmore-btn btn-uni1" onclick="
                         document.getElementById('short-{{ $customer->id }}').classList.toggle('d-none');
                         document.getElementById('full-{{ $customer->id }}').classList.toggle('d-none');
                         this.innerText = this.innerText === 'Read more' ? 'Show less' : 'Read more';

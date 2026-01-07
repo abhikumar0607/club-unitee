@@ -2,6 +2,7 @@
 <html lang="en">
 
 <x-meta-tags />
+<link rel="icon" type="image/png" href="{{ asset('assets/admin/images/favicon.svg') }}" />
 
 <body style="background: var(--gradient-background)">
 

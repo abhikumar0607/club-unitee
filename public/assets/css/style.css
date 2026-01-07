@@ -118,10 +118,11 @@ h4.text-uni {
 
 /* Profile avatars */
 .avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: var(--r-full);
-  object-fit: cover;
+    width: 70px;
+    height: 70px;
+    border-radius: var(--r-full);
+    object-fit: cover;
+    margin: 0 auto;
 }
 
 /* Navigation */
@@ -635,8 +636,8 @@ a.nav-link:hover {
 
 
 a.site-brand img {
-  width: 140px;
-  height: 40px;
+    /* width: 200px; */
+    height: 50px;
 }
 
 a.site-brand {
@@ -1048,8 +1049,8 @@ footer.back-color-footer {
 }
 
 .footer-logo {
-  width: 165px;
-  height: 57px;
+    /* width: 165px; */
+    height: 50px;
 }
 
 .footer-text {
@@ -2497,4 +2498,12 @@ section.main-inner-event-btn {
     display: flex;
     gap: 30px;
     align-items: center;
+}
+
+a.readmore-btn {
+    color: #000 !important;
+    text-decoration: none;
+    border: 2px solid #d1fae5;
+    padding: 10px 17px;
+    border-radius: 9px;
 }

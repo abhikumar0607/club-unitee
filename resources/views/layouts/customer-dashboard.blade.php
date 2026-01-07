@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <x-meta-tags />
+<link rel="icon" type="image/png" href="{{ asset('assets/admin/images/favicon.svg') }}" />
 <body>
     <!--SIDEBAR-->
     <div class="sidebar-uni">
