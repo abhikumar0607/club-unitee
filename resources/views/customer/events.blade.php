@@ -153,23 +153,24 @@
                                     $isAdmin  = auth()->user()->role === 'admin'; 
                                     $userRsvp = $event->rsvps->where('user_id', auth()->id())->first();
                                 @endphp
+
                                 @if($isAdmin)
                                     <a href="{{ url('admin/events/rsvp/'.$event->id) }}"
                                         class="btn btn-gradient text-decoration-none">
                                         <strong>{{ $event->rsvps->count() }}</strong> RSVP’s
                                     </a>
                                 @else
-                                @if($userRsvp)
-                                    <button class="btn btn-success btn-sm btn-gradient"
-                                        onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">You're Going (Cancel)
-                                    </button>
-                                    @else
-                                    <button class="btn btn-gradient"
-                                        onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">RSVP
-                                    </button>
+                                    @if($userRsvp)
+                                        <button class="btn btn-success btn-sm btn-gradient"
+                                            onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">Cancel
+                                        </button>
+                                        @else
+                                        <button class="btn btn-gradient"
+                                            onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">RSVP
+                                        </button>
+                                    @endif
                                 @endif
-                                @endif
-                                @else
+                            @else
                                 <a href="{{ route('login') }}" class="btn btn-gradient">RSVP</a>
                             @endauth
                         </div>

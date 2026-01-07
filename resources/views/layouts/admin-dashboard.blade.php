@@ -28,6 +28,9 @@
                 <li>
                     <a href="{{ url('admin/blogs') }}" class="{{ request()->is('admin/blogs') ? 'active' : '' }}">Blogs</a>
                 </li>
+                <li>
+                    <a href="{{ url('settings') }}" class="{{ request()->is('settings') ? 'active' : '' }}">My Settings</a>
+                </li>
                 <!--<li>
                     <a href="{{ url('admin/analytics') }}" class="{{ request()->is('admin/analytics') ? 'active' : '' }}">Analytics</a>
                 </li> -->
