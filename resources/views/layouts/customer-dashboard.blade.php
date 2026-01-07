@@ -48,6 +48,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('chat') }}" class="{{ request()->is('chat') ? 'active' : '' }}">
+                    Chat
+                </a>
+            </li>
+            <li>
                 <a href="{{ url('/settings') }}" class="{{ request()->is('settings') ? 'active' : '' }}">
                     My Settings
                 </a>
