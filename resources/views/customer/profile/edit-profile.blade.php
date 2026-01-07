@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Profession*</label>
+                            <label class="form-label fw-semibold">Profession</label>
                             <input type="text" name="profession" class="form-control input-uni "
                                 value="{{ old('profession', $user->profession) }}">
                             @error('profession')
@@ -108,6 +108,9 @@
                     <div class="mb-4">
                         <label class="form-label fw-semibold">Bio*</label>
                         <textarea name="bio" rows="4" class="form-control input-uni input-bio">{{ old('bio', $user->bio) }}</textarea>
+                        @error('bio')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- SOCIAL LINKS -->
@@ -185,7 +188,7 @@
                     </div>
 
                     <!-- AVAILABILITY -->
-                    <h4 class="fw-bold section-title-uni mb-3">Availability</h4>
+                    <h4 class="fw-bold section-title-uni mb-3">Availability*</h4>
                     <div class="row mb-4">
                         @foreach (['Weekday Mornings', 'Weekday Afternoons', 'Weekends', 'No Preference'] as $opt)
                             <div class="col-md-4 form-check">
@@ -194,6 +197,9 @@
                                     {{ old('availability', $user->useravailability->availability ?? '') == $opt ? 'checked' : '' }}>
                                 <label class="form-check-label">{{ $opt }}</label>
                             </div>
+                            @error('availability')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         @endforeach
                     </div>
 
@@ -211,7 +217,7 @@
                     </div>
 
                     <!-- Preferred Connection -->
-                    <h4 class="fw-bold section-title-uni mb-3">Preferred Connection</h4>
+                    <h4 class="fw-bold section-title-uni mb-3">Preferred Connection*</h4>
                        <div class="row mb-4">
                         @php
                             $conn = ['Text / Cell', 'Email', 'LinkedIn', 'Instagram'];
@@ -259,6 +265,9 @@
                                     <label class="form-check-label">{{ $opt }}</label>
                                 </div>
                             @endforeach
+                            @error('travel_radius')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Handicap Preference -->
