@@ -6,8 +6,10 @@
         <h2 class="section-label mb-3 text-black">Featured</h2>
         <div class="featured-card">
             @if($featuredBlog->image)
+            <a href="{{ url('blog-detail/'.$featuredBlog->slug) }}">
             <img src="{{ asset('assets/admin/uploads/blogs/'.$featuredBlog->image) }}"
                 class="featured-img" alt="Featured">
+               </a>
             @else
             No image found
             @endif
@@ -81,7 +83,10 @@
                            </a>
                         </h5>
                         <p class="post-desc">
-                           {!! $blog['short_description'] !!}
+                           <!-- {!! $blog['short_description'] !!} -->
+
+                           {!! \Illuminate\Support\Str::words(strip_tags($blog['short_description']), 20) !!}
+
                         </p>
                         <hr>
                         <div class="d-flex align-items-center gap-2 mt-3">

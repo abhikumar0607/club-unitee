@@ -107,7 +107,7 @@
                     <h4 class="fw-bold section-title-uni mb-3">About You</h4>
                     <div class="mb-4">
                         <label class="form-label fw-semibold">Bio*</label>
-                        <textarea name="bio" rows="4" class="form-control input-uni">{{ old('bio', $user->bio) }}</textarea>
+                        <textarea name="bio" rows="4" class="form-control input-uni input-bio">{{ old('bio', $user->bio) }}</textarea>
                     </div>
 
                     <!-- SOCIAL LINKS -->
