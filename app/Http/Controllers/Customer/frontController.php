@@ -39,7 +39,7 @@ class frontController extends Controller
     //Function for blog page
     public function blogs(Request $request){
         //All features
-        $featuredBlog = Blog::with('category_details')->latest()->first();
+        $featuredBlog = Blog::whereIn('status', ['Published'])->with('category_details')->latest()->first();
         //Get blogs
         $blogs = Blog::with('category_details')->whereIn('status', ['Published'])
             ->when($request->category, function ($q) use ($request) {
@@ -51,7 +51,7 @@ class frontController extends Controller
             ->paginate(6)
             ->appends($request->query());
         //Categories
-        $categories = BlogCategory::OrderBy('ID', 'DESC')->get();
+        $categories = BlogCategory::OrderBy('ID', 'DESC')->whereIn('status', ['Published'])->get();
         return view('customer.blog', compact('featuredBlog','categories','blogs'));
     }
 
