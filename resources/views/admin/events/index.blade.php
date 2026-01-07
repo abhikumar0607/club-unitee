@@ -188,7 +188,7 @@
                            <span class="badge bg-warning text-dark draft-btn">Draft</span>
                         @endif
                      </td>
-                     <td>
+                     <td class="d-flex gap-2">
                         {{-- <a href="#" class="btn btn-outline-uni btn-sm">View</a> --}}
                         <a href="javascript:void(0);" class="editEventBtn btn btn-gradient btn-sm"
                            data-id="{{ $event->id }}">Edit</a>

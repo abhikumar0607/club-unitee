@@ -85,7 +85,7 @@
                  <!-- <hr class="mt-4 mb-4"> -->
 
                  <!-- RSVP BUTTONS -->
-                 <div class="d-flex gap-3">
+                 <div class="d-flex gap-3 justify-content-center">
 
                      @auth
                          @php
