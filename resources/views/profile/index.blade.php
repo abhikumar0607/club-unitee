@@ -2,13 +2,9 @@
 ? 'layouts.customer-dashboard'
 : 'layouts.admin-dashboard'
 )
-
-
-
 @section('content')
 <!-- MAIN CONTENT -->
 <div class="main-content">
-
     <!-- TOP NAVBAR -->
     <nav class="top-navbar d-flex justify-content-between align-items-center px-4 shadow-sm">
         <h4 class="m-0 fw-bold text-uni">{{ $user->name }} Profile</h4>
@@ -16,17 +12,6 @@
         <x-customer-dashboard-nav-profile />
     </nav>
 
-    <!-- HEADER -->
-    <!-- <section class="page-header text-center py-3">
-        <div class="container">
-            <div class="main-back-btn-11">
-                <a href="{{ url()->previous() }}" class="btn btn-secondary back-button">
-                    <i class="fa-solid fa-arrow-left"></i> Back
-                </a>
-            </div>
-        </div>
-
-    </section> -->
     <!-- PROFILE CONTENT -->
     <section class="pb-5">
         <div class="container">

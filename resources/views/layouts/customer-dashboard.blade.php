@@ -47,6 +47,11 @@
                     My Profile
                 </a>
             </li>
+            <li>
+                <a href="{{ url('/settings') }}" class="{{ request()->is('settings') ? 'active' : '' }}">
+                    My Settings
+                </a>
+            </li>
         </ul>
     </div>
     @yield('content')
