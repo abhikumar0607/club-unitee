@@ -51,7 +51,7 @@
                 <a href="{{ url('chat') }}"
                 class="chat-nav-link {{ request()->is('chat') ? 'active' : '' }}">
                     Chat
-                    <x-chat-unread-count />
+                    {{-- <x-chat-unread-count /> --}}
                 </a>
             </li>
 
