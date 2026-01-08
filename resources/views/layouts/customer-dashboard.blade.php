@@ -47,11 +47,14 @@
                     My Profile
                 </a>
             </li>
-            {{-- <li>
-                <a href="{{ url('chat') }}" class="{{ request()->is('chat') ? 'active' : '' }}">
+            <li class="chat-nav-item">
+                <a href="{{ url('chat') }}"
+                class="chat-nav-link {{ request()->is('chat') ? 'active' : '' }}">
                     Chat
+                    <x-chat-unread-count />
                 </a>
-            </li> --}}
+            </li>
+
             <li>
                 <a href="{{ url('/settings') }}" class="{{ request()->is('settings') ? 'active' : '' }}">
                     My Settings
