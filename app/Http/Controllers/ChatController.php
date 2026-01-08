@@ -9,14 +9,21 @@ use Illuminate\Support\Facades\Broadcast;
 use Pusher\Pusher;
 use App\Events\MessageSent;
 use App\Events\MessageSeen;
+use App\Models\User;
+use App\Services\Customer\MemberService;
 
 class ChatController extends Controller
 {
-
-    //function for chat file
-    public function index()
+    protected $memberservice;
+    public function __construct(MemberService $memberservice)
     {
-        return view('chat');
+        $this->memberservice = $memberservice;
+    }
+    //function for chat file
+    public function index(Request $request)
+    {
+        $members = $this->memberservice->getAllMembers($request);
+        return view('chat',compact('members'));
     }
 
 
@@ -73,6 +80,16 @@ class ChatController extends Controller
         $auth_id = auth()->id();
         $count = Message::where('sender_id', $userId)
         ->where('receiver_id', auth()->id())
+        ->where('is_seen', false)
+        ->count();
+         return response()->json([
+            'count' => $count
+        ]);
+    }
+
+    public function unread_count(){
+        $auth_id = auth()->id();
+        $count = Message::where('receiver_id', $auth_id)
         ->where('is_seen', false)
         ->count();
          return response()->json([
