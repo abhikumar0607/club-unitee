@@ -5,7 +5,7 @@
 
 <body style="background: var(--gradient-background);">
     <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 nacbarr12">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-1 nacbarr12">
     <div class="container">
 
         <!-- LOGO -->

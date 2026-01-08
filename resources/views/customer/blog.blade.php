@@ -1,7 +1,7 @@
 @extends('layouts.customer-frontend')
 @section('content')
     <!--FEATURED BLOG-->
-    <section class="blog-hero container my-5">
+    <!-- <section class="blog-hero container my-5">
         <div class="hero-wrapper p-4 p-md-5">
             @if ($featuredBlog)
                 <h2 class="section-label mb-3 text-black">Featured</h2>
@@ -39,7 +39,7 @@
                 <h2 class="section-label mb-3 text-black">No Featured Blog Found</h2>
             @endif
         </div>
-    </section>
+    </section> -->
     <!-- ================= BLOG TABS ================= -->
     <section class="blog-tabs-section container my-5">
         <div class="tabs-wrapper p-4 p-md-5">
@@ -87,12 +87,12 @@
                                         <h5 class="post-title">
                                             <a href="{{ url('blog-detail/' . $blog['slug']) }}"
                                                 class="text-decoration-none text-reset">
-                                                {{ $blog['title'] }}
+                                                 {{ \Illuminate\Support\Str::words(strip_tags($blog->title), 7) }}
                                             </a>
                                         </h5>
 
                                         <p class="post-desc">
-                                            {!! $blog['short_description'] !!}
+                                            {!! \Illuminate\Support\Str::words(strip_tags($blog->short_description), 15) !!}
                                         </p>
 
                                         <hr>

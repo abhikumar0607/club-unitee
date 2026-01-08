@@ -195,7 +195,10 @@
                     <h5>{{ $customer->name }}</h5>
 
                     <p class="text-muted">
-                        {{ $customer->profession }} ({{ $customer->organization }})
+                        {{ $customer->profession }} 
+                        @if($customer->organization)
+                            ({{ $customer->organization }})
+                        @endif
                     </p>
 
                     <p class="small">
@@ -209,13 +212,13 @@
                     </p>
 
                     @if(str_word_count($customer->bio) > 30)
-                    <a href="javascript:void(0)" class="text-primary small readmore-btn btn-uni1" onclick="
+                    <!-- <a href="javascript:void(0)" class="text-primary small readmore-btn btn-uni1" onclick="
                         document.getElementById('short-{{ $customer->id }}').classList.toggle('d-none');
                         document.getElementById('full-{{ $customer->id }}').classList.toggle('d-none');
                         this.innerText = this.innerText === 'Read more' ? 'Show less' : 'Read more';
                    ">
                         Read more
-                    </a>
+                    </a> -->
                     @endif
 
                 </div>

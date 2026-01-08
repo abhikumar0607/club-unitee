@@ -152,7 +152,7 @@
                             {{ \Illuminate\Support\Str::words(strip_tags($event->description), 20) }}
                         </p>
                         <div class="main-view-btn">
-                            <a href="{{ url('event-detail', $event->slug) }}" class="btn btn-outline-uni btn-sm px-3">
+                            <a href="{{ url('event-detail', $event->slug) }}" class="btn btn-outline-uni btn-sm px-3 mainevent-view-btn">
                                 View details
                             </a>
                             @auth

@@ -85,7 +85,7 @@
                  <!-- <hr class="mt-4 mb-4"> -->
 
                  <!-- RSVP BUTTONS -->
-                 <div class="d-flex gap-3 justify-content-center">
+                 <div class="d-flex gap-3 justify-content-center main-event-detail-rsvp-btns">
 
                      @auth
                          @php
