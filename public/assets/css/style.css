@@ -2619,3 +2619,17 @@ a.mainevent-view-btn {
     height: 50px;
     object-fit: cover;
 }
+span.receive-counter {
+    position: relative;
+    bottom: 23px;
+    right: 17px;
+    padding: 8px 11px 6px 9px;
+}
+
+.btn-uni2 {
+  color: #374151;
+  border: 2px solid #d1fae5;
+  border-radius: 99px;
+  padding: 10px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
