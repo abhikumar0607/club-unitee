@@ -9,14 +9,14 @@
             </div>
        </section>-->
     <section class="py-4 text-center header-gradient">
-        <div class="container">
+        <!-- <div class="container">
             <h1 class="fw-bold mb-1" style="color:var(--gray-800);">
                 Join Club UniTee
             </h1>
             <p class="lead mb-0" style="color:var(--gray-600);">
                 Create your account to become part of our exclusive community.
             </p>
-        </div>
+        </div> -->
     </section>
     <!--APPLICATION FORM-->
     <section class="pb-5">

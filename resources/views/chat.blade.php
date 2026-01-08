@@ -8,7 +8,7 @@
 <style>
 .chat-wrapper{height:calc(100vh - 120px);padding:15px}
 .chat-page{display:flex;height:100%;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.1)}
-.chat-users{width:320px;border-right:1px solid #e5e7eb;background:#f9fafb;display:flex;flex-direction:column}
+.chat-users{width:.chat-msg.chat-msg20%;border-right:1px solid #e5e7eb;background:#f9fafb;display:flex;flex-direction:column}
 .chat-users-header{padding:16px;font-weight:700;border-bottom:1px solid #e5e7eb}
 .chat-search{padding:10px 14px;border-bottom:1px solid #e5e7eb}
 .chat-search input{width:100%;padding:8px 12px;border-radius:8px;border:1px solid #d1d5db}
@@ -20,15 +20,15 @@
 .chat-user-last{font-size:12px;color:#6b7280}
 .unread-badge{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:#ef4444;color:#fff;min-width:18px;height:18px;font-size:11px;border-radius:999px;display:flex;align-items:center;justify-content:center}
 
-.chat-box{flex:1;display:flex;flex-direction:column;background:#ece5dd}
+.chat-box{flex:1;display:flex;flex-direction:column;background:#ece5dd;width: 80%;}
 .chat-header{padding:14px 16px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;gap:12px}
 .chat-header img{width:42px;height:42px;border-radius:50%;object-fit:cover}
 .chat-header-name{font-weight:700}
 
 .chat-messages{flex:1;padding:20px;overflow-y:auto}
-.chat-msg{max-width:65%;padding:8px 12px;margin-bottom:10px;border-radius:10px;font-size:14px}
-.chat-msg.sent{background:#dcf8c6;margin-left:auto}
-.chat-msg.received{background:#fff}
+.chat-msg{max-width:640px;padding:8px 12px;margin-bottom:10px;border-radius:10px;font-size:14px}
+.chat-msg.sent{background:#dcf8c6;margin-left:auto;width: fit-content;}
+.chat-msg.received{background:#fff;width: fit-content;}
 .chat-time{font-size:10px;text-align:right;opacity:.6}
 .msg-status{margin-left:4px;font-size:12px}
 .msg-status.seen{color:#0ea5e9}
