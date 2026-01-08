@@ -7,7 +7,7 @@
 <body style="background: var(--gradient-background)">
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-1">
   <div class="container justify-content-center">
     <a class="navbar-brand site-brand" href="/">
          <x-application-logo />

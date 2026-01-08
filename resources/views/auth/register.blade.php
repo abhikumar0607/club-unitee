@@ -9,18 +9,18 @@
             </div>
        </section>-->
     <section class="py-4 text-center header-gradient">
-        <div class="container">
+        <!-- <div class="container">
             <h1 class="fw-bold mb-1" style="color:var(--gray-800);">
                 Join Club UniTee
             </h1>
             <p class="lead mb-0" style="color:var(--gray-600);">
                 Create your account to become part of our exclusive community.
             </p>
-        </div>
+        </div> -->
     </section>
     <!--APPLICATION FORM-->
     <section class="pb-5">
-        <div class="container" style="max-width:650px;">
+        <div class="container" style="max-width:750px;">
             <div class="card-uni">
                 <!--Alignment Box-->
                 <!--<div class="p-4 rounded mb-4" style="background:var(--emerald-50); border-left:5px solid var(--emerald);">
@@ -34,9 +34,10 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <!--STEP 1-->
-                    <div class="step" id="step1">
+                    <div class="step" id="step1">       
                         <!--Name-->
-                        <div class="mb-3">
+                        <div class="main-personal-info">
+                        <div class="mb-3 w-100">
                             <label class="fw-medium">Full Name *</label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                                 value="{{ old('name') }}" placeholder="Your full name" required>
@@ -45,7 +46,7 @@
                             @enderror
                         </div>
                         <!--Email-->
-                        <div class="mb-3">
+                        <div class="mb-3 w-100">
                             <label class="fw-medium">Email Address *</label>
                             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                                 value="{{ old('email') }}" placeholder="your.email@example.com" required>
@@ -53,8 +54,10 @@
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
+                        </div>
+                        <div class="main-profession-org">
                         <!--Profession-->
-                        <div class="mb-3">
+                        <div class="mb-3 w-100">
                             <label class="fw-medium">Current Profession / Title </label>
                             <input type="text" name="profession"
                                 class="form-control @error('profession') is-invalid @enderror"
@@ -64,13 +67,14 @@
                             @enderror
                         </div>
                         <!--Organization-->
-                        <div class="mb-3">
+                        <div class="mb-3 w-100">
                             <label class="fw-medium">Organization</label>
                             <input type="text" name="organization" class="form-control" value="{{ old('organization') }}"
                                 placeholder="Your organization">
                             @error('organization')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
+                        </div>
                         </div>
                         <!--Bio-->
                         <div class="mb-3">
@@ -98,8 +102,9 @@
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="main-linked-insta">
                         <!--LinkedIn-->
-                        <div class="mb-3">
+                        <div class="mb-3 w-100">
                             <label class="fw-medium">LinkedIn Profile URL</label>
                             <input type="url" name="linkedin_url" class="form-control"
                                 value="{{ old('linkedin_url') }}" placeholder="https://linkedin.com/in/yourname">
@@ -108,13 +113,14 @@
                             @enderror
                         </div>
                         <!--Instagram-->
-                        <div class="mb-3">
+                        <div class="mb-3 w-100">
                             <label class="fw-medium">Instagram Handle</label>
                             <input type="text" name="instagram_handle" class="form-control"
                                 value="{{ old('instagram_handle') }}" placeholder="@yourname">
                             @error('instagram_handle')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
+                        </div>
                         </div>
                         <!--NEXT Button-->
                         <button type="button" class="btn-uni w-100" id="nextBtn">Next</button>

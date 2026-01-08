@@ -3,10 +3,10 @@
 @section('content')
 <!--HEADER SECTION-->
 <section class="py-4 text-center header-gradient">
-    <div class="container">
+    <!-- <div class="container">
         <h1 class="fw-bold" style="color:var(--gray-800);">Welcome Back</h1>
         <p class="lead" style="color:var(--gray-600);">Sign in to continue to your Club UniTee dashboard.</p>
-    </div>
+    </div> -->
 </section>
 <!--LOGIN FORM-->
 <section class="pb-5">

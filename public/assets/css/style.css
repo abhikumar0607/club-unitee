@@ -538,9 +538,10 @@ a.nav-link1 {
 }
 
 a.nav-link {
-  color: #333;
+    color: #333;
+    display: flex;
+    align-items: center;
 }
-
 a.nav-link:hover {
   color: #333;
 }
@@ -985,14 +986,14 @@ a.site-brand {
 
 /* Subtitle */
 .hero-subtitle {
-  color: #444;
+  color: #fff;
   font-size: 20px;
   margin-top: 20px;
 }
 
 /* Icons Row */
 .hero-features {
-  color: #d6efe5;
+  color: #fff;
   font-size: 15px;
   font-weight: 500;
 }
@@ -1033,10 +1034,13 @@ a.site-brand {
 
 /* Bottom small text */
 .hero-small {
-  color: #000;
+  color: #fff;
   font-size: 14px;
 }
 
+.hero-features div i {
+    color: #ffd46B;
+}
 
 /* FOOTER */
 footer.back-color-footer {
@@ -2456,7 +2460,7 @@ select.form-select.input-uni {
 .back-arrow {
   position: absolute;
   top: 20px;
-  right: 25px;
+  left: 25px;
   font-size: 14px;
   color: var(--emerald);
   text-decoration: none;
@@ -2577,4 +2581,30 @@ a.mainevent-view-btn {
     display: flex;
     gap: 16px;
     align-items: center;
+}
+.hero-section1:before {
+    position: absolute;
+    content: '';
+    background: #000000;
+    width: 100%;
+    height: 100%;
+}
+.main-personal-info {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.main-profession-org {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.main-linked-insta {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: #000000 !important;
 }
