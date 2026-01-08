@@ -201,7 +201,7 @@
                     @else
                         <!-- NO EVENTS MESSAGE -->
                         <div class="col-12">
-                            <div class="alert alert-info text-center py-4">
+                            <div class="text-muted fw-semibold blog-empty-msg">
                                 <strong>No event found</strong>
                             </div>
                         </div>
