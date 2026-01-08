@@ -81,7 +81,7 @@
                         <td>{{ $count ++ }}.</td>
                         <td>
                             @if($member->profile_image)
-                                <img src="{{ asset('assets/customer/uploads/profile/' .$member->profile_image) }}" class="rounded-circle" width="50">
+                                <img src="{{ asset('assets/customer/uploads/profile/' .$member->profile_image) }}" class="rounded-circle main-profile-image" width="50">
                             @else
                                 <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="rounded-circle" width="50">
                             @endif    

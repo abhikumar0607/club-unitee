@@ -203,7 +203,7 @@
 
                     <p class="small">
                         <span id="short-{{ $customer->id }}">
-                            {{ \Illuminate\Support\Str::words($customer->bio, 15, '...') }}
+                            {{ \Illuminate\Support\Str::words($customer->bio, 10, '...') }}
                         </span>
 
                         <span id="full-{{ $customer->id }}" class="d-none">
@@ -211,7 +211,7 @@
                         </span>
                     </p>
 
-                    @if(str_word_count($customer->bio) > 30)
+                    @if(str_word_count($customer->bio) > 15)
                     <!-- <a href="javascript:void(0)" class="text-primary small readmore-btn btn-uni1" onclick="
                         document.getElementById('short-{{ $customer->id }}').classList.toggle('d-none');
                         document.getElementById('full-{{ $customer->id }}').classList.toggle('d-none');
