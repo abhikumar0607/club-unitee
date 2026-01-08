@@ -538,9 +538,10 @@ a.nav-link1 {
 }
 
 a.nav-link {
-  color: #333;
+    color: #333;
+    display: flex;
+    align-items: center;
 }
-
 a.nav-link:hover {
   color: #333;
 }
