@@ -150,7 +150,7 @@
      </section>
 
      <!-- MEMBERS GRID -->
-     {{-- <section class="pb-5">
+     <section class="pb-5">
          <div class="container">
 
              <div class="row g-4">
@@ -201,7 +201,7 @@
              </div>
 
          </div>
-     </section> --}}
+     </section>
 
  </div>
 
