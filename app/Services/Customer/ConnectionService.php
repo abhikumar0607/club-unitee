@@ -2,6 +2,9 @@
 namespace App\Services\Customer;
 
 use App\Repositories\Customer\ConnectionRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+
 
 class ConnectionService
 {
@@ -17,7 +20,7 @@ class ConnectionService
        
     }
     
-    public function getAllConnections()
+    public function getAllConnections($request)
     {
         $me = auth()->user();
 
@@ -27,18 +30,15 @@ class ConnectionService
         }
 
         $myPref = $my->usermatchingPreference;
-
         // exclude already connected users
         $excludedIds = $this->repo->getExcludedUserIds($me->id);
-
-        $users = $this->repo
-            ->getOtherActiveUsers($me->id)
-            ->whereNotIn('id', $excludedIds);
+        // Get other active users
+        $users = $this->repo->getOtherActiveUsers($me->id, $request)->whereNotIn('id', $excludedIds);
 
         $matched = collect();
 
+        // Filter users based on matching preferences
         foreach ($users as $user) {
-
             if (!$user->usermatchingPreference) continue;
 
             $pref = $user->usermatchingPreference;
@@ -54,14 +54,31 @@ class ConnectionService
             if ($myPref->course_play_prefernce == $pref->course_play_prefernce) $count++;
             if ($myPref->intrest_prefrence == $pref->intrest_prefrence) $count++;
 
-            // minimum 3 match
+            // Minimum 3 match
             if ($count >= 3) {
                 $matched->push($user);
             }
         }
 
-        return $matched;
+        // Now paginate the matched collection manually
+        $perPage = 10; // Number of items per page
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        
+        // Slice the matched collection for the current page
+        $currentItems = $matched->slice(($currentPage - 1) * $perPage, $perPage)->values();
+
+        // Create the paginator instance
+        $paginatedItems = new LengthAwarePaginator(
+            $currentItems,
+            $matched->count(),
+            $perPage,
+            $currentPage,
+            ['path' => Paginator::resolveCurrentPath()]
+        );
+
+        return $paginatedItems;
     }
+
 
     public function getMyConnections(){
         return $this->repo->getMyConnections(auth()->user()->id);

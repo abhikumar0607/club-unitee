@@ -10,16 +10,26 @@ class ConnectionRepository
     public function getCurrnetUserWithPreference($userId)
     {
         return User::with('usermatchingPreference')->find($userId);
+        
     }
 
-    public function getOtherActiveUsers($currentUserId)
+    public function getOtherActiveUsers($currentUserId, $request)
     {
-        return User::with('usermatchingPreference')
+        $query = User::with('usermatchingPreference')
             ->where('id', '!=', $currentUserId)
             ->where('role', 'customer')
-            ->where('is_approved', 'approved')
-            ->get();
+            ->where('is_approved', 'approved');
+
+        if ($request->filled('search')) {
+            $query->where(function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhere('email', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        return $query->get();
     }
+
 
     //public function for exclude sender and receiver
     public function getExcludedUserIds($currentUserId)
