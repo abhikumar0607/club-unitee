@@ -125,8 +125,8 @@
                         <td>{{ $member->profession ?? 'N/A' }}</td>
                         <td>{{ $member->created_at->format('M d, Y') }}</td>
                         <td>
-                                <a href="{{ route('profile.index', $member->id) }}" class="btn btn-outline-uni btn-sm">View</a>
-                                <a  href="{{ route('customer.send.connection.request', $member->id) }}" class="btn-outline-uni btn-sm">
+                                <a href="{{ route('profile.index', $member->id) }}" class="btn btn-outline-uni btn-sm connect-contact-btn">View</a>
+                                <a  href="{{ route('customer.send.connection.request', $member->id) }}" class="btn btn-outline-uni btn-sm connect-contact-btn">
                                   Connect Contact
                                 </a>
                         </td>
