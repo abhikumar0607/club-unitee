@@ -2641,3 +2641,6 @@ a.connect-contact {
     padding: 8px 13px !important;
     text-decoration: none;
 }
+.card-uni01 h5 a {
+    color: #000;
+}
