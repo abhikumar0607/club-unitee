@@ -92,11 +92,11 @@
                         <td>{{ $member->created_at->format('M d, Y') }}</td>
                         <td>
                             @if ($member->is_approved == 'approved')
-                            <span class="badge bg-success">Active</span>
+                            <span class="badge bg-success main-active-btn">Active</span>
                             @elseif($member->is_approved == 'pending')
-                            <span class="badge bg-danger">Inactive</span>
+                            <span class="badge bg-danger main-active-btn">Inactive</span>
                             @elseif($member->is_approved == 'rejected')
-                            <span class="badge bg-danger">Rejected</span>    
+                            <span class="badge bg-danger main-active-btn">Rejected</span>    
                             @endif
                         </td>
                         <td>

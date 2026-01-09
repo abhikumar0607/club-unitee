@@ -1321,12 +1321,13 @@ section.main-event-detail .card.card-uni {
 }
 
 .btn-outline-uni {
-  border-radius: 999px;
-  border: 1px solid var(--emerald);
-  color: var(--emerald);
-  font-weight: 500;
-  font-size: 14px;
-  background: #fff;
+    border-radius: 999px;
+    border: 1px solid var(--emerald);
+    color: var(--emerald);
+    font-weight: 500;
+    font-size: 14px;
+    background: #fff;
+    display: inline;
 }
 
 .btn-outline-uni:hover {
@@ -2632,4 +2633,7 @@ span.receive-counter {
   border-radius: 99px;
   padding: 10px 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+span.main-active-btn {
+    display: inline;
 }
