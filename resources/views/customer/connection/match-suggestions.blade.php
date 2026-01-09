@@ -36,7 +36,7 @@
                         <!-- PROFILE PHOTO -->
                         <div class="member-photo mb-3">
                             @if($user->profile_image)
-                            <img src="{{ asset('assets/customer/uploads/profile/' . $user->profile_image) }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                            <img src="{{ asset('assets/customer/uploads/profile/' . $user->profile_image) }}" alt="Profile Image" class="rounded-circle main-profile-ima" style="width:120px;height:120px;object-fit:cover;">
                             @else
                             <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" alt="Profile Image" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
                             @endif
