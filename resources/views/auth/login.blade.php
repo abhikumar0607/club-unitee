@@ -2,14 +2,14 @@
 @section('title', 'Login | Club UniTee')
 @section('content')
 <!--HEADER SECTION-->
-<section class="py-4 text-center header-gradient">
-    <!-- <div class="container">
+<!-- <section class="py-4 text-center header-gradient">
+    <div class="container">
         <h1 class="fw-bold" style="color:var(--gray-800);">Welcome Back</h1>
         <p class="lead" style="color:var(--gray-600);">Sign in to continue to your Club UniTee dashboard.</p>
-    </div> -->
-</section>
+    </div>
+</section> -->
 <!--LOGIN FORM-->
-<section class="pb-5">
+<section class="py-5 vh-100 d-flex align-items-center">
     <div class="container" style="max-width:460px;">
         <div class="card-uni">
             <a href="{{ url('/') }}" class="back-arrow">← Back</a>
@@ -57,4 +57,5 @@
         </div>
     </div>
 </section>
+
 @endsection

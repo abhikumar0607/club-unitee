@@ -445,7 +445,7 @@ section.features-section {
 }
 
 .sidebar-menu li {
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .sidebar-menu a {
@@ -1321,12 +1321,13 @@ section.main-event-detail .card.card-uni {
 }
 
 .btn-outline-uni {
-  border-radius: 999px;
-  border: 1px solid var(--emerald);
-  color: var(--emerald);
-  font-weight: 500;
-  font-size: 14px;
-  background: #fff;
+    border-radius: 999px;
+    border: 1px solid var(--emerald);
+    color: var(--emerald);
+    font-weight: 500;
+    font-size: 14px;
+    background: #fff;
+    display: inline;
 }
 
 .btn-outline-uni:hover {
@@ -1677,6 +1678,8 @@ section.blog-detail-content {
     border-radius: 8px;
     height: 90px;
     object-fit: cover;
+    min-width: 100px;
+    margin-bottom: 15px;
 }
 
 .product-title {
@@ -2607,4 +2610,30 @@ a.mainevent-view-btn {
 
 .slick-prev:before, .slick-next:before {
     color: #000000 !important;
+}
+
+.main-event-detail-rsvp-btns a {
+    padding: 8px 30px;
+}
+.main-profile-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+span.receive-counter {
+    position: relative;
+    bottom: 23px;
+    right: 17px;
+    padding: 8px 11px 6px 9px;
+}
+
+.btn-uni2 {
+  color: #374151;
+  border: 2px solid #d1fae5;
+  border-radius: 99px;
+  padding: 10px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+span.main-active-btn {
+    display: inline;
 }
