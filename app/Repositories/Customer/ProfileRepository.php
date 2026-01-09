@@ -62,6 +62,7 @@ class ProfileRepository
             [
                 'availability' => $request->availability,
                 'looking_for' => $request->looking_for,
+                'preferred_connection' => $request->preferred_connection,
             ]
         );
 

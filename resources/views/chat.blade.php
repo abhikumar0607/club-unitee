@@ -370,13 +370,26 @@ function scrollBottom(){
 }
  
 /* ================= PUSHER ================= */
+Pusher.logToConsole = true;
 let pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {
     cluster: "{{ config('broadcasting.connections.pusher.options.cluster') }}",
     authEndpoint:`${baseUrl}/broadcasting/auth`,
     forceTLS:true,
     auth:{ headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}'} }
 });
- 
+
+pusher.connection.bind('connected', function () {
+    console.log('✅ PUSHER CONNECTED');
+});
+
+pusher.connection.bind('disconnected', function () {
+    console.log('❌ PUSHER DISCONNECTED');
+});
+
+pusher.connection.bind('error', function (err) {
+    console.error('🔥 PUSHER ERROR:', err);
+});
+
 let channel = pusher.subscribe('private-chat.{{ auth()->id() }}');
  
 /* ================= REALTIME MESSAGE ================= */

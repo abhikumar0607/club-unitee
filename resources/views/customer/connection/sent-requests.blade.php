@@ -5,6 +5,7 @@
    <!-- TOP NAVBAR -->
    <nav class="top-navbar d-flex justify-content-between align-items-center px-4 shadow-sm">
       <h4 class="m-0 fw-bold text-uni">Connections</h4>
+      <x-customer-dashboard-nav-profile />
    </nav>
    <!-- HEADER -->
    <section class="page-header text-center py-5">
@@ -24,34 +25,7 @@
       </div>
    </section>
    <section class="pb-3">
-      <div class="container text-center main-color-11">
-         <ul class="nav nav-pills justify-content-left">
-            <li class="nav-item">
-               <a class="nav-link1 {{ request()->routeIs('customer.match.suggestions') ? 'active' : '' }}"
-                  href="{{ route('customer.match.suggestions') }}">
-               Match Suggestions
-               </a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link1 {{ request()->routeIs('customer.my.connections') ? 'active' : '' }}"
-                  href="{{ route('customer.my.connections') }}">
-               My Connections
-               </a>
-            </li>
-            <li class="nav-item"> 
-               <a class="nav-link1 {{ request()->routeIs('customer.sent.requests') ? 'active' : '' }}"
-                  href="{{ route('customer.sent.requests') }}">
-               Sent Requests
-               </a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link1 {{ request()->routeIs('customer.received.requests') ? 'active' : '' }}"
-                  href="{{ route('customer.received.requests') }}">
-               Received Requests
-               </a>
-            </li>
-         </ul>
-      </div>
+        <x-connection-tab />
    </section>
    <section class="pb-5">
       <div class="container">
