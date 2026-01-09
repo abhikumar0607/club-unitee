@@ -40,7 +40,9 @@ class DashboardRepository
 
     //Function for all events
     public function allEvents() {
-        return Event::count();
+         return Event::whereDate('date', '>=', now())
+        ->orderBy('date', 'asc')
+        ->whereIn('status', ['Published'])->count();
     }
 
     //Function for upcoming event
