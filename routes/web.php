@@ -13,6 +13,7 @@ Route::get('/about', [App\Http\Controllers\Customer\frontController::class, 'abo
 Route::get('/privacy', [App\Http\Controllers\Customer\frontController::class, 'privacy']);
 Route::get('/term', [App\Http\Controllers\Customer\frontController::class, 'term']);
 Route::get('/thankyou', [App\Http\Controllers\Customer\frontController::class, 'thankyou'])->name('customer.thank');
+Route::get('/public-profile/{id}', [App\Http\Controllers\ProfileController::class, 'public_profile'])->name('public.profile');
 
 //customer dashboard routes
 Route::middleware(['customer', 'auth'])->prefix('customer')->name('customer.')->group(function () {
@@ -96,6 +97,11 @@ Route::middleware('auth')->group(function () {
 
     //chat
     Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index'])->name('chat.index');
+
+    //notification
+    Route::get('/notifications/read/{id}', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::get('/notifications/read-all', [App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
+
 });
 
 require __DIR__.'/auth.php';

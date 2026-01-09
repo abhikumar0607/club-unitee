@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Customer\Connection;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Customer\ConnectionService;
+use App\Notifications\ConnectionRequestNotification;
+use App\Notifications\AcceptRequest;
+use App\Models\ConnectionRequest;
+
+use App\Models\User;
 
 class ConnectionController extends Controller
 {
@@ -55,6 +60,11 @@ class ConnectionController extends Controller
     //function for connection request
     public function sendConnectionRequest(Request $request, $receiver_id){
         $this->connService->sendConnectionRequest($receiver_id);
+        $receiver = User::find($receiver_id);
+        //notification
+        if($receiver){
+          $receiver->notify(new ConnectionRequestNotification(auth()->user()));
+        }
         return redirect()->back()->with('success', 'Connection request sent successfully');
     }
 
@@ -66,7 +76,13 @@ class ConnectionController extends Controller
 
     //function for accept connection request
     public function acceptConnectionRequest(Request $request, $request_id){
-        $this->connService->acceptConnectionRequest($request_id);
+        $req = ConnectionRequest::where('id', $request_id)->first();
+        $sender = User::find($req->sender_id);
+        $data= $this->connService->acceptConnectionRequest($request_id);
+        //notification
+        if($sender){
+          $sender->notify(new AcceptRequest(auth()->user()));
+        }
         return redirect()->back()->with('success', 'Connection request accepted successfully');
     }
 
