@@ -53,15 +53,18 @@
                         <p class="text-muted mb-1">{{ $user->profession ?? 'Not Available' }}</p>
                         <!-- OPTIONAL CONNECTION INFO -->
                         <p class="text-muted small">Connected {{ $user->created_at->diffForHumans() }}</p>
-                        <div class="gap-2 mt-3">
-                           <a href="{{ route('profile.index', $user->id) }}"
-                              class="btn btn-outline-uni w-50">
-                           View
-                           </a>
-                           <!-- <a class="btn btn-gradient w-50" href="{{ route('customer.send.connection.request', $user->id) }}">
-                              Request Contact
-                              </a> -->
-                        </div>
+                          <div class="main-view-btn">
+                             <a href="{{ route('profile.index', $user->id) }}"
+                                 class="btn btn-gradient w-100 mt-2">View Profile</a>
+                             <button class="btn btn-gradient btn-sm mt-2 position-relative"
+                                onclick="openChat({{ $user->id }}, '{{ $user->name }}', '{{ $user->profile_image }}')">
+
+                                Chat
+
+                                <!-- unread badge -->
+                                <span class="unread-badge d-none" id="unread-{{ $user->id }}"></span>
+                            </button>
+                         </div>
                      </div>
                   </div>
                   @endforeach
@@ -80,4 +83,12 @@
       </div>
    </section>
 </div>
+
+ <!-- CHAT DRAWER -->
+ <x-chat />
+<script>
+@foreach($myConnections as $user)
+    loadUnseenCount({{ $user->id }});
+@endforeach
+</script>
 @endsection
