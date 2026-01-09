@@ -1,11 +1,11 @@
 <div class="container text-center main-color-11">
-    <ul class="nav nav-pills justify-content-left gap-4 main-connetion-tab">
-        <li class="nav-item">
-            <a class="btn-uni2 nav-link1 {{ request()->routeIs('customer.match.suggestions') ? 'active' : '' }}"
+    <ul class="nav nav-pills justify-content-left">
+        {{-- <li class="nav-item">
+            <a class="nav-link1 {{ request()->routeIs('customer.match.suggestions') ? 'active' : '' }}"
                 href="{{ route('customer.match.suggestions') }}">
                 Match Suggestions
             </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="btn-uni2 nav-link1 {{ request()->routeIs('customer.my.connections') ? 'active' : '' }}"
                 href="{{ route('customer.my.connections') }}">

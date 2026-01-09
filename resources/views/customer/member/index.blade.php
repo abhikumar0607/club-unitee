@@ -34,7 +34,7 @@
                          </div>
 
                          <!-- GOLF SKILL LEVEL -->
-                         <div class="col-md-2">
+                         {{-- <div class="col-md-2">
                              <select name="golf_skill_level" class="form-select input-uni">
                                  <option value="">Golf Skill Level</option>
                                  <option value="Beginner"
@@ -50,10 +50,10 @@
                                      Advanced
                                  </option>
                              </select>
-                         </div>
+                         </div> --}}
 
                          <!-- AVAILABILITY -->
-                         <div class="col-md-2">
+                         {{-- <div class="col-md-2">
                              <select name="availability" class="form-select input-uni">
                                  <option value="">Availability</option>
                                  <option value="Weekday Mornings"
@@ -72,7 +72,7 @@
                                      No Preference
                                  </option>
                              </select>
-                         </div>
+                         </div> --}}
 
                          <!-- SUBMIT -->
                          <div class="col-md-2">
@@ -91,13 +91,66 @@
                      </div>
                  </form>
 
-             </div>
-
+            </div>
+             <!--MEMBERS TABLE-->
+            <div class="card card-uni p-4">
+                <h4 class="fw-bold text-uni mb-4">Matched Connections List</h4>
+                <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Sr No.</th>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Profession</th>
+                            <th>Join Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    @if ($matched_connections->count() > 0)
+                    @php $count = 1; @endphp
+                    @foreach ($matched_connections as $member)
+                    <tr>
+                        <td>{{ $count ++ }}.</td>
+                        <td>
+                            @if($member->profile_image)
+                                <img src="{{ asset('assets/customer/uploads/profile/' .$member->profile_image) }}" class="rounded-circle" width="50">
+                            @else
+                                <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="rounded-circle" width="50">
+                            @endif    
+                        </td>
+                        <td>{{ $member->name }}</td>
+                        <td>{{ $member->email }}</td>
+                        <td>{{ $member->profession ?? 'N/A' }}</td>
+                        <td>{{ $member->created_at->format('M d, Y') }}</td>
+                        <td>
+                                <a href="{{ route('profile.index', $member->id) }}" class="btn btn-outline-uni btn-sm">View</a>
+                                <a  href="{{ route('customer.send.connection.request', $member->id) }}" class="btn-outline-uni btn-sm">
+                                  Connect Contact
+                                </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td colspan="7" class="text-center py-4">
+                            <strong>No members found.</strong>
+                        </td>
+                    </tr>
+                    @endif
+                </table>
+                </div>
+                <!--PAGINATION-->
+                <div class="mt-3">
+                    {{ $matched_connections->links('pagination::bootstrap-5') }}
+                </div>
+            </div>
          </div>
      </section>
 
      <!-- MEMBERS GRID -->
-     <section class="pb-5">
+     {{-- <section class="pb-5">
          <div class="container">
 
              <div class="row g-4">
@@ -148,16 +201,16 @@
              </div>
 
          </div>
-     </section>
+     </section> --}}
 
  </div>
 
  <!-- CHAT DRAWER -->
  <x-chat />
-<script>
+{{-- <script>
 @foreach($members as $member)
     loadUnseenCount({{ $member->id }});
 @endforeach
-</script>
+</script> --}}
 
  @endsection

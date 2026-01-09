@@ -16,9 +16,14 @@ class ConnectionTab extends Component
 
     public function __construct(ConnectionService $connService)
     {
-        $this->myConnectionscount = count($connService->getMyConnections());
-        $this->sentRequestsCount = count($connService->getSentConnectionRequests());
-        $this->receivedRequestsCount = count($connService->getReceivedConnectionRequests());
+        $myConnections = $connService->getMyConnections();
+        $sentRequests = $connService->getSentConnectionRequests();
+        $receivedRequests = $connService->getReceivedConnectionRequests();
+
+        // Set the counts, but only if greater than 0
+        $this->myConnectionscount = count($myConnections) > 0 ? count($myConnections) : null;
+        $this->sentRequestsCount = count($sentRequests) > 0 ? count($sentRequests) : null;
+        $this->receivedRequestsCount = count($receivedRequests) > 0 ? count($receivedRequests) : null;
     }
 
     public function render()
