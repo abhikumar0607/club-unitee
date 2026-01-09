@@ -19,7 +19,7 @@
             <span class="fw-semibold">Notifications</span>
 
             @if (auth()->user()->unreadNotifications->count() > 0)
-                <a href="{{ route('notifications.readAll') }}" class="small text-primary">
+                <a href="{{ route('notifications.readAll') }}" class="small text-primary main-all-read-btn">
                     Mark all as read
                 </a>
             @endif
@@ -30,11 +30,11 @@
 
             @forelse(auth()->user()->unreadNotifications->take(5) as $notification)
                 <li class="border-bottom">
-                    <div class="d-flex justify-content-between align-items-start px-3 py-2">
+                    <div class="d-flex justify-content-between align-items-center px-3 py-2">
 
                         {{-- 🔹 MESSAGE LINK (go to actual page) --}}
                         <a href="{{ $notification->data['url'] }}"
-                            class="d-flex gap-2 align-items-start text-decoration-none flex-grow-1
+                            class="listing-icon-11 d-flex gap-2 align-items-start text-decoration-none flex-grow-1
                             {{ is_null($notification->read_at) ? 'fw-semibold' : '' }}"
                             style="color:#111">
 
@@ -53,7 +53,7 @@
                         {{-- 🔹 MARK AS READ (SIDE LINK) --}}
                         @if (is_null($notification->read_at))
                             <a href="{{ route('notifications.read', $notification->id) }}"
-                                class="small text-primary ms-2">
+                                class="small text-primary ms-2 mark-as-read-btn">
                                 Mark as read
                             </a>
                         @endif
@@ -87,9 +87,9 @@
 
     .notification-dropdown {
         position: absolute;
-        top: 38px;
-        right: 0;
-        width: 320px;
+        top: 53px;
+        left: -278px;
+        width: 560px;
         background: #fff;
         border-radius: 8px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
@@ -105,6 +105,21 @@
 
     .notification-dropdown ul li a:hover {
         background: #f3f4f6;
+    }
+    .notification-dropdown a.mark-as-read-btn {
+        border: 1px solid #10b981;
+        border-radius: 9px;
+        color: #000 !important;
+    }
+    a.main-all-read-btn {
+        color: #000 !important;
+        text-decoration: none;
+    }
+    a.listing-icon-11 i {
+        color: #37ae82 !important;
+    }
+    a.notification-icon i {
+        color: #37ae82 !important;
     }
 </style>
 <script>
