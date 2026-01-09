@@ -1,5 +1,7 @@
 <div class="d-flex align-items-center gap-4">
 
+    <!-- NOTIFICATION ICON + UNREAD COUNT -->
+    <x-notification />
     <!-- CHAT ICON + UNREAD COUNT -->
     <div class="position-relative chat-icon-wrapper">
         <a href="{{ url('chat') }}" class="chat-icon-link">
@@ -19,8 +21,6 @@
                     8.38 8.38 0 0 1 3.8-.9h.5
                     a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
-
-
             <!-- GLOBAL UNREAD COUNT -->
             <x-chat-unread-count />
         </a>

@@ -87,4 +87,10 @@ class ProfileController extends Controller
         }
         return view('profile.index', compact('user'));
     }
+
+
+    public function public_profile($id){
+        $user = User::find($id);
+         return view('profile.public-profile', compact('user'));
+    }
 }

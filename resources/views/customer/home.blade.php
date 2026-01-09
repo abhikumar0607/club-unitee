@@ -192,7 +192,7 @@
                     <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="avatar mb-3" alt="">
                     @endif
 
-                    <h5>{{ $customer->name }}</h5>
+                    <h5><a href="{{ url('public-profile', $customer->id) }}" target="blank">{{ $customer->name }}</a></h5>
 
                     <p class="text-muted">
                         {{ $customer->profession }} 

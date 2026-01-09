@@ -2637,3 +2637,7 @@ span.receive-counter {
 span.main-active-btn {
     display: inline;
 }
+a.connect-contact {
+    padding: 8px 13px !important;
+    text-decoration: none;
+}
