@@ -97,6 +97,13 @@ Route::middleware('auth')->group(function () {
 
     //chat
     Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index'])->name('chat.index');
+    Route::post('/chat/create-group', [App\Http\Controllers\ChatController::class, 'createGroup'])->name('chat.createGroup');
+
+    // group chat
+    Route::get('/group/messages/{group}', [App\Http\Controllers\ChatController::class,'groupmessages']);
+    Route::post('/group/messages', [App\Http\Controllers\ChatController::class,'groupsend']);
+    Route::post('/group/{group}/read', [App\Http\Controllers\ChatController::class, 'markGroupMessagesRead']);
+    Route::get('/group/{group}/unread-count', [App\Http\Controllers\ChatController::class, 'groupUnreadCount']);
 
     //notification
     Route::get('/notifications/read/{id}', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.read');
