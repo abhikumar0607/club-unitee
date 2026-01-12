@@ -578,6 +578,17 @@ function loadGroupUnread(groupId) {
             }
         });
 }
+
+document.getElementById('chatInput').addEventListener('keydown', function (e) {
+
+    // Enter pressed WITHOUT shift
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault(); // new line rok do
+        sendMessage();      // message bhej do
+    }
+
+    // Shift + Enter → new line (default behaviour)
+});
 </script>
 
 @endsection
