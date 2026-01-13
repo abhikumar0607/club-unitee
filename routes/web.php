@@ -104,6 +104,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/group/messages', [App\Http\Controllers\ChatController::class,'groupsend']);
     Route::post('/group/{group}/read', [App\Http\Controllers\ChatController::class, 'markGroupMessagesRead']);
     Route::get('/group/{group}/unread-count', [App\Http\Controllers\ChatController::class, 'groupUnreadCount']);
+    Route::post('/chat/group/update', [App\Http\Controllers\ChatController::class, 'updateGroup'])->name('chat.updateGroup');
+
 
     //notification
     Route::get('/notifications/read/{id}', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.read');
