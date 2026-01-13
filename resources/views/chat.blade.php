@@ -389,6 +389,7 @@
             chatMessages.innerHTML = '';
 
             document.querySelectorAll('.chat-user').forEach(u => u.classList.remove('active'));
+            el.classList.add('active');
 
             subscribeGroupChannel(groupId);
 

@@ -175,7 +175,7 @@
 
 
 <!-- SAMPLE PROFILES -->
-<section class="py-5">
+<!-- <section class="py-5">
     <div class="container">
         <h2 class="section-title text-center">Meet Some Members</h2>
 
@@ -219,7 +219,7 @@
                    ">
                         Read more
                     </a> -->
-                    @endif
+                <!-- @endif
 
                 </div>
             </div>
@@ -229,7 +229,7 @@
 
         </div>
     </div>
-</section>
+</section>  -->
 
 
 <!-- upper footer section -->
@@ -273,9 +273,9 @@
         @endguest
 
         <!-- Bottom Text -->
-        <p class="hero-small mt-4">
+        <!-- <p class="hero-small mt-4">
             No credit card required • Cancel anytime
-        </p>
+        </p> -->
 
     </div>
 </section>
