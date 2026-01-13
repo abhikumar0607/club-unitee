@@ -240,10 +240,12 @@
                                     <div class="chat-user-name">{{ $g->name }}</div>
                                     <div class="chat-user-last">{{ $g->users_count }} members</div>
                                 </div>
+                                <span id="group-unread-{{ $g->id }}" class="unread-badge d-none">0</span>
 
+                                @if($g->created_by == auth()->id())
                                 <!-- EDIT BUTTON -->
                                 <button type="button"
-                                    class="btn btn-sm btn-light"
+                                    class="btn btn-sm btn-light me-2"
                                     onclick="event.stopPropagation(); openEditGroupModal(this)"
                                     data-id="{{ $g->id }}"
                                     data-name="{{ $g->name }}"
@@ -251,11 +253,9 @@
                                     data-members='@json($g->users->pluck("id"))'>
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
+                                @endif
                             </div>
                             @endforeach
-
-
-
                     </div>
                 </div>
 
