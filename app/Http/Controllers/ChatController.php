@@ -228,4 +228,52 @@ class ChatController extends Controller
             'count' => $count
         ]);
     }
+
+    public function updateGroup(Request $request)
+    {
+        $request->validate([
+            'group_id' => 'required|exists:groups,id',
+            'name'     => 'required|string|max:255',
+            'members'  => 'required|array'
+        ]);
+
+        DB::transaction(function () use ($request) {
+
+            $group = Group::findOrFail($request->group_id);
+
+            // update name
+            $group->name = $request->name;
+
+            // image upload
+            if ($request->hasFile('image')) {
+
+                if ($group->image) {
+                    $this->deleteImage(
+                        $group->image,
+                        'assets/customer/uploads/groups'
+                    );
+                }
+
+                $group->image = $this->uploadImage(
+                    $request->file('image'),
+                    'assets/customer/uploads/groups'
+                );
+            }
+
+            // always keep creator/admin inside group
+            $members = array_unique(
+                array_merge($request->members, [auth()->id()])
+            );
+
+            // sync members (detach + attach safe)
+            $group->users()->sync($members);
+
+            // save always
+            $group->save();
+        });
+
+        return back()->with('success', 'Group updated successfully');
+    }
+
+
 }
