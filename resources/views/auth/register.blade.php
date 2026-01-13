@@ -68,8 +68,8 @@
                         </div>
                         <!--Organization-->
                         <div class="mb-3 w-100">
-                            <label class="fw-medium">Organization</label>
-                            <input type="text" name="organization" class="form-control" value="{{ old('organization') }}"
+                            <label class="fw-medium">Organization/Company</label>
+                            <input type="text" name="Organization/Company" class="form-control" value="{{ old('organization') }}"
                                 placeholder="Your organization">
                             @error('organization')
                                 <p class="text-danger">{{ $message }}</p>
@@ -90,8 +90,8 @@
                             <label class="fw-medium">How did you hear about us?</label>
                             <select name="referral_source" class="form-select">
                                 <option value="" disabled selected>Select one</option>
-                                <option {{ old('referral_source') == 'Friend / Colleague' ? 'selected' : '' }}>
-                                    Friend/Colleague</option>
+                                <option {{ old('referral_source') == 'Member / Friend / Colleague' ? 'selected' : '' }}>
+                                    Member/Friend/Colleague</option>
                                 <option {{ old('referral_source') == 'LinkedIn' ? 'selected' : '' }}>LinkedIn</option>
                                 <option {{ old('referral_source') == 'Instagram' ? 'selected' : '' }}>Instagram</option>
                                 <option {{ old('referral_source') == 'Google Search' ? 'selected' : '' }}>Google Search
