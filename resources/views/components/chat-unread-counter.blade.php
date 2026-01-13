@@ -56,7 +56,7 @@
 >
     0
 </span>
-
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -64,11 +64,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const badge  = document.getElementById('global-unread-count');
 
     function updateUnreadCount(){
-        fetch(`${baseUrl}/chat/unread-count`)   // controller tu banayega
-            .then(res => res.json())
-            .then(data => {
-                if(data.count > 0){
-                    badge.innerText = data.count > 9 ? '9+' : data.count;
+        fetch(`${baseUrl}/chat/global/unread-count`)
+            .then(r => r.json())
+            .then(d => {
+                if(!badge) return;
+
+                if(d.count > 0){
+                    badge.innerText = d.count > 9 ? '9+' : d.count;
                     badge.classList.remove('d-none');
                 }else{
                     badge.classList.add('d-none');
@@ -76,35 +78,41 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // initial load
     updateUnreadCount();
 
-    // ================= PUSHER =================
     let pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {
         cluster: "{{ config('broadcasting.connections.pusher.options.cluster') }}",
         authEndpoint: `${baseUrl}/broadcasting/auth`,
         forceTLS: true,
         auth: {
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            }
+            headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" }
         }
     });
 
-    let channel = pusher.subscribe('private-chat.{{ auth()->id() }}');
+    /* ================= PRIVATE ================= */
+    let userChannel = pusher.subscribe('private-chat.{{ auth()->id() }}');
+    userChannel.bind('message.sent', updateUnreadCount);
+    userChannel.bind('message.seen', updateUnreadCount);
 
-    // new message received
-    channel.bind('message.sent', () => {
-        updateUnreadCount();
-    });
+    /* ================= GROUP CHANNELS (✅ FIXED) ================= */
+    @foreach($groupIds as $group)
+        let groupChannel{{ $group->id }} =
+            pusher.subscribe('private-chat.{{ $group->id }}');
 
-    // message seen
-    channel.bind('message.seen', () => {
-        updateUnreadCount();
-    });
+        groupChannel{{ $group->id }}.bind('group.message.sent', () => {
+            updateUnreadCount();
+        });
+
+        groupChannel{{ $group->id }}.bind('group.message.read', () => {
+            updateUnreadCount();
+        });
+    @endforeach
 
 });
 </script>
+
+
+
 
 <style>
 .unread-badge{

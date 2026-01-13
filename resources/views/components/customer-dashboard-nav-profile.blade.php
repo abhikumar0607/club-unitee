@@ -17,7 +17,7 @@
                     a8.48 8.48 0 0 1 8 8v.5z" />
             </svg>
             <!-- GLOBAL UNREAD COUNT -->
-            <x-chat-unread-count />
+            <x-chat-unread-counter />
         </a>
     </div>
 

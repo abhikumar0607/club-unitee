@@ -105,6 +105,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/group/{group}/read', [App\Http\Controllers\ChatController::class, 'markGroupMessagesRead']);
     Route::get('/group/{group}/unread-count', [App\Http\Controllers\ChatController::class, 'groupUnreadCount']);
     Route::post('/chat/group/update', [App\Http\Controllers\ChatController::class, 'updateGroup'])->name('chat.updateGroup');
+    Route::get('/chat/global/unread-count', [App\Http\Controllers\ChatController::class, 'globalUnreadCount'])->name('chat.globalUnreadCount');
 
 
     //notification

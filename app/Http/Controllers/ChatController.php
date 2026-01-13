@@ -275,5 +275,20 @@ class ChatController extends Controller
         return back()->with('success', 'Group updated successfully');
     }
 
+    public function globalUnreadCount()
+    {
+        $userId = auth()->id();
 
+        $private = Message::where('receiver_id', $userId)
+            ->where('is_seen', false)
+            ->count();
+
+        $group = Message::whereNotNull('group_id')
+            ->whereDoesntHave('reads', fn ($q) => $q->where('user_id', $userId))
+            ->count();
+
+        return response()->json([
+            'count' => $private + $group
+        ]);
+    }
 }
