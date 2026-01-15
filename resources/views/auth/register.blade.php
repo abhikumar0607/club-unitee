@@ -88,17 +88,30 @@
                         <!--Referral-->
                         <div class="mb-3">
                             <label class="fw-medium">How did you hear about us?</label>
-                            <select name="referral_source" class="form-select">
+                            <select name="referral_source" id="referral_source" class="form-select">
                                 <option value="" disabled selected>Select one</option>
-                                <option {{ old('referral_source') == 'Member / Friend / Colleague' ? 'selected' : '' }}>
-                                    Member/Friend/Colleague</option>
-                                <option {{ old('referral_source') == 'LinkedIn' ? 'selected' : '' }}>LinkedIn</option>
-                                <option {{ old('referral_source') == 'Instagram' ? 'selected' : '' }}>Instagram</option>
-                                <option {{ old('referral_source') == 'Google Search' ? 'selected' : '' }}>Google Search
+                                <option value="Member/Friend/Colleague" {{ old('referral_source') == 'Member/Friend/Colleague' ? 'selected' : '' }}>Member/Friend/Colleague</option>
+                                <option value="LinkedIn" {{ old('referral_source') == 'LinkedIn' ? 'selected' : '' }}>LinkedIn</option>
+                                <option value="Instagram" {{ old('referral_source') == 'Instagram' ? 'selected' : '' }}>Instagram</option>
+                                <option value="Google Search" {{ old('referral_source') == 'Google Search' ? 'selected' : '' }}>Google Search
                                 </option>
-                                <option {{ old('referral_source') == 'Other' ? 'selected' : '' }}>Other</option>
+                                <option value="Other" {{ old('referral_source') == 'Other' ? 'selected' : '' }}>Other</option>
                             </select>
                             @error('referral_source')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            @error('referral_source')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                       <!---member name-->
+                        <div class="mb-3" id="memberNameDiv"  style="display: {{ old('referral_source') === 'Member/Friend/Colleague' ? 'block' : 'none' }};">
+                            <input type="text" name="member_name" class="form-control" value="{{ old('member_name') }}"
+                                placeholder="Referring Member's Full Name">
+                            @error('member_name')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
@@ -520,6 +533,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const btn = document.getElementById("submitBtn");
     agree.addEventListener("change", () => {
         btn.classList.toggle("disabled-btn", !agree.checked);
+    });
+
+
+    //open memeber name field
+    const referralSelect = document.getElementById("referral_source");
+    const memberNameDiv = document.getElementById("memberNameDiv");
+
+    referralSelect.addEventListener("change", function () {
+        if (referralSelect.value === "Member/Friend/Colleague") {
+            memberNameDiv.style.display = "block";
+        } else {
+            memberNameDiv.style.display = "none";
+        }
     });
 
 });

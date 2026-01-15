@@ -38,6 +38,8 @@ class ProfileRepository
             'profession' => $request->profession,
             'organization' => $request->organization,
             'bio' => $request->bio,
+            'referral_source' => $request->referral_source,
+            'member_name' => $request->member_name,
             'linkedin_url' => $request->linkedin_url,
             'instagram_handle' => $request->instagram_handle,
             'profile_image' => $filename,

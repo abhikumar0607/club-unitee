@@ -74,7 +74,7 @@
                             </p>
 
                             <p class="small text-muted mb-1">
-                                <strong>Why I Joined:</strong> {{ $user->referral_source ?? 'N/A' }}
+                                <strong>Why I Joined:</strong> {{ $user->referral_source ?? 'N/A' }} {{ $user->member_name ? ' - Referred by: ' . $user->member_name : '' }}
                             </p>
                         </div>
 
