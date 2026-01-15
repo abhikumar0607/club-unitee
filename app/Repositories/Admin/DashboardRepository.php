@@ -75,6 +75,7 @@ class DashboardRepository
     {
         return Event::whereDate('date', '>=', now())
         ->orderBy('date', 'asc')
+        ->where('status', 'Published')
         ->paginate(6);
     }
 }

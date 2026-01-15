@@ -76,7 +76,7 @@
                              </div>
                             <!-- Members Selection -->
                             <div class="col-12 mb-3">
-                                <label class="fw-semibold mb-2">Select Members *</label>
+                                <label class="fw-semibold mb-2">Select Members</label>
 
                                 <!-- Search Box -->
                                 <input type="text"
@@ -96,7 +96,8 @@
                                                 name="members[]"
                                                 value="{{ $member->id }}"
                                                 id="member_{{ $member->id }}"
-                                                {{ $key == 0 ? 'required' : '' }}>
+                                                {{-- {{ $key == 0 ? 'required' : '' }} --}}
+                                                >
 
                                             <label class="form-check-label"
                                                 for="member_{{ $member->id }}">
