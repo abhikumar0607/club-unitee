@@ -5,51 +5,49 @@
 
 <body style="background: var(--gradient-background);">
     <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg bg-white shadow-sm py-1 nacbarr12">
-    <div class="container">
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-1 nacbarr12">
+        <div class="container">
 
-        <!-- LOGO -->
-        <a class="navbar-brand site-brand" href="{{ url('/') }}">
-            <x-application-logo />
-        </a>
+            <!-- LOGO -->
+            <a class="navbar-brand site-brand" href="{{ url('/') }}">
+                <x-application-logo />
+            </a>
 
-        <!-- TOGGLER -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <!-- TOGGLER -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- COLLAPSE -->
-        <div class="collapse navbar-collapse" id="mainNavbar">
+            <!-- COLLAPSE -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
 
-            <!-- LEFT / MAIN LINKS -->
-            <ul class="navbar-nav gap-lg-3 mt-3 mt-lg-0">
-                <li class="nav-item">
-                    <a href="{{ url('/') }}"
-                       class="nav-link nav-item-uni {{ request()->is('/') ? 'active' : '' }}">
-                        Home
-                    </a>
-                </li>
+                <!-- LEFT / MAIN LINKS -->
+                <ul class="navbar-nav gap-lg-3 mt-3 mt-lg-0">
+                    <li class="nav-item">
+                        <a href="{{ url('/') }}" class="nav-link nav-item-uni {{ request()->is('/') ? 'active' : '' }}">
+                            Home
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('events') }}"
-                        class="nav-link nav-item-uni {{ request()->is('events*') || request()->is('event-detail*') ? 'active' : '' }}">
-                        Events
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ url('events') }}"
+                            class="nav-link nav-item-uni {{ request()->is('events*') || request()->is('event-detail*') ? 'active' : '' }}">
+                            Events
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('blogs') }}"
-                       class="nav-link nav-item-uni {{ request()->is('blogs') || request()->is('blog-detail*') ? 'active' : '' }}">
-                        Blog
-                    </a>
-                </li>
-            </ul>
+                    <li class="nav-item">
+                        <a href="{{ url('blogs') }}"
+                            class="nav-link nav-item-uni {{ request()->is('blogs') || request()->is('blog-detail*') ? 'active' : '' }}">
+                            Blog
+                        </a>
+                    </li>
+                </ul>
 
-            <!-- RIGHT / AUTH ACTIONS -->
-            <ul class="navbar-nav ms-lg-4 align-items-lg-center mt-3 mt-lg-0 gap-2 auth-right">
+                <!-- RIGHT / AUTH ACTIONS -->
+                <ul class="navbar-nav ms-lg-4 align-items-lg-center mt-3 mt-lg-0 gap-2 auth-right">
 
-                @guest
+                    @guest
                     <li class="nav-item">
                         <a class="nav-link-1 d-block text-center" href="{{ url('register') }}">
                             Apply
@@ -61,23 +59,23 @@
                             Login
                         </a>
                     </li>
-                @endguest
+                    @endguest
 
-                @auth
+                    @auth
                     @can('is-customer')
-                        <li class="nav-item">
-                            <a class="btn btn-uni1 w-100" href="{{ url('customer/dashboard') }}">
-                                Dashboard
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="btn btn-uni1 w-100" href="{{ url('customer/dashboard') }}">
+                            Dashboard
+                        </a>
+                    </li>
                     @endcan
 
                     @can('is-admin')
-                        <li class="nav-item">
-                            <a class="btn btn-uni1 w-100" href="{{ url('admin/dashboard') }}">
-                                Dashboard
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="btn btn-uni1 w-100" href="{{ url('admin/dashboard') }}">
+                            Dashboard
+                        </a>
+                    </li>
                     @endcan
 
                     <li class="nav-item">
@@ -88,12 +86,12 @@
                             </button>
                         </form>
                     </li>
-                @endauth
+                    @endauth
 
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     @yield('content')
     <!-- FOOTER -->
@@ -126,7 +124,6 @@
                     <h6 class="footer-heading">CONNECT</h6>
                     <div class="footer-icons d-flex align-items-center gap-3">
                         <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
 
@@ -134,7 +131,7 @@
 
             <hr class="footer-line">
             <div class="container text-center">
-                <p class="small mb-1">© 2025 Club Unitee. All rights reserved.</p>
+                <p class="small mb-1"> @ 2026 Club Unitee. All rights reserved.</p>
             </div>
         </div>
     </footer>

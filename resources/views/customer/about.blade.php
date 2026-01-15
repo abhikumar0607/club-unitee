@@ -40,18 +40,24 @@
                     <h3 class="about-section-title mt-4">Our Values</h3>
 
                     <ul class="about-list">
-                        <li><strong>Kindness:</strong> Life is better when we surround ourselves with considerate people who lift others up, and we're working to create that environment both on and off the course.</li>
+                        <li><strong>Kindness:</strong> Life is better when we surround ourselves with considerate people
+                            who lift others up, and we're working to create that environment both on and off the course.
+                        </li>
 
-                        <li><strong>Encouragement:</strong> We celebrate every golfer's journey — from your first swing to your personal best. Progress over perfection.</li>
+                        <li><strong>Encouragement:</strong> We celebrate every golfer's journey — from your first swing
+                            to your personal best. Progress over perfection.</li>
 
-                        <li><strong>Confidentiality:</strong>We're trying to maintain a safe space where members can be authentic, build trust, and connect without concern.</li>
+                        <li><strong>Confidentiality:</strong> We're trying to maintain a safe space where members can be
+                            authentic, build trust, and connect without concern.</li>
                     </ul>
 
                     <!-- QUOTE BOX -->
                     <h3 class="about-section-title mt-4">How It Works</h3>
 
                     <p class="about-text">
-                        Club Unitee is an informal women's golf networking club organized as an unincorporated association. Membership is by referral, and all activities are volunteer-led by members who share a passion for the game.
+                        Club Unitee is an informal women's golf networking club organized as an unincorporated
+                        association. Membership is by referral, and all activities are volunteer-led by members who
+                        share a passion for the game.
                     </p>
 
                 </div>
