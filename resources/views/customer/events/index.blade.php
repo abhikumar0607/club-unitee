@@ -37,6 +37,14 @@
                             </select>
                         </div>
                         <div class="col-md-3">
+                            <select class="form-select input-uni" name="status">
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="Published" {{ request('status') == 'Published' ? 'selected' : '' }}>Published</option>
+                                <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
+                                <option value="Draft" {{ request('status') == 'Draft' ? 'selected' : '' }}>Draft</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
                             <button class="btn btn-gradient w-100 fw-semibold">Apply Filters</button>
                         </div>
                         <div class="col-md-3">
@@ -83,6 +91,15 @@
                             {{ \Carbon\Carbon::parse($event->event_time)->format('h:i A') }}
                         </p>
                         <p class="text-muted small mb-1">{{ $event->location }}</p>
+                        <p class="text-muted small mb-1">
+                            @if ($event->status == 'Published')
+                              <span class="badge bg-primary">Published</span>
+                            @elseif($event->status == 'Completed')
+                            <span class="badge bg-secondary">Completed</span>
+                            @else
+                              <span class="badge bg-warning text-dark draft-btn">Draft</span>
+                            @endif
+                        </p>
                         @if ($event->type == 'Golf Outing')
                         <span class="badge bg-info-subtle text-info fw-semibold mb-2">
                             {{ $event->type }}
@@ -103,14 +120,16 @@
                             <a href="{{ url('event-detail/' . $event->slug) }}" class="btn btn-gradient w-100 mt-auto">
                                 View Details
                             </a>
-                            @if($event->rsvps->count())
-                            <button class="btn btn-success btn-sm btn-gradient"
-                                onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">Cancel
-                            </button>
-                            @else
-                            <button class="btn btn-gradient"
-                                onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">RSVP
-                            </button>
+                            @if($event->status == 'Published' && $event->date >= now()->format('Y-m-d'))
+                                @if($event->rsvps->count())
+                                <button class="btn btn-success btn-sm btn-gradient"
+                                    onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">Cancel
+                                </button>
+                                @else
+                                <button class="btn btn-gradient"
+                                    onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">RSVP
+                                </button>
+                                @endif
                             @endif
                         </div>
                     </div>

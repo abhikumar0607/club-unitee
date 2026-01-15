@@ -24,6 +24,7 @@ class EventController extends Controller
     public function index(Request $request){
         //Get events
         $events = $this->eventService->getAllEvents($request);
+        //echo "<pre>"; print_r($events->toArray()); die;
         return view('customer.events.index', compact('events'));
     }
 

@@ -24,7 +24,14 @@ class frontController extends Controller
     //Function for events page
     public function events(){
         //Get events
-        $all_events = Event::with('rsvps')->whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published'])->paginate(6);
+        if(auth()->check() && Gate::allows('is-customer')){
+            $user = auth()->user();
+            $all_events = $user->events()->with('rsvps')->whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published'])->paginate(6);
+        } else {
+            $all_events = Event::with('rsvps')->whereDate('date', '>=', now())->orderBy('date', 'asc')->whereIn('status', ['Published'])->paginate(6);
+        }   
+
+        //echo "<pre>"; print_r($all_events->toArray());exit;
         return view('customer.events', compact('all_events'));
     }
 

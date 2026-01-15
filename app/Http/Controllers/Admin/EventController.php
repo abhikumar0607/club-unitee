@@ -6,21 +6,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Services\Admin\EventService;
+use App\Services\Admin\MemberService;
 
 class EventController extends Controller
 {
 
     protected $eventService;
+    protected $getAllActiveMembers;
     
-    public function __construct(EventService $eventService)
+    public function __construct(EventService $eventService , MemberService $memberService)
     {
         $this->eventService = $eventService;
+        $this->getAllActiveMembers = $memberService;
     }
 
     //Function for event page
     public function index(Request $request){
         $events = $this->eventService->getAllEvents($request);
-        return view('admin.events.index', compact('events'));
+        $getAllActiveMembers = $this->getAllActiveMembers->getAllActiveMembers();
+        // echo"<pre>";
+        // print_r($getAllActiveMembers->toArray());exit;
+        return view('admin.events.index', compact('events', 'getAllActiveMembers'));
     }
 
     //Function for store event
@@ -35,7 +41,8 @@ class EventController extends Controller
     //Function for edit event
     public function edit($id){
         $event = $this->eventService->edit($id);
-        $html = view('admin.events.edit-form', compact('event'))->render();
+        $getAllActiveMembers = $this->getAllActiveMembers->getAllActiveMembers();
+        $html = view('admin.events.edit-form', compact('event','getAllActiveMembers'))->render();
         return response()->json([
             'status' => true,
             'html' => $html
