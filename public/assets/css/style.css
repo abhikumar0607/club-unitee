@@ -2659,3 +2659,16 @@ a.notification-icon i {
     height: 54px !important;
     object-fit: cover !important;
 }
+.blog-detail-article p a {
+    color: #1f2937!important;
+}
+.sidebar-product-card a {
+    text-decoration: none;
+}
+.mid-post-card img {
+    width: 100%;
+    border-radius: 12px;
+    height: 214px;
+    object-fit: cover;
+    object-position: top;
+}
