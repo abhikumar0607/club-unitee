@@ -46,6 +46,14 @@
                   </select>
                </div>
                <div class="col-md-3">
+                  <select class="form-select input-uni" name="status">
+                     <option value="" disabled selected>Select Status</option>
+                     <option value="Published" {{ request('status') == 'Published' ? 'selected' : '' }}>Published</option>
+                     <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
+                     <option value="Draft" {{ request('status') == 'Draft' ? 'selected' : '' }}>Draft</option>
+                  </select>
+               </div>
+               <div class="col-md-3">
                   <button class="btn btn-gradient w-100 fw-semibold">Apply Filters</button>
                </div>
                <div class="col-md-3">
@@ -61,82 +69,7 @@
 <!--EVENTS SECTION-->
 <section class="pb-5">
    <div class="container">
-      <!--CREATE BUTTON-->
-      <div class="d-flex justify-content-end mb-3">
-         <!--CREATE EVENT MODAL-->
-         <div class="modal fade" id="createEventModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <h5 class="modal-title fw-bold">Create New Event</h5>
-                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  <div class="modal-body">
-                     <form method="POST" action="{{ route('admin.events.store') }}" enctype="multipart/form-data">
-                        @csrf
-                        <!--Event Title-->
-                        <div class="mb-3">
-                           <label class="fw-semibold">Event Title *</label>
-                           <input type="text" name="title" class="form-control" required>
-                        </div>
-                        <!--Event Type-->
-                        <div class="mb-3">
-                           <label class="fw-semibold">Event Type *</label>
-                           <select name="type" class="form-select" required>
-                              <option value="" Disabled selected>Select Type</option>
-                              <option>Golf Outing</option>
-                              <option>Social Event</option>
-                              <option>Workshop</option>
-                           </select>
-                        </div>
-                        <!--Event Date-->
-                        <div class="mb-3">
-                           <label class="fw-semibold">Event Date *</label>
-                           <input type="date" name="date" id="event_date" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                           <label class="fw-semibold">Event Time *</label>
-                           <input type="time" name="event_time" class="form-control" required>
-                        </div>
-                        <!--Location-->
-                        <div class="mb-3">
-                           <label class="fw-semibold">Location *</label>
-                           <input type="text" name="location" class="form-control" required>
-                        </div>
-                        <!--Description-->
-                        <div class="mb-3">
-                           <label class="fw-semibold">Event Description</label>
-                           <textarea name="description" class="form-control" rows="4"></textarea>
-                        </div>
-                        <!-- Image -->
-                        <div class="mb-3">
-                           <label class="fw-semibold">Image *</label>
-                           <input type="file" name="image" class="form-control" required>
-                        </div>
-                        <!--Status-->
-                        <div class="mb-3">
-                           <label class="fw-semibold">Status *</label>
-                           <select name="status" class="form-select" required>
-                              <option value="" disabled selected>Select Status</option>
-                              <option value="Published">Published</option>
-                              <option value="Completed">Completed</option>
-                              <option value="Draft">Draft</option>
-                           </select>
-                        </div>
-                        <div class="modal-footer">
-                           <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-                              Cancel
-                           </button>
-                           <button type="submit" class="btn btn-gradient">
-                              Create Event
-                           </button>
-                        </div>
-                     </form>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+      <x-event-create-modal :getAllActiveMembers="$getAllActiveMembers"/>
       <!--EVENTS TABLE CARD-->
       <div class="card card-uni p-4">
          <h4 class="fw-bold text-uni mb-4">Upcoming & Past Events</h4>

@@ -24,6 +24,10 @@ class Eventservice
             $query->where('type', $request->type);
         }
         
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+        
         $query->with(['rsvps' => function($q){
             $q->where('user_id', auth()->user()->id);
         }]);

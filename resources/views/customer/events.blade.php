@@ -6,13 +6,13 @@
             <!--HEADER ROW: TITLE + SORT-->
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
                 <div>
-                    <h5 class="fw-semibold text-uni mb-1 fs-2">All Events</h5>
+                    <h5 class="fw-semibold text-uni mb-1 fs-2">Upcoming Events</h5>
                     <p class="text-muted small mb-0">Browse upcoming rounds, socials, and workshops.</p>
                 </div>
             </div>
             <!--FILTER CARD WITH TOGGLE-->
             <div class="card events-filter-card mb-4">
-                <h4 class="btn-11">All Event</h4>
+                <h4 class="btn-11">Upcoming Event</h4>
                 <hr>
                 <!--Toggle button (collapsed by default) -->
                 <!--<div class="d-flex justify-content-between align-items-center">
@@ -151,7 +151,15 @@
                                             {{ $event->title }}
                                         </a>
                                     </h5>
-
+                                    <p class="text-muted small mb-1">
+                                        @if ($event->status == 'Published')
+                                        <span class="badge bg-primary">Published</span>
+                                        @elseif($event->status == 'Completed')
+                                        <span class="badge bg-secondary">Completed</span>
+                                        @else
+                                        <span class="badge bg-warning text-dark draft-btn">Draft</span>
+                                        @endif
+                                    </p>
                                     <p class="text-muted small flex-grow-1">
                                         {{ \Illuminate\Support\Str::words(strip_tags($event->description), 20) }}
                                     </p>
@@ -174,16 +182,18 @@
                                                     <strong>{{ $event->rsvps->count() }}</strong> RSVP’s
                                                 </a>
                                             @else
-                                                @if ($userRsvp)
-                                                    <button class="btn btn-success btn-sm btn-gradient"
-                                                        onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">
-                                                        Cancel
-                                                    </button>
-                                                @else
-                                                    <button class="btn btn-gradient"
-                                                        onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">
-                                                        RSVP
-                                                    </button>
+                                                @if($event->status == 'Published' && $event->date >= now()->format('Y-m-d'))
+                                                    @if ($userRsvp)
+                                                        <button class="btn btn-success btn-sm btn-gradient"
+                                                            onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">
+                                                            Cancel
+                                                        </button>
+                                                    @else
+                                                        <button class="btn btn-gradient"
+                                                            onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">
+                                                            RSVP
+                                                        </button>
+                                                    @endif
                                                 @endif
                                             @endif
                                         @else
