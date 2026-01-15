@@ -2472,9 +2472,6 @@ a.read-more-001 {
     color: #000 !important;
     font-size: 16px;
 }
-span.published-btn {
-    background: #1cb581 !important;
-}
 /* span.badge {
     width: fit-content;
     margin: auto;
@@ -2671,4 +2668,14 @@ a.notification-icon i {
     height: 214px;
     object-fit: cover;
     object-position: top;
+}
+.sidebar-product-card a:first-child {
+    width: 100px;
+    object-fit: cover;
+}
+.published-btn {
+    display: flex;
+    align-items: center;
+    background-color: #10b981 !important;
+    width: fit-content;
 }

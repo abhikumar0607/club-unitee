@@ -39,9 +39,12 @@
                         <div class="col-md-3">
                             <select class="form-select input-uni" name="status">
                                 <option value="" disabled selected>Select Status</option>
-                                <option value="Published" {{ request('status') == 'Published' ? 'selected' : '' }}>Published</option>
-                                <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
-                                <option value="Draft" {{ request('status') == 'Draft' ? 'selected' : '' }}>Draft</option>
+                                <option value="Published" {{ request('status') == 'Published' ? 'selected' : '' }}>
+                                    Published</option>
+                                <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>
+                                    Completed</option>
+                                <option value="Draft" {{ request('status') == 'Draft' ? 'selected' : '' }}>Draft
+                                </option>
                             </select>
                         </div>
                         <div class="col-md-3">
@@ -70,11 +73,11 @@
                         <div class="event-img mb-3 position-relative">
 
                             @if($event->rsvps->where('user_id', auth()->id())->first())
-                                <div class="going-ribbon-03">
-                                    You're Going
-                                </div>
+                            <div class="going-ribbon-03">
+                                You're Going
+                            </div>
                             @endif
-                            
+
                             <a href="{{ url('event-detail/' . $event->slug) }}" class="stretched-link"></a>
                             @if ($event->image)
                             <img src="{{ asset('assets/admin/uploads/events/' . $event->image) }}"
@@ -93,11 +96,11 @@
                         <p class="text-muted small mb-1">{{ $event->location }}</p>
                         <p class="text-muted small mb-1">
                             @if ($event->status == 'Published')
-                              <span class="badge bg-primary">Published</span>
+                            <span class="badge bg-primary published-btn">Published</span>
                             @elseif($event->status == 'Completed')
                             <span class="badge bg-secondary">Completed</span>
                             @else
-                              <span class="badge bg-warning text-dark draft-btn">Draft</span>
+                            <span class="badge bg-warning text-dark draft-btn">Draft</span>
                             @endif
                         </p>
                         @if ($event->type == 'Golf Outing')
@@ -121,15 +124,15 @@
                                 View Details
                             </a>
                             @if($event->status == 'Published' && $event->date >= now()->format('Y-m-d'))
-                                @if($event->rsvps->count())
-                                <button class="btn btn-success btn-sm btn-gradient"
-                                    onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">Cancel
-                                </button>
-                                @else
-                                <button class="btn btn-gradient"
-                                    onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">RSVP
-                                </button>
-                                @endif
+                            @if($event->rsvps->count())
+                            <button class="btn btn-success btn-sm btn-gradient"
+                                onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'cancel')">Cancel
+                            </button>
+                            @else
+                            <button class="btn btn-gradient"
+                                onclick="openRsvpModal('{{ $event->title }}', {{ $event->id }}, 'confirm')">RSVP
+                            </button>
+                            @endif
                             @endif
                         </div>
                     </div>
