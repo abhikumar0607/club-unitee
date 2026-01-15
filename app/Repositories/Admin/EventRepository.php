@@ -6,6 +6,9 @@ use App\Models\EventRsvp;
 use App\Models\EventMember;
 use App\Traits\HandlesFileUpload;
 use Illuminate\Support\Str;
+use App\Mail\EventAssignedMail;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class EventRepository
 {
@@ -36,14 +39,22 @@ class EventRepository
         ]);
 
         //Store members in event_rsvps table
-        if ($request->has('members')) {
-            foreach ($request->members as $memberId) {
+        if ($request->filled('members')) {
+
+            $members = User::whereIn('id', $request->members)->get();
+
+            foreach ($members as $member) {
+
                 EventMember::create([
                     'event_id' => $event->id,
-                    'member_id' => $memberId,
+                    'member_id' => $member->id,
                 ]);
+
+                Mail::to($member->email)
+                    ->send(new EventAssignedMail($event, $member));
             }
         }
+
 
         return true;
     }
@@ -76,6 +87,7 @@ class EventRepository
     public function update($request, $id) {
         //Get event detail
         $event = Event::findOrFail($id);
+        $oldMemberIds = $event->members->pluck('id')->toArray();
         //image upload
         $filename = $event->image ?? null;
         if ($request->hasFile('image')) {
@@ -107,7 +119,24 @@ class EventRepository
         ]);
 
         //Update members in event_member table
-        $event->members()->sync($request->members ?? []);
+        $newMemberIds = $request->members ?? [];
+
+        // SYNC MEMBERS
+        $event->members()->sync($newMemberIds);
+
+        // FIND ONLY NEWLY ADDED MEMBERS
+        $onlyNewMembers = array_diff($newMemberIds, $oldMemberIds);
+
+        // SEND MAIL ONLY TO NEW MEMBERS
+        if (!empty($onlyNewMembers)) {
+            $users = User::whereIn('id', $onlyNewMembers)->get();
+
+            foreach ($users as $user) {
+                Mail::to($user->email)
+                    ->send(new EventAssignedMail($event, $user));
+            }
+        }
+
         return true;
     }
     

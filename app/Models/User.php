@@ -26,6 +26,7 @@ class User extends Authenticatable
         'organization',
         'bio',
         'referral_source',
+        'member_name',
         'linkedin_url',
         'instagram_handle',
         'role',

@@ -53,6 +53,7 @@ class ProfileController extends Controller
 
             // Matching
             'travel_radius'          => 'required',
+            'member_name'     => ['required_if:referral_source,Member/Friend/Colleague'],
         ]);
 
         $this->profileService->updateUserProfile($request);
