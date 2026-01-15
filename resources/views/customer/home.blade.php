@@ -219,7 +219,7 @@
                    ">
                         Read more
                     </a> -->
-                <!-- @endif
+<!-- @endif
 
                 </div>
             </div>
@@ -264,10 +264,10 @@
         @guest
         <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
             <a href="{{ url('register') }}" class="btn btn-dark hero-btn-primary">
-                Start Free Trial →
+                Apply Now →
             </a>
             <a href="{{ url('login') }}" class="btn hero-btn-secondary">
-                Sign In ↦
+                Sign In →
             </a>
         </div>
         @endguest

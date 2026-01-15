@@ -24,7 +24,7 @@ class DashboardRepository
     //Function for all events
     public function allEvents()
     {
-        return Event::where('user_id', auth()->id())->count();
+        return Event::where('user_id', auth()->id())->whereIn('status', ['Published', 'Completed'])->count();
     }
 
     //Function for current month members
