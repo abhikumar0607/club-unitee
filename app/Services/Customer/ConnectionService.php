@@ -16,8 +16,7 @@ class ConnectionService
     }
 
     //function for test
-    public function test(){
-       
+    public function test(){   
     }
     
     public function getAllConnections($request)
@@ -78,7 +77,6 @@ class ConnectionService
 
         return $paginatedItems;
     }
-
 
     public function getMyConnections(){
         return $this->repo->getMyConnections(auth()->user()->id);

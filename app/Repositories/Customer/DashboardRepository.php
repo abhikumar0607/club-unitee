@@ -40,14 +40,16 @@ class DashboardRepository
 
     //Function for all events
     public function allEvents() {
-         return Event::whereDate('date', '>=', now())
+        $user = auth()->user();
+        return $user->events()->whereDate('date', '>=', now())
         ->orderBy('date', 'asc')
         ->whereIn('status', ['Published'])->count();
     }
 
     //Function for upcoming event
     public function upcomingEvents() {
-        return Event::whereDate('date', '>=', now())
+        $user = auth()->user();
+        return $user->events()->whereDate('date', '>=', now())
         ->orderBy('date', 'asc')
         ->whereIn('status', ['Published']);
     }

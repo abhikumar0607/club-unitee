@@ -47,4 +47,12 @@ class MemberService
 
         return $query->paginate(10)->withQueryString();
     }
+
+    //function for get all members without pagination and should be active
+    public function getAllActiveMembers(){
+        return $this->memberRepo->getAllMembers()
+            ->where('is_approved', 'approved')
+            ->where('status', 'active')
+            ->get();
+    }
 }

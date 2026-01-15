@@ -29,4 +29,11 @@ class Event extends Model
     {
         return $this->hasMany(EventRsvp::class)->with('user');
     }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'event_member', 'event_id', 'member_id')
+                    ->withTimestamps();
+    }
+
 }

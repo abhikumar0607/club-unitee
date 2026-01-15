@@ -87,4 +87,14 @@ class User extends Authenticatable
             'group_id'
         );
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(
+            Event::class,
+            'event_member',  
+            'member_id',
+            'event_id'
+        );
+    }
 }

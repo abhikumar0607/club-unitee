@@ -3,6 +3,7 @@
 namespace App\Repositories\Admin;
 use App\Models\Event;
 use App\Models\EventRsvp;
+use App\Models\EventMember;
 use App\Traits\HandlesFileUpload;
 use Illuminate\Support\Str;
 
@@ -21,7 +22,7 @@ class EventRepository
             return false;
         }    
         //Create event
-        Event::create([
+        $event = Event::create([
             'user_id' => auth()->id(),
             'title' => $request->title,
             'slug' => $slug,
@@ -33,6 +34,16 @@ class EventRepository
             'status' => $request->status,
             'image' => $filename,
         ]);
+
+        //Store members in event_rsvps table
+        if ($request->has('members')) {
+            foreach ($request->members as $memberId) {
+                EventMember::create([
+                    'event_id' => $event->id,
+                    'member_id' => $memberId,
+                ]);
+            }
+        }
 
         return true;
     }
@@ -48,13 +59,17 @@ class EventRepository
         if ($request->filled('type')) {
             $query->where('type', $request->type);
         }
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+        
         $query->with('rsvps');
         return $query->paginate(10);
     }
 
     //Function for edit event
     public function edit($id) {
-        return Event::findOrFail($id);
+        return Event::with('members')->findOrFail($id);
     }
 
     //Function for update event
@@ -91,6 +106,8 @@ class EventRepository
             'image' => $filename,
         ]);
 
+        //Update members in event_member table
+        $event->members()->sync($request->members ?? []);
         return true;
     }
     
