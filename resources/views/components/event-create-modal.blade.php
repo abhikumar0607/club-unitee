@@ -78,6 +78,12 @@
                             <div class="col-12 mb-3">
                                 <label class="fw-semibold mb-2">Select Members</label>
 
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="selectAllMembers">
+                                    <label class="form-check-label fw-semibold" for="selectAllMembers">
+                                        Select All Members
+                                    </label>
+                                </div>
                                 <!-- Search Box -->
                                 <input type="text"
                                     id="memberSearch"
@@ -128,11 +134,14 @@
          </div>
      </div>
  </div>
- <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
+
     const searchInput = document.getElementById('memberSearch');
     const members     = document.querySelectorAll('.member-item');
+    const selectAll   = document.getElementById('selectAllMembers');
 
+    //  Search members
     searchInput.addEventListener('keyup', function () {
         const value = this.value.toLowerCase();
 
@@ -141,6 +150,30 @@ document.addEventListener('DOMContentLoaded', function () {
             member.style.display = text.includes(value) ? 'block' : 'none';
         });
     });
+
+    // Select / Unselect all (only visible ones)
+    selectAll.addEventListener('change', function () {
+        const checked = this.checked;
+
+        members.forEach(function (member) {
+            if (member.style.display !== 'none') {
+                member.querySelector('input[type="checkbox"]').checked = checked;
+            }
+        });
+    });
+
+    // If any single checkbox unchecked → uncheck Select All
+    members.forEach(function (member) {
+        const checkbox = member.querySelector('input[type="checkbox"]');
+
+        checkbox.addEventListener('change', function () {
+            if (!this.checked) {
+                selectAll.checked = false;
+            }
+        });
+    });
+
 });
 </script>
+
 

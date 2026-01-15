@@ -79,6 +79,13 @@
         <div class="col-12 mb-3">
             <label class="fw-semibold mb-2">Select Members</label>
 
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="selectAllMembers">
+                <label class="form-check-label fw-semibold" for="selectAllMembers">
+                    Select All Members
+                </label>
+            </div>
+
             <!-- Search -->
             <input type="text" id="memberSearch"
                    class="form-control mb-2"
@@ -124,21 +131,19 @@
     </div>
 </form>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('memberSearch');
-    const members = document.querySelectorAll('.member-item');
+document.addEventListener('click', function (e) {
 
-    if (searchInput) {
-        searchInput.addEventListener('keyup', function () {
-            const value = this.value.toLowerCase();
+    if (e.target && e.target.id === 'selectAllMembers') {
 
-            members.forEach(member => {
-                member.style.display =
-                    member.innerText.toLowerCase().includes(value)
-                        ? 'block'
-                        : 'none';
+        const checked = e.target.checked;
+
+        document.querySelectorAll('.member-item input[type="checkbox"]')
+            .forEach(function (checkbox) {
+                checkbox.checked = checked;
             });
-        });
     }
+
 });
 </script>
+
+
