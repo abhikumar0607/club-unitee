@@ -77,7 +77,7 @@
 
         <!-- MEMBERS SECTION -->
         <div class="col-12 mb-3">
-            <label class="fw-semibold mb-2">Select Members *</label>
+            <label class="fw-semibold mb-2">Select Members</label>
 
             <!-- Search -->
             <input type="text" id="memberSearch"
@@ -100,7 +100,6 @@
                                value="{{ $member->id }}"
                                id="member_{{ $member->id }}"
                                {{ in_array($member->id, $selectedMembers) ? 'checked' : '' }}
-                              {{ $key == 0 ? 'required' : '' }}
                                >
 
                         <label class="form-check-label"
