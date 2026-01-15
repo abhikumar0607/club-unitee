@@ -2654,3 +2654,8 @@ td img.main-profile-ima {
 a.notification-icon i {
     padding: 11px 0 0;
 }
+.table-responsive table.table tbody tr td img {
+    width: 54px !important;
+    height: 54px !important;
+    object-fit: cover !important;
+}
