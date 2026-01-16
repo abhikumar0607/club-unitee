@@ -2679,3 +2679,6 @@ a.notification-icon i {
     background-color: #10b981 !important;
     width: fit-content;
 }
+.card.card-uni .table-responsive td:last-child {
+    width: 20%;
+}
