@@ -1,427 +1,438 @@
 @extends(auth()->user()->role === 'customer' ? 'layouts.customer-dashboard' : 'layouts.admin-dashboard')
 
 @section('content')
-    <style>
-        .chat-wrapper {
-            height: calc(100vh - 120px);
-            padding: 15px
-        }
+<style>
+.chat-wrapper {
+    height: calc(100vh - 120px);
+    padding: 15px
+}
 
-        .chat-page {
-            display: flex;
-            height: 100%;
-            background: #fff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .1)
-        }
+.chat-page {
+    display: flex;
+    height: 100%;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .1)
+}
 
-        .chat-users {
-            width: 20%;
-            border-right: 1px solid #e5e7eb;
-            background: #f9fafb;
-            display: flex;
-            flex-direction: column
-        }
+.chat-users {
+    width: 20%;
+    border-right: 1px solid #e5e7eb;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column
+}
 
-        .chat-users-header {
-            padding: 16px;
-            font-weight: 700;
-            border-bottom: 1px solid #e5e7eb
-        }
+.chat-users-header {
+    padding: 16px;
+    font-weight: 700;
+    border-bottom: 1px solid #e5e7eb
+}
 
-        .chat-search {
-            padding: 10px 14px;
-            border-bottom: 1px solid #e5e7eb
-        }
+.chat-search {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e5e7eb
+}
 
-        .chat-search input {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid #d1d5db
-        }
+.chat-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db
+}
 
-        .chat-users-list {
-            flex: 1;
-            overflow-y: auto
-        }
+.chat-users-list {
+    flex: 1;
+    overflow-y: auto
+}
 
-        .chat-user {
-            padding: 12px 16px;
-            display: flex;
-            gap: 12px;
-            cursor: pointer;
-            align-items: center;
-            position: relative
-        }
+.chat-user {
+    padding: 12px 16px;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    align-items: center;
+    position: relative
+}
 
-        .chat-user:hover,
-        .chat-user.active {
-            background: #e6f7f0
-        }
+.chat-user:hover,
+.chat-user.active {
+    background: #e6f7f0
+}
 
-        .chat-user img {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover
-        }
+.chat-user img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover
+}
 
-        .chat-user-name {
-            font-weight: 600;
-            font-size: 14px
-        }
+.chat-user-name {
+    font-weight: 600;
+    font-size: 14px
+}
 
-        .chat-user-last {
-            font-size: 12px;
-            color: #6b7280
-        }
+.chat-user-last {
+    font-size: 12px;
+    color: #6b7280
+}
 
-        .unread-badge {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #ef4444;
-            color: #fff;
-            min-width: 18px;
-            height: 18px;
-            font-size: 11px;
-            border-radius: 999px;
-            display: flex;
-            align-items: center;
-            justify-content: center
-        }
+.unread-badge {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ef4444;
+    color: #fff;
+    min-width: 18px;
+    height: 18px;
+    font-size: 11px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
 
-        .chat-box {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: #ece5dd;
-            width: 80%;
-        }
+.chat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ece5dd;
+    width: 80%;
+}
 
-        .chat-header {
-            padding: 14px 16px;
-            background: #fff;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            gap: 12px
-        }
+.chat-header {
+    padding: 14px 16px;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
 
-        .chat-header img {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover
-        }
+.chat-header img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover
+}
 
-        .chat-header-name {
-            font-weight: 700
-        }
+.chat-header-name {
+    font-weight: 700
+}
 
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto
-        }
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto
+}
 
-        .chat-msg {
-            max-width: 630px;
-            padding: 8px 12px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            font-size: 14px
-        }
+.chat-msg {
+    max-width: 630px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 14px
+}
 
-        .chat-msg.sent {
-            background: #dcf8c6;
-            margin-left: auto;
-            width: fit-content;
-        }
+.chat-msg.sent {
+    background: #dcf8c6;
+    margin-left: auto;
+    width: fit-content;
+}
 
-        .chat-msg.received {
-            background: #fff;
-            width: fit-content;
-        }
+.chat-msg.received {
+    background: #fff;
+    width: fit-content;
+}
 
-        .chat-time {
-            font-size: 10px;
-            text-align: right;
-            opacity: .6
-        }
+.chat-time {
+    font-size: 10px;
+    text-align: right;
+    opacity: .6
+}
 
-        .msg-status {
-            margin-left: 4px;
-            font-size: 12px
-        }
+.msg-status {
+    margin-left: 4px;
+    font-size: 12px
+}
 
-        .msg-status.seen {
-            color: #0ea5e9
-        }
+.msg-status.seen {
+    color: #0ea5e9
+}
 
-        .chat-input {
-            padding: 12px;
-            background: #fff;
-            border-top: 1px solid #ddd;
-            display: flex;
-            gap: 10px
-        }
+.chat-input {
+    padding: 12px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 10px
+}
 
-        .chat-input input {
-            flex: 1;
-            border: 1px solid #d1d5db;
-            border-radius: 999px;
-            padding: 10px 16px
-        }
+.chat-input input {
+    flex: 1;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    padding: 10px 16px
+}
 
-        .chat-input button {
-            background: #22c55e;
-            border: none;
-            color: #fff;
-            padding: 0 22px;
-            border-radius: 999px
-        }
-    </style>
+.chat-input button {
+    background: #22c55e;
+    border: none;
+    color: #fff;
+    padding: 0 22px;
+    border-radius: 999px
+}
+</style>
 
-    <!--MAIN CONTENT-->
-    <div class="main-content">
-        <!--TOP NAVBAR-->
-        <nav class="top-navbar d-flex justify-content-between align-items-center px-4 shadow-sm">
-            <h4 class="m-0 fw-bold text-uni">chats</h4>
-            <x-customer-dashboard-nav-profile />
-        </nav>
-        <!--HEADER-->
-        <section class="page-header text-center py-3">
-        </section>
-        <div class="chat-wrapper">
-            <div class="chat-page">
+<!--MAIN CONTENT-->
+<div class="main-content">
+    <!--TOP NAVBAR-->
+    <nav class="top-navbar d-flex justify-content-end align-items-center px-4 shadow-sm">
+        <!-- <h4 class="m-0 fw-bold text-uni">chats</h4> -->
+        <x-customer-dashboard-nav-profile />
+    </nav>
+    <!--HEADER-->
+    <section class="page-header text-center py-3">
+    </section>
+    <div class="chat-wrapper">
+        <div class="chat-page">
 
-                <!-- USERS -->
-                <div class="chat-users">
-                    <div class="chat-users-header d-flex justify-content-between align-items-center">
-                        <span>Members</span>
-                        <button class="btn btn-sm btn-success" onclick="openCreateGroupModal()">
-                            + Group
-                        </button>
+            <!-- USERS -->
+            <div class="chat-users">
+                <div class="chat-users-header d-flex justify-content-between align-items-center">
+                    <span>Members</span>
+                    <button class="btn btn-sm btn-success" onclick="openCreateGroupModal()">
+                        + Group
+                    </button>
+                </div>
+
+
+                <div class="chat-search">
+                    <input type="text" id="userSearch" placeholder="Search members">
+                </div>
+                <div class="chat-users-list">
+                    @foreach ($members as $m)
+                    <div class="chat-user" data-id="{{ $m->id }}" data-name="{{ strtolower($m->name) }}"
+                        data-image="{{ $m->profile_image ? asset('assets/customer/uploads/profile/' . $m->profile_image) : asset('assets/customer/images/person-dummy.jpg') }}"
+                        onclick="openChat({{ $m->id }}, '{{ $m->name }}', this)">
+                        <img
+                            src="{{ $m->profile_image ? asset('assets/customer/uploads/profile/' . $m->profile_image) : asset('assets/customer/images/person-dummy.jpg') }}">
+                        <div>
+                            <div class="chat-user-name">{{ $m->name }}</div>
+                            <div class="chat-user-last" id="last-msg-{{ $m->id }}">Tap to chat</div>
+                        </div>
+                        <span id="unread-{{ $m->id }}" class="unread-badge d-none">0</span>
                     </div>
+                    @endforeach
 
+                    {{-- GROUPS --}}
+                    <div class="px-3 py-2 fw-bold text-muted mt-2">Groups</div>
+                    @foreach ($groups as $g)
+                    <div class="chat-user"
+                        data-image="{{ $g->image ? asset('assets/customer/uploads/groups/'.$g->image) : asset('assets/customer/images/person-dummy.jpg') }}"
+                        onclick="openGroupChat({{ $g->id }}, '{{ $g->name }}', this)">
 
-                    <div class="chat-search">
-                        <input type="text" id="userSearch" placeholder="Search members">
-                    </div>
-                    <div class="chat-users-list">
-                        @foreach ($members as $m)
-                            <div class="chat-user" data-id="{{ $m->id }}" data-name="{{ strtolower($m->name) }}"
-                                data-image="{{ $m->profile_image ? asset('assets/customer/uploads/profile/' . $m->profile_image) : asset('assets/customer/images/person-dummy.jpg') }}"
-                                onclick="openChat({{ $m->id }}, '{{ $m->name }}', this)">
-                                <img
-                                    src="{{ $m->profile_image ? asset('assets/customer/uploads/profile/' . $m->profile_image) : asset('assets/customer/images/person-dummy.jpg') }}">
-                                <div>
-                                    <div class="chat-user-name">{{ $m->name }}</div>
-                                    <div class="chat-user-last" id="last-msg-{{ $m->id }}">Tap to chat</div>
-                                </div>
-                                <span id="unread-{{ $m->id }}" class="unread-badge d-none">0</span>
-                            </div>
-                        @endforeach
+                        <img
+                            src="{{ $g->image ? asset('assets/customer/uploads/groups/'.$g->image) : asset('assets/customer/images/person-dummy.jpg') }}">
 
-                        {{-- GROUPS --}}
-                        <div class="px-3 py-2 fw-bold text-muted mt-2">Groups</div>
-                        @foreach ($groups as $g)
-                            <div class="chat-user" 
+                        <div style="flex:1">
+                            <div class="chat-user-name">{{ $g->name }}</div>
+                            <div class="chat-user-last">{{ $g->users_count }} members</div>
+                        </div>
+                        <span id="group-unread-{{ $g->id }}" class="unread-badge d-none">0</span>
+
+                        @if($g->created_by == auth()->id())
+                        <!-- EDIT BUTTON -->
+                        <button type="button" class="btn btn-sm btn-light me-2"
+                            onclick="event.stopPropagation(); openEditGroupModal(this)" data-id="{{ $g->id }}"
+                            data-name="{{ $g->name }}"
                             data-image="{{ $g->image ? asset('assets/customer/uploads/groups/'.$g->image) : asset('assets/customer/images/person-dummy.jpg') }}"
-                            onclick="openGroupChat({{ $g->id }}, '{{ $g->name }}', this)">
-
-                                <img src="{{ $g->image ? asset('assets/customer/uploads/groups/'.$g->image) : asset('assets/customer/images/person-dummy.jpg') }}">
-
-                                <div style="flex:1">
-                                    <div class="chat-user-name">{{ $g->name }}</div>
-                                    <div class="chat-user-last">{{ $g->users_count }} members</div>
-                                </div>
-                                <span id="group-unread-{{ $g->id }}" class="unread-badge d-none">0</span>
-
-                                @if($g->created_by == auth()->id())
-                                <!-- EDIT BUTTON -->
-                                <button type="button"
-                                    class="btn btn-sm btn-light me-2"
-                                    onclick="event.stopPropagation(); openEditGroupModal(this)"
-                                    data-id="{{ $g->id }}"
-                                    data-name="{{ $g->name }}"
-                                    data-image="{{ $g->image ? asset('assets/customer/uploads/groups/'.$g->image) : asset('assets/customer/images/person-dummy.jpg') }}"
-                                    data-members='@json($g->users->pluck("id"))'>
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                @endif
-                            </div>
-                            @endforeach
+                            data-members='@json($g->users->pluck("id"))'>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        @endif
                     </div>
+                    @endforeach
                 </div>
-
-                <!-- CHAT -->
-                <div class="chat-box">
-                    <div class="chat-header">
-                        <img id="chatHeaderImg" src="{{ asset('assets/customer/images/person-dummy.jpg') }}">
-                        <div class="chat-header-name" id="chatHeaderName">Select a member</div>
-                    </div>
-
-                    <div class="chat-messages" id="chatMessages"></div>
-
-                    <div class="chat-input">
-                        <input type="text" id="chatInput" placeholder="Type a message">
-                        <button onclick="sendMessage()">Send</button>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- CHAT -->
+            <div class="chat-box">
+                <div class="chat-header">
+                    <img id="chatHeaderImg" src="{{ asset('assets/customer/images/person-dummy.jpg') }}">
+                    <div class="chat-header-name" id="chatHeaderName">Select a member</div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages"></div>
+
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type a message">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
 
-    <!-- CREATE GROUP MODAL -->
-    <x-group-modal :members="$members" />
+<!-- CREATE GROUP MODAL -->
+<x-group-modal :members="$members" />
 
-    <!-- EDIT GROUP MODAL -->
-    <x-edit-group-modal  :members="$members" />
+<!-- EDIT GROUP MODAL -->
+<x-edit-group-modal :members="$members" />
 
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
-    <script>
-        /* ================= GLOBAL STATE ================= */
-        const baseUrl = "{{ url('/') }}";
-        const authUserId = {{ auth()->id() }};
+<script>
+/* ================= GLOBAL STATE ================= */
+const baseUrl = "{{ url('/') }}";
+const authUserId = {
+    {
+        auth() - > id()
+    }
+};
 
-        // PRIVATE CHAT
-        let currentChatUserId = null;
-        let unseenCounts = {};
+// PRIVATE CHAT
+let currentChatUserId = null;
+let unseenCounts = {};
 
-        // GROUP CHAT
-        let currentChatType = 'private'; // private | group
-        let currentGroupId = null;
-        let groupChannel = {};
+// GROUP CHAT
+let currentChatType = 'private'; // private | group
+let currentGroupId = null;
+let groupChannel = {};
 
-        /* ================= PAGE LOAD ================= */
-        document.addEventListener('DOMContentLoaded', () => {
+/* ================= PAGE LOAD ================= */
+document.addEventListener('DOMContentLoaded', () => {
 
-            // load private unread
-            document.querySelectorAll('.chat-user').forEach(u => {
-                if (u.dataset.id) loadUnseenCount(u.dataset.id);
-            });
+    // load private unread
+    document.querySelectorAll('.chat-user').forEach(u => {
+        if (u.dataset.id) loadUnseenCount(u.dataset.id);
+    });
 
-            // load group unread
-            @foreach ($groups as $g)
-                subscribeGroupChannel({{ $g->id }});
-                loadGroupUnread({{ $g->id }});
-            @endforeach
-        });
-
-        /* ================= SEARCH ================= */
-        document.getElementById('userSearch').addEventListener('keyup', e => {
-            let v = e.target.value.toLowerCase();
-            document.querySelectorAll('.chat-user').forEach(u => {
-                if (!u.dataset.name) return;
-                u.style.display = u.dataset.name.includes(v) ? 'flex' : 'none';
-            });
-        });
-
-        /* ================= PRIVATE UNREAD ================= */
-        function loadUnseenCount(userId) {
-            fetch(`${baseUrl}/chat/unseen-count/${userId}`)
-                .then(r => r.json())
-                .then(d => {
-                    unseenCounts[userId] = d.count;
-                    let badge = document.getElementById(`unread-${userId}`);
-                    if (!badge) return;
-
-                    if (d.count > 0) {
-                        badge.innerText = d.count > 9 ? '9+' : d.count;
-                        badge.classList.remove('d-none');
-                    } else {
-                        badge.classList.add('d-none');
-                    }
-                });
+    // load group unread
+    @foreach($groups as $g)
+    subscribeGroupChannel({
+        {
+            $g - > id
         }
-
-        /* ================= OPEN PRIVATE CHAT ================= */
-        async function openChat(id, name, el) {
-
-            currentChatType = 'private';
-            currentChatUserId = id;
-            currentGroupId = null;
-
-            if (groupChannel) {
-                pusher.unsubscribe(groupChannel.name);
-                groupChannel = null;
-            }
-
-            chatHeaderName.innerText = name;
-            chatHeaderImg.src = el.dataset.image;
-            chatMessages.innerHTML = '';
-
-            document.querySelectorAll('.chat-user').forEach(u => u.classList.remove('active'));
-            el.classList.add('active');
-
-            let res = await fetch(`${baseUrl}/chat/messages/${id}`);
-            let messages = await res.json();
-            messages.forEach(renderPrivateMessage);
-            scrollBottom();
-
-            await fetch(`${baseUrl}/chat/seen/${id}`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            });
-
-            unseenCounts[id] = 0;
-            hideUnread(id);
+    });
+    loadGroupUnread({
+        {
+            $g - > id
         }
+    });
+    @endforeach
+});
 
-        /* ================= OPEN GROUP CHAT ================= */
-        async function openGroupChat(groupId, name, el) {
+/* ================= SEARCH ================= */
+document.getElementById('userSearch').addEventListener('keyup', e => {
+    let v = e.target.value.toLowerCase();
+    document.querySelectorAll('.chat-user').forEach(u => {
+        if (!u.dataset.name) return;
+        u.style.display = u.dataset.name.includes(v) ? 'flex' : 'none';
+    });
+});
 
-            currentChatType = 'group';
-            currentGroupId = groupId;
-            currentChatUserId = null;
+/* ================= PRIVATE UNREAD ================= */
+function loadUnseenCount(userId) {
+    fetch(`${baseUrl}/chat/unseen-count/${userId}`)
+        .then(r => r.json())
+        .then(d => {
+            unseenCounts[userId] = d.count;
+            let badge = document.getElementById(`unread-${userId}`);
+            if (!badge) return;
 
-            chatHeaderName.innerText = name;
-            chatHeaderImg.src = el.dataset.image;
-            chatMessages.innerHTML = '';
-
-            document.querySelectorAll('.chat-user').forEach(u => u.classList.remove('active'));
-            el.classList.add('active');
-
-            subscribeGroupChannel(groupId);
-
-            let res = await fetch(`${baseUrl}/group/messages/${groupId}`);
-            let messages = await res.json();
-            messages.forEach(renderGroupMessage);
-
-            scrollBottom();
-
-            // mark read
-            fetch(`${baseUrl}/group/${groupId}/read`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            });
-
-            //  CLEAR BADGE
-            let badge = document.getElementById(`group-unread-${groupId}`);
-            if (badge) {
-                badge.innerText = '0';
+            if (d.count > 0) {
+                badge.innerText = d.count > 9 ? '9+' : d.count;
+                badge.classList.remove('d-none');
+            } else {
                 badge.classList.add('d-none');
             }
+        });
+}
+
+/* ================= OPEN PRIVATE CHAT ================= */
+async function openChat(id, name, el) {
+
+    currentChatType = 'private';
+    currentChatUserId = id;
+    currentGroupId = null;
+
+    if (groupChannel) {
+        pusher.unsubscribe(groupChannel.name);
+        groupChannel = null;
+    }
+
+    chatHeaderName.innerText = name;
+    chatHeaderImg.src = el.dataset.image;
+    chatMessages.innerHTML = '';
+
+    document.querySelectorAll('.chat-user').forEach(u => u.classList.remove('active'));
+    el.classList.add('active');
+
+    let res = await fetch(`${baseUrl}/chat/messages/${id}`);
+    let messages = await res.json();
+    messages.forEach(renderPrivateMessage);
+    scrollBottom();
+
+    await fetch(`${baseUrl}/chat/seen/${id}`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
         }
+    });
 
-        /* ================= RENDER PRIVATE MESSAGE ================= */
-        function renderPrivateMessage(msg) {
-            let div = document.createElement('div');
-            div.className = 'chat-msg ' + (msg.sender_id === authUserId ? 'sent' : 'received');
-            div.dataset.id = msg.id;
+    unseenCounts[id] = 0;
+    hideUnread(id);
+}
 
-            div.innerHTML = `
+/* ================= OPEN GROUP CHAT ================= */
+async function openGroupChat(groupId, name, el) {
+
+    currentChatType = 'group';
+    currentGroupId = groupId;
+    currentChatUserId = null;
+
+    chatHeaderName.innerText = name;
+    chatHeaderImg.src = el.dataset.image;
+    chatMessages.innerHTML = '';
+
+    document.querySelectorAll('.chat-user').forEach(u => u.classList.remove('active'));
+    el.classList.add('active');
+
+    subscribeGroupChannel(groupId);
+
+    let res = await fetch(`${baseUrl}/group/messages/${groupId}`);
+    let messages = await res.json();
+    messages.forEach(renderGroupMessage);
+
+    scrollBottom();
+
+    // mark read
+    fetch(`${baseUrl}/group/${groupId}/read`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    });
+
+    //  CLEAR BADGE
+    let badge = document.getElementById(`group-unread-${groupId}`);
+    if (badge) {
+        badge.innerText = '0';
+        badge.classList.add('d-none');
+    }
+}
+
+/* ================= RENDER PRIVATE MESSAGE ================= */
+function renderPrivateMessage(msg) {
+    let div = document.createElement('div');
+    div.className = 'chat-msg ' + (msg.sender_id === authUserId ? 'sent' : 'received');
+    div.dataset.id = msg.id;
+
+    div.innerHTML = `
         ${msg.message}
         <div class="chat-time">
             ${new Date(msg.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}
@@ -430,192 +441,192 @@
                         ${msg.is_seen ? '✓✓' : '✓'}
                        </span>` : ''}
         </div>`;
-            chatMessages.appendChild(div);
-        }
+    chatMessages.appendChild(div);
+}
 
-        /* ================= RENDER GROUP MESSAGE ================= */
-        function renderGroupMessage(msg) {
-            let div = document.createElement('div');
-            div.className = 'chat-msg ' + (msg.sender_id === authUserId ? 'sent' : 'received');
+/* ================= RENDER GROUP MESSAGE ================= */
+function renderGroupMessage(msg) {
+    let div = document.createElement('div');
+    div.className = 'chat-msg ' + (msg.sender_id === authUserId ? 'sent' : 'received');
 
-            div.innerHTML = `
+    div.innerHTML = `
         <b style="font-size:11px">${msg.sender.name}</b><br>
         ${msg.message}
         <div class="chat-time">
             ${new Date(msg.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}
         </div>`;
-            chatMessages.appendChild(div);
-        }
+    chatMessages.appendChild(div);
+}
 
-        /* ================= SEND MESSAGE ================= */
-        function sendMessage() {
+/* ================= SEND MESSAGE ================= */
+function sendMessage() {
 
-            if (!chatInput.value.trim()) return;
+    if (!chatInput.value.trim()) return;
 
-            // GROUP
-            if (currentChatType === 'group') {
-                fetch(`${baseUrl}/group/messages`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            group_id: currentGroupId,
-                            message: chatInput.value
-                        })
-                    })
-                    .then(r => r.json())
-                    .then(msg => {
-                        renderGroupMessage(msg);
-                        chatInput.value = '';
-                        scrollBottom();
-                    });
-                return;
-            }
-
-            // PRIVATE
-            fetch(`${baseUrl}/chat/messages`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        receiver_id: currentChatUserId,
-                        message: chatInput.value
-                    })
+    // GROUP
+    if (currentChatType === 'group') {
+        fetch(`${baseUrl}/group/messages`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    group_id: currentGroupId,
+                    message: chatInput.value
                 })
-                .then(r => r.json())
-                .then(msg => {
-                    renderPrivateMessage(msg);
-                    chatInput.value = '';
-                    scrollBottom();
-                });
-        }
+            })
+            .then(r => r.json())
+            .then(msg => {
+                renderGroupMessage(msg);
+                chatInput.value = '';
+                scrollBottom();
+            });
+        return;
+    }
 
-        /* ================= HELPERS ================= */
-        function hideUnread(id) {
-            let badge = document.getElementById(`unread-${id}`);
-            if (badge) badge.classList.add('d-none');
-        }
+    // PRIVATE
+    fetch(`${baseUrl}/chat/messages`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                receiver_id: currentChatUserId,
+                message: chatInput.value
+            })
+        })
+        .then(r => r.json())
+        .then(msg => {
+            renderPrivateMessage(msg);
+            chatInput.value = '';
+            scrollBottom();
+        });
+}
 
-        function scrollBottom() {
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+/* ================= HELPERS ================= */
+function hideUnread(id) {
+    let badge = document.getElementById(`unread-${id}`);
+    if (badge) badge.classList.add('d-none');
+}
 
-        /* ================= PUSHER ================= */
-        let pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {
-            cluster: "{{ config('broadcasting.connections.pusher.options.cluster') }}",
-            authEndpoint: `${baseUrl}/broadcasting/auth`,
-            forceTLS: true,
-            auth: {
+function scrollBottom() {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+/* ================= PUSHER ================= */
+let pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {
+    cluster: "{{ config('broadcasting.connections.pusher.options.cluster') }}",
+    authEndpoint: `${baseUrl}/broadcasting/auth`,
+    forceTLS: true,
+    auth: {
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    }
+});
+
+/* ================= PRIVATE CHANNEL ================= */
+pusher.subscribe('private-chat.{{ auth()->id() }}')
+    .bind('message.sent', data => {
+
+        const senderId = data.message.sender_id;
+
+        if (currentChatType === 'private' && currentChatUserId === senderId) {
+            renderPrivateMessage(data.message);
+            scrollBottom();
+
+            fetch(`${baseUrl}/chat/seen/${senderId}`, {
+                method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
+            });
+
+            unseenCounts[senderId] = 0;
+            hideUnread(senderId);
+        } else {
+            unseenCounts[senderId] = (unseenCounts[senderId] || 0) + 1;
+            let badge = document.getElementById(`unread-${senderId}`);
+            if (badge) {
+                badge.innerText = unseenCounts[senderId] > 9 ? '9+' : unseenCounts[senderId];
+                badge.classList.remove('d-none');
             }
-        });
+        }
+    });
 
-        /* ================= PRIVATE CHANNEL ================= */
-        pusher.subscribe('private-chat.{{ auth()->id() }}')
-            .bind('message.sent', data => {
+/* ================= GROUP CHANNEL ================= */
+function subscribeGroupChannel(groupId) {
 
-                const senderId = data.message.sender_id;
+    if (groupChannel[groupId]) return; // already subscribed
 
-                if (currentChatType === 'private' && currentChatUserId === senderId) {
-                    renderPrivateMessage(data.message);
-                    scrollBottom();
+    let ch = pusher.subscribe(`private-chat.${groupId}`);
+    groupChannel[groupId] = ch;
 
-                    fetch(`${baseUrl}/chat/seen/${senderId}`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        }
-                    });
+    ch.bind('group.message.sent', data => {
 
-                    unseenCounts[senderId] = 0;
-                    hideUnread(senderId);
-                } else {
-                    unseenCounts[senderId] = (unseenCounts[senderId] || 0) + 1;
-                    let badge = document.getElementById(`unread-${senderId}`);
-                    if (badge) {
-                        badge.innerText = unseenCounts[senderId] > 9 ? '9+' : unseenCounts[senderId];
-                        badge.classList.remove('d-none');
-                    }
+        const gid = data.message.group_id;
+        const senderId = data.message.sender_id;
+
+        // apna msg
+        if (senderId === authUserId) return;
+
+        // group open
+        if (currentChatType === 'group' && currentGroupId === gid) {
+
+            renderGroupMessage(data.message);
+            scrollBottom();
+
+            fetch(`${baseUrl}/group/${gid}/read`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
             });
 
-        /* ================= GROUP CHANNEL ================= */
-        function subscribeGroupChannel(groupId) {
-
-            if (groupChannel[groupId]) return; // already subscribed
-
-            let ch = pusher.subscribe(`private-chat.${groupId}`);
-            groupChannel[groupId] = ch;
-
-            ch.bind('group.message.sent', data => {
-
-                const gid = data.message.group_id;
-                const senderId = data.message.sender_id;
-
-                // apna msg
-                if (senderId === authUserId) return;
-
-                // group open
-                if (currentChatType === 'group' && currentGroupId === gid) {
-
-                    renderGroupMessage(data.message);
-                    scrollBottom();
-
-                    fetch(`${baseUrl}/group/${gid}/read`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        }
-                    });
-
-                }
-                // group closed → badge realtime
-                else {
-                    let badge = document.getElementById(`group-unread-${gid}`);
-                    if (!badge) return;
-
-                    let count = parseInt(badge.innerText || 0);
-                    count++;
-
-                    badge.innerText = count > 9 ? '9+' : count;
-                    badge.classList.remove('d-none');
-                }
-            });
         }
+        // group closed → badge realtime
+        else {
+            let badge = document.getElementById(`group-unread-${gid}`);
+            if (!badge) return;
 
+            let count = parseInt(badge.innerText || 0);
+            count++;
 
-        /* ================= GROUP UNREAD LOAD ================= */
-        function loadGroupUnread(groupId) {
-            fetch(`${baseUrl}/group/${groupId}/unread-count`)
-                .then(r => r.json())
-                .then(d => {
-                    let badge = document.getElementById(`group-unread-${groupId}`);
-                    if (!badge) return;
-
-                    if (d.count > 0) {
-                        badge.innerText = d.count > 9 ? '9+' : d.count;
-                        badge.classList.remove('d-none');
-                    } else {
-                        badge.classList.add('d-none');
-                    }
-                });
+            badge.innerText = count > 9 ? '9+' : count;
+            badge.classList.remove('d-none');
         }
+    });
+}
 
-        document.getElementById('chatInput').addEventListener('keydown', function(e) {
 
-            // Enter pressed WITHOUT shift
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault(); // new line rok do
-                sendMessage(); // message bhej do
+/* ================= GROUP UNREAD LOAD ================= */
+function loadGroupUnread(groupId) {
+    fetch(`${baseUrl}/group/${groupId}/unread-count`)
+        .then(r => r.json())
+        .then(d => {
+            let badge = document.getElementById(`group-unread-${groupId}`);
+            if (!badge) return;
+
+            if (d.count > 0) {
+                badge.innerText = d.count > 9 ? '9+' : d.count;
+                badge.classList.remove('d-none');
+            } else {
+                badge.classList.add('d-none');
             }
-
-            // Shift + Enter → new line (default behaviour)
         });
-    </script>
+}
+
+document.getElementById('chatInput').addEventListener('keydown', function(e) {
+
+    // Enter pressed WITHOUT shift
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault(); // new line rok do
+        sendMessage(); // message bhej do
+    }
+
+    // Shift + Enter → new line (default behaviour)
+});
+</script>
 @endsection

@@ -3,8 +3,8 @@
  <!-- MAIN CONTENT -->
  <div class="main-content">
      <!-- TOP NAVBAR -->
-     <nav class="top-navbar d-flex justify-content-between align-items-center px-4 shadow-sm">
-         <h4 class="m-0 fw-bold text-uni">Members</h4>
+     <nav class="top-navbar d-flex justify-content-end align-items-center px-4 shadow-sm">
+         <!-- <h4 class="m-0 fw-bold text-uni">Members</h4> -->
          <x-customer-dashboard-nav-profile />
      </nav>
 
@@ -39,118 +39,119 @@
                                  <option value="">Golf Skill Level</option>
                                  <option value="Beginner"
                                      {{ request('golf_skill_level') == 'Beginner' ? 'selected' : '' }}>
-                                     Beginner
-                                 </option>
-                                 <option value="Intermediate"
-                                     {{ request('golf_skill_level') == 'Intermediate' ? 'selected' : '' }}>
-                                     Intermediate
-                                 </option>
-                                 <option value="Advanced"
-                                     {{ request('golf_skill_level') == 'Advanced' ? 'selected' : '' }}>
-                                     Advanced
-                                 </option>
-                             </select>
-                         </div> --}}
+                         Beginner
+                         </option>
+                         <option value="Intermediate"
+                             {{ request('golf_skill_level') == 'Intermediate' ? 'selected' : '' }}>
+                             Intermediate
+                         </option>
+                         <option value="Advanced" {{ request('golf_skill_level') == 'Advanced' ? 'selected' : '' }}>
+                             Advanced
+                         </option>
+                         </select>
+                     </div> --}}
 
-                         <!-- AVAILABILITY -->
-                         {{-- <div class="col-md-2">
+                     <!-- AVAILABILITY -->
+                     {{-- <div class="col-md-2">
                              <select name="availability" class="form-select input-uni">
                                  <option value="">Availability</option>
                                  <option value="Weekday Mornings"
                                      {{ request('availability') == 'Weekday Mornings' ? 'selected' : '' }}>
-                                     Weekday Mornings
-                                 </option>
-                                 <option value="Weekday Afternoons"
-                                     {{ request('availability') == 'Weekday Afternoons' ? 'selected' : '' }}>
-                                     Weekday Afternoons
-                                 </option>
-                                 <option value="Weekends" {{ request('availability') == 'Weekends' ? 'selected' : '' }}>
-                                     Weekends
-                                 </option>
-                                 <option value="No Preference"
-                                     {{ request('availability') == 'No Preference' ? 'selected' : '' }}>
-                                     No Preference
-                                 </option>
-                             </select>
-                         </div> --}}
+                     Weekday Mornings
+                     </option>
+                     <option value="Weekday Afternoons"
+                         {{ request('availability') == 'Weekday Afternoons' ? 'selected' : '' }}>
+                         Weekday Afternoons
+                     </option>
+                     <option value="Weekends" {{ request('availability') == 'Weekends' ? 'selected' : '' }}>
+                         Weekends
+                     </option>
+                     <option value="No Preference" {{ request('availability') == 'No Preference' ? 'selected' : '' }}>
+                         No Preference
+                     </option>
+                     </select>
+             </div> --}}
 
-                         <!-- SUBMIT -->
-                         <div class="col-md-2">
-                             <button type="submit" class="btn btn-gradient w-100 fw-semibold">
-                                 Apply
-                             </button>
-                         </div>
+             <!-- SUBMIT -->
+             <div class="col-md-2">
+                 <button type="submit" class="btn btn-gradient w-100 fw-semibold">
+                     Apply
+                 </button>
+             </div>
 
-                        <div class="col-md-2">
-                            <a href="{{ route('customer.members') }}" id="clearBtn"
-                                class="btn btn-gradient w-100">
-                                Clear
-                            </a>
-                        </div>
+             <div class="col-md-2">
+                 <a href="{{ route('customer.members') }}" id="clearBtn" class="btn btn-gradient w-100">
+                     Clear
+                 </a>
+             </div>
 
-                     </div>
-                 </form>
-
-            </div>
-             <!--MEMBERS TABLE-->
-            <div class="card card-uni p-4">
-                <h4 class="fw-bold text-uni mb-4">Matched Connections List</h4>
-                <div class="table-responsive">
-                <table class="table table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th>Sr No.</th>
-                            <th>Photo</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Profession</th>
-                            <th>Join Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    @if ($matched_connections->count() > 0)
-                    @php $count = 1; @endphp
-                    @foreach ($matched_connections as $member)
-                    <tr>
-                        <td>{{ $count ++ }}.</td>
-                        <td>
-                            @if($member->profile_image)
-                                <img src="{{ asset('assets/customer/uploads/profile/' .$member->profile_image) }}" class="rounded-circle" width="50">
-                            @else
-                                <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="rounded-circle" width="50">
-                            @endif    
-                        </td>
-                        <td>{{ $member->name }}</td>
-                        <td>{{ $member->email }}</td>
-                        <td>{{ $member->profession ?? 'N/A' }}</td>
-                        <td>{{ $member->created_at->format('M d, Y') }}</td>
-                        <td>
-                                <a href="{{ route('profile.index', $member->id) }}" class="btn btn-outline-uni btn-sm connect-contact-btn">View</a>
-                                <a  href="{{ route('customer.send.connection.request', $member->id) }}" class="btn btn-outline-uni btn-sm connect-contact-btn">
-                                  Connect Contact
-                                </a>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    <tr>
-                        <td colspan="7" class="text-center py-4">
-                            <strong>No members found.</strong>
-                        </td>
-                    </tr>
-                    @endif
-                </table>
-                </div>
-                <!--PAGINATION-->
-                <div class="mt-3">
-                    {{ $matched_connections->links('pagination::bootstrap-5') }}
-                </div>
-            </div>
          </div>
-     </section>
+         </form>
 
-     <!-- MEMBERS GRID -->
-     {{-- <section class="pb-5">
+ </div>
+ <!--MEMBERS TABLE-->
+ <div class="card card-uni p-4">
+     <h4 class="fw-bold text-uni mb-4">Matched Connections List</h4>
+     <div class="table-responsive">
+         <table class="table table-hover align-middle">
+             <thead>
+                 <tr>
+                     <th>Sr No.</th>
+                     <th>Photo</th>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Profession</th>
+                     <th>Join Date</th>
+                     <th>Actions</th>
+                 </tr>
+             </thead>
+             @if ($matched_connections->count() > 0)
+             @php $count = 1; @endphp
+             @foreach ($matched_connections as $member)
+             <tr>
+                 <td>{{ $count ++ }}.</td>
+                 <td>
+                     @if($member->profile_image)
+                     <img src="{{ asset('assets/customer/uploads/profile/' .$member->profile_image) }}"
+                         class="rounded-circle" width="50">
+                     @else
+                     <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" class="rounded-circle"
+                         width="50">
+                     @endif
+                 </td>
+                 <td>{{ $member->name }}</td>
+                 <td>{{ $member->email }}</td>
+                 <td>{{ $member->profession ?? 'N/A' }}</td>
+                 <td>{{ $member->created_at->format('M d, Y') }}</td>
+                 <td>
+                     <a href="{{ route('profile.index', $member->id) }}"
+                         class="btn btn-outline-uni btn-sm connect-contact-btn">View</a>
+                     <a href="{{ route('customer.send.connection.request', $member->id) }}"
+                         class="btn btn-outline-uni btn-sm connect-contact-btn">
+                         Connect Contact
+                     </a>
+                 </td>
+             </tr>
+             @endforeach
+             @else
+             <tr>
+                 <td colspan="7" class="text-center py-4">
+                     <strong>No members found.</strong>
+                 </td>
+             </tr>
+             @endif
+         </table>
+     </div>
+     <!--PAGINATION-->
+     <div class="mt-3">
+         {{ $matched_connections->links('pagination::bootstrap-5') }}
+     </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- MEMBERS GRID -->
+ {{-- <section class="pb-5">
          <div class="container">
 
              <div class="row g-4">
@@ -163,54 +164,53 @@
                          <div class="member-photo mb-3">
                              @if ($member->profile_image)
                              <img src="{{ asset('assets/customer/uploads/profile/' . $member->profile_image) }}"
-                                 alt="Profile Image" class="rounded-circle"
-                                 style="width:120px;height:120px;object-fit:cover;">
-                             @else
-                             <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" alt="Profile Image"
-                                 class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
-                             @endif
-                         </div>
-                         <h5 class="fw-bold">{{ $member->name }}</h5>
-                         <p class="text-muted mb-1">{{ $member->profession }}</p>
-                         <span class="badge bg-success-subtle text-success fw-semibold mb-2">{{ $member->email }}</span>
-                         <!-- <p class="text-muted small">"{{ $member->linkedin_url ?? '' }}"</p><br>
+ alt="Profile Image" class="rounded-circle"
+ style="width:120px;height:120px;object-fit:cover;">
+ @else
+ <img src="{{ asset('assets/customer/images/person-dummy.jpg') }}" alt="Profile Image" class="rounded-circle"
+     style="width:120px;height:120px;object-fit:cover;">
+ @endif
+ </div>
+ <h5 class="fw-bold">{{ $member->name }}</h5>
+ <p class="text-muted mb-1">{{ $member->profession }}</p>
+ <span class="badge bg-success-subtle text-success fw-semibold mb-2">{{ $member->email }}</span>
+ <!-- <p class="text-muted small">"{{ $member->linkedin_url ?? '' }}"</p><br>
                                              <p class="text-muted small">"{{ $member->instagram_handle ?? '' }}"</p> -->
-                         <div class="main-view-btn">
-                             <a href="{{ route('profile.index', $member->id) }}"
-                                 class="btn btn-gradient w-100 mt-2">View Profile</a>
-                             <button class="btn btn-gradient btn-sm mt-2 position-relative"
-                                onclick="openChat({{ $member->id }}, '{{ $member->name }}', '{{ $member->profile_image }}')">
+ <div class="main-view-btn">
+     <a href="{{ route('profile.index', $member->id) }}" class="btn btn-gradient w-100 mt-2">View Profile</a>
+     <button class="btn btn-gradient btn-sm mt-2 position-relative"
+         onclick="openChat({{ $member->id }}, '{{ $member->name }}', '{{ $member->profile_image }}')">
 
-                                Chat
+         Chat
 
-                                <!-- unread badge -->
-                                <span class="unread-badge d-none" id="unread-{{ $member->id }}"></span>
-                            </button>
-                         </div>
-                     </div>
-                 </div>
-                 @endforeach
-                 @else
-                 <p>No members found.</p>
-                 @endif
-             </div>
+         <!-- unread badge -->
+         <span class="unread-badge d-none" id="unread-{{ $member->id }}"></span>
+     </button>
+ </div>
+ </div>
+ </div>
+ @endforeach
+ @else
+ <p>No members found.</p>
+ @endif
+ </div>
 
-             <!-- Pagination -->
-             <div class="d-flex justify-content-center mt-5">
-                 {{ $members->links('pagination::bootstrap-5') }}
-             </div>
+ <!-- Pagination -->
+ <div class="d-flex justify-content-center mt-5">
+     {{ $members->links('pagination::bootstrap-5') }}
+ </div>
 
-         </div>
-     </section> --}}
+ </div>
+ </section> --}}
 
  </div>
 
  <!-- CHAT DRAWER -->
  <x-chat />
-{{-- <script>
+ {{-- <script>
 @foreach($members as $member)
     loadUnseenCount({{ $member->id }});
-@endforeach
-</script> --}}
+ @endforeach
+ </script> --}}
 
  @endsection
