@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Profession</label>
+                            <label class="form-label fw-semibold">Current Profession / Title</label>
                             <input type="text" name="profession" class="form-control input-uni "
                                 value="{{ old('profession', $user->profession) }}">
                             @error('profession')
@@ -100,6 +100,31 @@
                             <label class="form-label fw-semibold">Organization</label>
                             <input type="text" name="organization" class="form-control input-uni"
                                 value="{{ old('organization', $user->organization) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">How did you hear about us?</label>
+                            <select name="referral_source" id="referral_source" class="form-select">
+                                <option value="" disabled selected>Select one</option>
+                                <option value="Member/Friend/Colleague" {{ old('referral_source', $user->referral_source) == 'Member/Friend/Colleague' ? 'selected' : '' }}>Member/Friend/Colleague</option>
+                                <option value="LinkedIn" {{ old('referral_source', $user->referral_source) == 'LinkedIn' ? 'selected' : '' }}>LinkedIn</option>
+                                <option value="Instagram" {{ old('referral_source', $user->referral_source) == 'Instagram' ? 'selected' : '' }}>Instagram</option>
+                                <option value="Google Search" {{ old('referral_source', $user->referral_source) == 'Google Search' ? 'selected' : '' }}>Google Search
+                                </option>
+                                <option value="Other" {{ old('referral_source', $user->referral_source) == 'Other' ? 'selected' : '' }}>Other</option>
+                            </select>
+                            @error('referral_source')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+       
+                       <!---member name-->
+                        <div class="col-md-6" id="memberNameDiv"  style="display: {{ old('referral_source', $user->referral_source) === 'Member/Friend/Colleague' ? 'block' : 'none' }};">
+                            <label class="form-label fw-semibold">Referring Member's Full Name</label>
+                            <input type="text" name="member_name" class="form-control" value="{{ old('member_name', $user->member_name) }}"
+                                placeholder="Referring Member's Full Name">
+                            @error('member_name')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
@@ -374,4 +399,20 @@
             </div>
         </section>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    //open memeber name field
+    const referralSelect = document.getElementById("referral_source");
+    const memberNameDiv = document.getElementById("memberNameDiv");
+
+    referralSelect.addEventListener("change", function () {
+        if (referralSelect.value === "Member/Friend/Colleague") {
+            memberNameDiv.style.display = "block";
+        } else {
+            memberNameDiv.style.display = "none";
+        }
+    });
+    });
+
+</script>
  @endsection

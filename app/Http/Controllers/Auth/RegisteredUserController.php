@@ -50,7 +50,8 @@ class RegisteredUserController extends Controller
             'course_play_preference'=> 'required',
             'availability'          => 'required',
             'preferred_connection'  => 'required',
-            'travel_radius'         => 'required',
+            'travel_radius'         => 'required', 
+            'member_name'     => ['required_if:referral_source,Member/Friend/Colleague'],
         ]);
 
         DB::beginTransaction();  
@@ -65,6 +66,7 @@ class RegisteredUserController extends Controller
                 'organization'      => $request->organization,
                 'bio'               => $request->bio,
                 'referral_source'   => $request->referral_source,
+                'member_name'       => $request->member_name,
                 'linkedin_url'      => $request->linkedin_url,
                 'instagram_handle'  => $request->instagram_handle,
                 'password'          => Hash::make(12345678),         
