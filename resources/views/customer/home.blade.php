@@ -256,7 +256,7 @@
         <!-- Icons Row -->
         <div class="hero-features d-flex justify-content-center gap-4 mt-3">
             <div><i class="bi bi-people-fill me-1"></i> Active Community</div>
-            <div><i class="bi bi-check-circle-fill me-1"></i> Free Trial</div>
+            <!-- <div><i class="bi bi-check-circle-fill me-1"></i> Free Trial</div> -->
             <div><i class="bi bi-lightning-fill me-1"></i> Quick Setup</div>
         </div>
 
